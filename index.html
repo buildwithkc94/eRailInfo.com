@@ -338,13 +338,24 @@ renderTrainRows(trains.filter(t => t.revised).slice(0, 5), 'latestRevisions', fa
 // ─────────────────────────────────────────────
 function handleSearch() {
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
-  if (!q) { renderTrainRows(trains.slice(0, 5), 'popularTrains'); return; }
+  const label = document.getElementById('popularTrainsLabel');
+  
+  if (!q) {
+    label.textContent = 'POPULAR TRAINS';
+    renderTrainRows(trains.slice(0, 5), 'popularTrains');
+    return;
+  }
+
   const results = trains.filter(t =>
     t.number.includes(q) ||
     t.name.toLowerCase().includes(q) ||
     t.from.toLowerCase().includes(q) ||
     t.to.toLowerCase().includes(q)
   );
+
+  label.textContent = `SEARCH RESULTS (${results.length})`;
+  renderTrainRows(results, 'popularTrains');
+};
   renderTrainRows(results, 'popularTrains');
 }
 
