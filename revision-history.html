@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revision History — eRailInfo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --paper: #f5f1e8;
+  --paper-dark: #ebe5d8;
+  --border: #d7cfbf;
+  --text: #2c2c2c;
+  --muted: #777;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.container {
+  width: min(1100px, 90%);
+  margin: auto;
+}
+
+/* HEADER */
+header {
+  padding: 40px 0 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 54px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #222;
+}
+
+.tagline { color: var(--muted); font-size: 13px; }
+
+/* NAVIGATION */
+.nav-menu { display: flex; gap: 50px; list-style: none; }
+.nav-menu li { position: relative; }
+.nav-menu a {
+  text-decoration: none;
+  color: #222;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Inter', sans-serif;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  min-width: 180px;
+  background: #faf7ef;
+  border: 1px solid var(--border);
+  padding: 8px 0;
+  list-style: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,.05);
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  font-weight: 400;
+}
+
+.dropdown-menu li a:hover { background: var(--paper-dark); }
+.dropdown:hover .dropdown-menu { display: block; }
+
+/* PAGE CONTENT */
+.page-hero {
+  text-align: center;
+  padding: 60px 0 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-hero h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.page-hero p {
+  color: #666;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* TABLE */
+.table-section {
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
+.table-name {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: white;
+  border: 1px solid var(--border);
+}
+
+thead tr {
+  border-bottom: 2px solid var(--border);
+  background: var(--paper-dark);
+}
+
+thead th {
+  text-align: left;
+  padding: 14px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #444;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #faf7ef;
+}
+
+tbody td {
+  padding: 14px 18px;
+  vertical-align: top;
+}
+
+td.version {
+  font-weight: 700;
+  font-size: 15px;
+  white-space: nowrap;
+  width: 140px;
+}
+
+td.date {
+  white-space: nowrap;
+  width: 160px;
+  color: #555;
+}
+
+td.summary {
+  color: #333;
+}
+
+/* add row button */
+.add-hint {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 0;
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: #888;
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .topbar { flex-direction: column; gap: 20px; }
+  .nav-menu { flex-wrap: wrap; gap: 20px; }
+  .page-hero h1 { font-size: 40px; }
+  thead th, tbody td { padding: 10px 12px; }
+  td.version, td.date { width: auto; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ HEADER (same as index) -->
+<header>
+<div class="container">
+  <div class="topbar">
+    <div>
+      <a href="index.html" class="logo">eRailInfo</a>
+      <div class="tagline">Indian Railway Information</div>
+    </div>
+    <ul class="nav-menu">
+      <li class="dropdown">
+        <a href="#">TRAINS ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Rajdhani Express</a></li>
+          <li><a href="#">Shatabdi Express</a></li>
+          <li><a href="#">Vande Bharat</a></li>
+          <li><a href="#">Duronto Express</a></li>
+          <li><a href="#">Humsafar Express</a></li>
+          <li><a href="#">Garib Rath</a></li>
+          <li><a href="#">Mail / Express</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">STATIONS ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">A Stations</a></li>
+          <li><a href="#">B Stations</a></li>
+          <li><a href="#">C Stations</a></li>
+          <li><a href="#">D Stations</a></li>
+          <li><a href="#">E Stations</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">UPDATES ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="revision-history.html">Revision History</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</header>
+
+<!-- ═══════════════════════════════════ PAGE HERO -->
+<div class="page-hero">
+  <h1>Revision History</h1>
+  <p>A log of all schedule and data updates to eRailInfo.</p>
+</div>
+
+<!-- ═══════════════════════════════════ TABLE -->
+<div class="container">
+<div class="table-section">
+
+  <div class="table-name">Revision History — Search</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Version Number</th>
+        <th>Effective Date</th>
+        <th>Summary of Changes</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- ↓ ADD YOUR ROWS HERE — copy and paste the block below each time -->
+
+      <tr>
+        <td class="version">1.0</td>
+        <td class="date">2026-01-01</td>
+        <td class="summary">Initial release of eRailInfo with core train search and schedule data.</td>
+      </tr>
+
+      <tr>
+        <td class="version">1.1</td>
+        <td class="date">2026-03-15</td>
+        <td class="summary">Mumbai Rajdhani Express departure timing updated. Coach composition revised for Gatimaan Express.</td>
+      </tr>
+
+      <tr>
+        <td class="version">1.2</td>
+        <td class="date">2026-06-01</td>
+        <td class="summary">Bengaluru Duronto coach composition updated. New Vande Bharat Sleeper routes added.</td>
+      </tr>
+
+      <!-- ↑ COPY ONE <tr>...</tr> BLOCK ABOVE FOR EACH NEW VERSION -->
+
+    </tbody>
+  </table>
+
+  <div class="add-hint">To add a new entry: copy any &lt;tr&gt;...&lt;/tr&gt; row inside &lt;tbody&gt; and update the three fields.</div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════ FOOTER (same as index) -->
+<footer>
+  eRailInfo © 2026
+</footer>
+
+</body>
+</html>
