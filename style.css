@@ -1,35 +1,27 @@
-body {
-font-family: 'Libre Baskerville', serif;
-background:#f6f1e7;
-margin:0;
-padding:0;
-color:#222;
+.categories{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin:40px 0;
+
 }
-header {
-text-align:center;
-padding:30px;
-}
-h1 {
-font-size:48px;
-margin-bottom:5px;
-}
-.search {
-text-align:center;
-margin-bottom:30px;
-}
-input {
-width:350px;
-padding:12px;
-font-size:18px;
-}
-.card {
-background:#fffdf8;
-width:70%;
-margin:20px auto;
-padding:20px;
-border-radius:12px;
-box-shadow:0 2px 5px rgba(0,0,0,.08);
-}
-.card:hover {
-transform:translateY(-2px);
+
+.categories a{
+
+text-decoration:none;
+
+padding:10px 18px;
+
+border:1px solid var(--border);
+
+border-radius:999px;
+
+color:var(--text);
+
 }
