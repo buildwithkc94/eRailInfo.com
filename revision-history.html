@@ -143,6 +143,7 @@ thead th {
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #444;
+  border-right: 1px solid var(--border);  /* ← ADD THIS */
 }
 
 tbody tr {
@@ -160,8 +161,13 @@ tbody tr:hover {
 tbody td {
   padding: 14px 18px;
   vertical-align: top;
+  border-right: 1px solid var(--border);  /* ← ADD THIS */
 }
 
+thead th:last-child,
+tbody td:last-child {
+border-right: none;
+}
 td.version {
   font-weight: 700;
   font-size: 15px;
