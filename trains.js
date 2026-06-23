@@ -98,9 +98,7 @@ const trains = [
       { stop: 9, code: "ANY", station: "Annavaram", arrival: "10:49 am", departure: "10:50 am", day: 1, halt: "1 min", schedule: "S M T W T F S" },
       { stop: 10, code: "TUNI", station: "Tuni Junction (TUNI)", arrival: "11:05 am", departure: "11:07 am", day: 1, halt: "2 min", schedule: "S M T W T F S" },
       { stop: 11, code: "AKP", station: "Anakpalle", arrival: "11:49 am", departure: "11:50 am", day: 1, halt: "1 min", schedule: "S M T W T F S" },
-
-      const trains = [
-    // ← ADD MORE TRAINS HERE. All 21 pages will update automatically.
+    
 ];
 
 const trainCategories = [
