@@ -69,21 +69,34 @@
   <div id="catList"></div>
 </div>
 <script src="trains.js"></script>
+
+<script>
 document.addEventListener('DOMContentLoaded', function() {
   const c = document.getElementById('catList');
-  const filtered = trains.filter(t => t.category === 'Superfast');
-  if (!filtered.length) { c.innerHTML = '<p style="color:#888;padding:20px 0">No trains in this category yet. Add them to trains.js</p>'; return; }
+
+  const filtered = trains.filter(
+    t => t.category === 'Superfast'
+  );
+
+  if (!filtered.length) {
+    c.innerHTML =
+      '<p style="color:#888;padding:20px 0">No trains in this category yet. Add them to trains.js</p>';
+    return;
+  }
+
   filtered.forEach(t => {
     const row = document.createElement('div');
     row.className = 'train-row';
+
     row.innerHTML =
-'<a href="train-' + t.number + '.html">' +
-'<div class="train-number">' + t.number + '</div>' +
-'<div class="train-details">' +
-t.name + '<br>' +
-t.from + ' → ' + t.to +
-'</div>' +
-'</a>';
+      '<a href="train-' + t.number + '.html">' +
+      '<div class="train-number">' + t.number + '</div>' +
+      '<div class="train-details">' +
+      t.name + '<br>' +
+      t.from + ' → ' + t.to +
+      '</div>' +
+      '</a>';
+
     c.appendChild(row);
   });
 });
