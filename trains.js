@@ -100,12 +100,3 @@ const trains = [
       { stop: 11, code: "AKP", station: "Anakpalle", arrival: "11:49 am", departure: "11:50 am", day: 1, halt: "1 min", schedule: "S M T W T F S" },
     
 ];
-
-const trainCategories = [
-  "AC Express", "AC Superfast", "Amrit Bharat", "Antyodaya",
-  "Double Decker", "Duronto", "Garib Rath", "Humsafar",
-  "Jan Shatabdi", "Namo Bharat", "Rajdhani", "Sampark Kranti",
-  "Shatabdi", "Suvidha", "Tejas", "Toy Train",
-  "Uday", "Vande Bharat", "Vande Bharat Sleeper",
-  "Mail/Express", "Superfast"
-];
