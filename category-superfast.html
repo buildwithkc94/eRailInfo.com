@@ -68,7 +68,7 @@
   <div class="section-title">SUPERFAST TRAINS</div>
   <div id="catList"></div>
 </div>
-<script>
+<script src="trains.js"></script>
 document.addEventListener('DOMContentLoaded', function() {
   const c = document.getElementById('catList');
   const filtered = trains.filter(t => t.category === 'Superfast');
@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <footer>eRailInfo &copy; 2026</footer>
 
-<script src="trains.js"></script>
 <script>
 const capsuleBar = document.getElementById('capsuleBar');
 let a;
