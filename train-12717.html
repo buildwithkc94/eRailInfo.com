@@ -720,7 +720,7 @@ train.coaches.forEach((c, i) => {
   // Add connector line between coaches (not after last one)
   if (i < train.coaches.length - 1) {
     const line = document.createElement('div');
-    line.style.cssText = 'width:16px;height:2px;background:#ccc;flex-shrink:0;margin-top:-24px;';
+    line.style.cssText = 'width:12px;height:2px;background:#ccc;flex-shrink:0;align-self:center;';
     coachRow.appendChild(line);
   }
 });
