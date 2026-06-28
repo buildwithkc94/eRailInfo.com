@@ -502,7 +502,7 @@ document.getElementById('featuredCard').innerHTML = `
       <h2>${train.number} / ${train.name}</h2>
       <div class="meta">
         <span class="meta-label">Train Type:</span> ${train.type}<br>
-        <span class="meta-label">${train.from} → ${train.to}</span> ${returnTrain ? returnTrain.number : ''} Trains<br>
+        <span class="meta-label">${train.from} &rarr; ${train.to}</span> ${returnTrain ? returnTrain.number : ''} Trains<br>
         <span class="meta-label">Schedule:</span> ${train.runsOn}<br>
         <span class="meta-label">Classes:</span> ${train.classes}
       </div>
@@ -511,21 +511,41 @@ document.getElementById('featuredCard').innerHTML = `
 
   <div class="journey-timeline">
     <div class="journey-stop">
-      <div class="stop-circle">⭐</div>
+      <div class="stop-circle">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
       <div class="stop-time">${firstStop.departure}</div>
-      <div class="stop-status">Departure</div>
+      <div class="stop-status">DEPARTURE</div>
       <div class="stop-station">${firstStop.code}</div>
     </div>
+
+    <div class="journey-middle">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5">
+        <rect x="2" y="7" width="20" height="13" rx="2"/>
+        <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+        <line x1="12" y1="12" x2="12" y2="16"/>
+        <line x1="8" y1="12" x2="16" y2="12"/>
+      </svg>
+    </div>
+
     <div class="journey-stop">
-      <div class="stop-circle">📍</div>
+      <div class="stop-circle">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
       <div class="stop-time">${lastStop.arrival}</div>
-      <div class="stop-status">Arrival</div>
+      <div class="stop-status">ARRIVAL</div>
       <div class="stop-station">${lastStop.code}</div>
     </div>
   </div>
 
   <div class="journey-info">
-    ✓ Run Time ${calculateRunTime(firstStop.departure, lastStop.arrival)} hrs ${calculateStops()} mins | Show all Stops ▼
+    &#9200; Run Time ${getRunTime()} &nbsp;|&nbsp; Show all Stops &#9660;
   </div>
 
   <div class="quick-stats">
