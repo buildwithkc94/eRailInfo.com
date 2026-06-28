@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────────────────────────
-// trains.js — SINGLE SOURCE OF TRUTH
-// Edit trains here and ALL pages update automatically.
-// ─────────────────────────────────────────────────────────────────
 const trains = [
   {
     number: "12717",
@@ -86,7 +82,7 @@ const trains = [
       { code: "B5",     type: "AC Three Tier" },
       { code: "EOG",    type: "Generator Car" },
     ],
-  timetable: [
+    timetable: [
       { stop: 1, code: "BZA", station: "Vijayawada Junction (BZA)", arrival: "—", departure: "06:00 am", day: 1, halt: "—", schedule: "Origin" },
       { stop: 2, code: "NZD", station: "Nuzvid", arrival: "07:36 am", departure: "07:37 am", day: 1, halt: "1 min", schedule: "S M T W T F S" },
       { stop: 3, code: "ELR", station: "Eluru", arrival: "07:56 am", departure: "07:57 am", day: 1, halt: "1 min", schedule: "S M T W T F S" },
@@ -98,12 +94,22 @@ const trains = [
       { stop: 9, code: "ANY", station: "Annavaram", arrival: "10:49 am", departure: "10:50 am", day: 1, halt: "1 min", schedule: "S M T W T F S" },
       { stop: 10, code: "TUNI", station: "Tuni Junction (TUNI)", arrival: "11:05 am", departure: "11:07 am", day: 1, halt: "2 min", schedule: "S M T W T F S" },
       { stop: 11, code: "AKP", station: "Anakpalle", arrival: "11:49 am", departure: "11:50 am", day: 1, halt: "1 min", schedule: "S M T W T F S" },
-         ],
-  revisions: [
-      {
-        date: "18 Jun 2026",
-        Summary: "Schedule reviewed."
-      }
-      ]
-  }
+      { stop: 12, code: "DVW", station: "Duvvada", arrival: "12:07 pm", departure: "12:08 pm", day: 1, halt: "1 min", schedule: "S M T W T F S" },
+      { stop: 13, code: "VSKP", station: "Visakhapatnam Junction (VSKP)", arrival: "12:45 pm", departure: "—", day: 1, halt: "Destination", schedule: "S M T W T F S" },
+    ],
+    revisions: [
+      { date: "15 Jun 2026", summary: "Coach composition updated." },
+      { date: "12 Jun 2026", summary: "Arrival time revised at RJY." },
+      { date: "05 Jun 2026", summary: "Minor timing adjustments." },
+    ],
+  },
+];
+
+const trainCategories = [
+  "AC Express", "AC Superfast", "Amrit Bharat", "Antyodaya",
+  "Double Decker", "Duronto", "Garib Rath", "Humsafar",
+  "Jan Shatabdi", "Namo Bharat", "Rajdhani", "Sampark Kranti",
+  "Shatabdi", "Suvidha", "Tejas", "Toy Train",
+  "Uday", "Vande Bharat", "Vande Bharat Sleeper",
+  "Mail/Express", "Superfast"
 ];
