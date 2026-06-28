@@ -64,70 +64,67 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 24px 0;
+  margin: 24px 60px;
   position: relative;
 }
 
 .journey-timeline::before {
   content: "";
   position: absolute;
-  top: 24px;
-  left: 40px;
-  right: 40px;
-  height: 2px;
-  background: #ddd;
+  top: 40px;
+  left: 100px;
+  right: 100px;
+  border-top: 2px dashed #ccc;
   z-index: 0;
 }
 
 .journey-stop {
-  flex: 1;
   text-align: center;
   position: relative;
   z-index: 1;
-}
-
-.journey-stop:first-child .stop-circle {
-  background: #2ecc71;
-}
-
-.journey-stop:last-child .stop-circle {
-  background: #e74c3c;
+  flex: 0 0 auto;
 }
 
 .stop-circle {
-  width: 48px;
-  height: 48px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: #3498db;
+  border: 1px solid var(--border);
+  background: white;
   margin: 0 auto 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 20px;
-  border: 3px solid white;
-  box-shadow: 0 0 0 2px var(--border);
+  color: #444;
+}
+
+.journey-middle {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .stop-time {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   color: #222;
 }
 
 .stop-status {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
   margin-top: 4px;
   font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .stop-station {
   font-size: 12px;
-  color: #666;
+  color: #444;
   margin-top: 4px;
   font-weight: 700;
 }
@@ -136,17 +133,15 @@
   text-align: center;
   font-size: 12px;
   color: #666;
-  margin-top: 16px;
+  margin: 16px 0;
   padding: 12px;
   background: var(--paper);
   border-radius: 4px;
 }
 
-/* ── QUICK STATS ── */
 .quick-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: 1fr 1fr 1fr;
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid var(--border);
@@ -154,6 +149,12 @@
 
 .stat-box {
   text-align: center;
+  padding: 10px 0;
+  border-right: 1px solid var(--border);
+}
+
+.stat-box:last-child {
+  border-right: none;
 }
 
 .stat-value {
@@ -163,14 +164,13 @@
 }
 
 .stat-label {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
   margin-top: 4px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
-
 /* ── TAB NAVIGATION ── */
 .train-tabs {
   border-bottom: 1px solid var(--border);
