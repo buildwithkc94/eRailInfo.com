@@ -756,7 +756,7 @@ if (returnTrain) {
 document.getElementById('rakeLabel').textContent = 'Rake Composition – ' + (train.rakeType || 'LHB');
 if (train.coaches && train.coaches.length) {
   const coachRow = document.getElementById('coachRow');
-coachRow.style.cssText = 'display:flex;align-items:center;flex-wrap:wrap;gap:0;margin-bottom:12px;';
+coachRow.style.cssText = 'display:flex;align-items:center;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:0;margin-bottom:12px;padding-bottom:8px;-webkit-overflow-scrolling:touch;';
 
 train.coaches.forEach((c, i) => {
   const box = document.createElement('div');
