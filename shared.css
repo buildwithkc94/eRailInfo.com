@@ -37,7 +37,27 @@ header { padding: 40px 0 20px; border-bottom: 1px solid var(--border); }
 .browse-bar-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; margin-right: 6px; white-space: nowrap; }
 .capsule { display: inline-flex; align-items: center; padding: 5px 14px; border: 1px solid var(--border); border-radius: 999px; font-size: 12px; font-weight: 400; color: #333; text-decoration: none; background: white; cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap; }
 .capsule:hover { background: var(--paper); border-color: #b0a898; }
-.capsule.active { background: #F52727; color: white; border-color: #F52727; }
+.capsule.active[data-cat="AC Express"]           { background: #2c2c2c; border-color: #2c2c2c; color: white; }
+.capsule.active[data-cat="AC Superfast"]         { background: #2c2c2c; border-color: #2c2c2c; color: white; }
+.capsule.active[data-cat="Amrit Bharat"]         { background: #F59827; border-color: #F59827; color: white; }
+.capsule.active[data-cat="Antyodaya"]            { background: #616161; border-color: #616161; color: white; }
+.capsule.active[data-cat="Double Decker"]        { background: #616161; border-color: #616161; color: white; }
+.capsule.active[data-cat="Duronto"]              { background: #27F549; border-color: #27F549; color: #222; }
+.capsule.active[data-cat="Garib Rath"]           { background: #943861; border-color: #943861; color: white; }
+.capsule.active[data-cat="Humsafar"]             { background: #27D3F5; border-color: #27D3F5; color: #222; }
+.capsule.active[data-cat="Jan Shatabdi"]         { background: #2798F5; border-color: #2798F5; color: white; }
+.capsule.active[data-cat="Namo Bharat"]          { background: #946B38; border-color: #946B38; color: white; }
+.capsule.active[data-cat="Rajdhani"]             { background: #F54927; border-color: #F54927; color: white; }
+.capsule.active[data-cat="Sampark Kranti"]       { background: #8F9438; border-color: #8F9438; color: white; }
+.capsule.active[data-cat="Shatabdi"]             { background: #2731F5; border-color: #2731F5; color: white; }
+.capsule.active[data-cat="Suvidha"]              { background: #9827F5; border-color: #9827F5; color: white; }
+.capsule.active[data-cat="Tejas"]                { background: #F5EB27; border-color: #F5EB27; color: #222; }
+.capsule.active[data-cat="Toy Train"]            { background: #616161; border-color: #616161; color: white; }
+.capsule.active[data-cat="Uday"]                 { background: #F5F527; border-color: #F5F527; color: #222; }
+.capsule.active[data-cat="Vande Bharat"]         { background: #8000FF; border-color: #8000FF; color: white; }
+.capsule.active[data-cat="Vande Bharat Sleeper"] { background: #FF0080; border-color: #FF0080; color: white; }
+.capsule.active[data-cat="Mail/Express"]         { background: #877D39; border-color: #877D39; color: white; }
+.capsule.active[data-cat="Superfast"]            { background: #F52727; border-color: #F52727; color: white; }
 
 .page-hero { text-align: center; padding: 60px 0 40px; }
 .page-hero h1 { font-family: 'Inter', sans-serif; font-size: 64px; font-weight: 700; }
