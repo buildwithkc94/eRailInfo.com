@@ -96,20 +96,20 @@
 
     <div style="background:white;border:1px solid var(--border);border-radius:4px;padding:28px;">
       <div style="font-size:15px;font-weight:700;margin-bottom:20px;color:#222;">Search Between Stations</div>
-     <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
-        <div style="flex:1;position:relative;">
-          <input type="text" id="fromStation" placeholder="From station" autocomplete="off"
-            style="width:100%;padding:14px;border:1px solid var(--border);background:var(--paper);outline:none;font-family:Inter,sans-serif;font-size:14px;border-radius:4px;box-sizing:border-box;">
-          <div id="fromDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:white;border:1px solid var(--border);border-top:none;z-index:100;max-height:200px;overflow-y:auto;border-radius:0 0 4px 4px;box-shadow:0 4px 12px rgba(0,0,0,0.08);"></div>
-        </div>
-        <button onclick="swapStations()"
-          style="width:44px;height:48px;border:1px solid var(--border);background:white;border-radius:50%;cursor:pointer;font-size:18px;flex-shrink:0;">⇆</button>
-        <div style="flex:1;position:relative;">
-          <input type="text" id="toStation" placeholder="To station" autocomplete="off"
-            style="width:100%;padding:14px;border:1px solid var(--border);background:var(--paper);outline:none;font-family:Inter,sans-serif;font-size:14px;border-radius:4px;box-sizing:border-box;">
-          <div id="toDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:white;border:1px solid var(--border);border-top:none;z-index:100;max-height:200px;overflow-y:auto;border-radius:0 0 4px 4px;box-shadow:0 4px 12px rgba(0,0,0,0.08);"></div>
-        </div>
-      </div>
+<div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
+  <div style="flex:1;position:relative;">
+    <input type="text" id="fromStation" placeholder="From station" autocomplete="off"
+      style="width:100%;padding:14px;border:1px solid var(--border);background:var(--paper);outline:none;font-family:Inter,sans-serif;font-size:14px;border-radius:4px;box-sizing:border-box;">
+    <div id="fromDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:white;border:1px solid var(--border);border-top:none;z-index:100;max-height:200px;overflow-y:auto;border-radius:0 0 4px 4px;box-shadow:0 4px 12px rgba(0,0,0,0.08);"></div>
+  </div>
+  <button onclick="swapStations()"
+    style="width:44px;height:48px;border:1px solid var(--border);background:white;border-radius:50%;cursor:pointer;font-size:18px;flex-shrink:0;">⇆</button>
+  <div style="flex:1;position:relative;">
+    <input type="text" id="toStation" placeholder="To station" autocomplete="off"
+      style="width:100%;padding:14px;border:1px solid var(--border);background:var(--paper);outline:none;font-family:Inter,sans-serif;font-size:14px;border-radius:4px;box-sizing:border-box;">
+    <div id="toDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:white;border:1px solid var(--border);border-top:none;z-index:100;max-height:200px;overflow-y:auto;border-radius:0 0 4px 4px;box-shadow:0 4px 12px rgba(0,0,0,0.08);"></div>
+  </div>
+</div>
       <button onclick="handleStationSearch()"
         style="width:100%;padding:14px;border:none;background:#222;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;cursor:pointer;border-radius:4px;">Search</button>
       <div style="font-size:11px;color:#aaa;margin-top:8px;">Example: Visakhapatnam to Vijayawada</div>
