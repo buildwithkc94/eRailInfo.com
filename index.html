@@ -168,7 +168,7 @@ function handleTrainSearch() {
     t.number.includes(q) || t.name.toLowerCase().includes(q) ||
     t.from.toLowerCase().includes(q) || t.to.toLowerCase().includes(q)
   );
-  showResults(results, 'SEARCH RESULTS (' + results.length + ')');
+  showResults(results, 'SEARCH RESULTS (' + results.length + ')', null, null);
 }
 
 function handleStationSearch() {
@@ -189,7 +189,7 @@ function handleStationSearch() {
     return fromIndex !== -1 && toIndex !== -1 && fromIndex < toIndex;
   });
 
-  showResults(results, 'TRAINS FOUND (' + results.length + ')');
+  showResults(results, 'TRAINS FOUND (' + results.length + ')', from, to);
 }
 
 function swapStations() {
@@ -200,35 +200,116 @@ function swapStations() {
 
 function filterByCategory(cat) {
   const results = trains.filter(t => t.category === cat);
-  showResults(results, cat.toUpperCase() + ' (' + results.length + ')');
+  showResults(results, cat.toUpperCase() + ' (' + results.length + ')', null, null);
   document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
 }
 
-function showResults(results, label) {
+function showResults(results, label, fromQuery, toQuery) {
   document.getElementById('resultsLabel').textContent = label;
   const list = document.getElementById('resultsList');
   list.innerHTML = '';
+
   if (!results.length) {
     list.innerHTML = '<div style="text-align:center;padding:40px;color:#888;background:white;border:1px solid var(--border);border-radius:4px;">No trains found.</div>';
-  } else {
-    results.forEach(t => {
-      const a = document.createElement('a');
-      a.href = 'train-' + t.number + '.html';
-      a.style.cssText = 'display:flex;align-items:center;gap:16px;border:1px solid var(--border);background:white;border-radius:4px;padding:16px 20px;margin-bottom:10px;text-decoration:none;color:inherit;';
-      a.innerHTML = `
-        <div style="font-size:32px;font-weight:700;color:#222;min-width:80px;">${t.number}</div>
-        <div style="flex:1;">
-          <div style="font-size:15px;font-weight:700;color:#222;">${t.name}</div>
-          <div style="font-size:12px;color:#666;margin-top:3px;">${t.from} → ${t.to}</div>
-          <div style="font-size:11px;color:#777;margin-top:3px;">${t.type} · ${t.runsOn}</div>
-        </div>
-        <div style="font-size:18px;color:#ccc;">›</div>
-      `;
-      a.onmouseover = () => a.style.background = '#ebe5d8';
-      a.onmouseout = () => a.style.background = 'white';
-      list.appendChild(a);
-    });
+    document.getElementById('searchResults').style.display = 'block';
+    return;
   }
+
+  results.forEach(t => {
+    // Find from/to stops in timetable
+    const fromStop = fromQuery ? t.timetable.find(s =>
+      s.code.toLowerCase() === fromQuery.toLowerCase() ||
+      s.station.toLowerCase().includes(fromQuery.toLowerCase())
+    ) : t.timetable[0];
+
+    const toStop = toQuery ? t.timetable.find(s =>
+      s.code.toLowerCase() === toQuery.toLowerCase() ||
+      s.station.toLowerCase().includes(toQuery.toLowerCase())
+    ) : t.timetable[t.timetable.length - 1];
+
+    // Calculate time difference
+    function toMins(timeStr) {
+      if (!timeStr || timeStr === '—') return null;
+      const [time, period] = timeStr.split(' ');
+      let [h, m] = time.split(':').map(Number);
+      if (period === 'pm' && h !== 12) h += 12;
+      if (period === 'am' && h === 12) h = 0;
+      return h * 60 + m;
+    }
+
+    const depTime = fromStop ? (fromStop.departure !== '—' ? fromStop.departure : fromStop.arrival) : null;
+    const arrTime = toStop ? (toStop.arrival !== '—' ? toStop.arrival : toStop.departure) : null;
+    let timeDiff = '—';
+    if (depTime && arrTime) {
+      let diff = toMins(arrTime) - toMins(depTime);
+      if (diff < 0) diff += 1440;
+      const hrs = Math.floor(diff / 60);
+      const mins = diff % 60;
+      timeDiff = hrs + 'h ' + mins + 'm';
+    }
+
+    // Coach summary — just unique codes excluding loco/EOG
+    const coachSummary = t.coaches
+      ? [...new Set(t.coaches.filter(c => c.type !== 'Electric Loco' && c.type !== 'Generator Car').map(c => {
+          if (c.code.startsWith('H')) return 'AC 1st';
+          if (c.code.startsWith('A')) return 'AC 2nd';
+          if (c.code.startsWith('B')) return 'AC 3rd';
+          if (c.code.startsWith('S')) return 'Sleeper';
+          if (c.code.startsWith('G')) return 'General';
+          return c.code;
+        }))].join(', ')
+      : t.classes || '—';
+
+    const card = document.createElement('a');
+    card.href = 'train-' + t.number + '.html';
+    card.style.cssText = 'display:block;border:1px solid var(--border);background:white;border-radius:4px;padding:20px 24px;margin-bottom:12px;text-decoration:none;color:inherit;transition:background 0.15s;';
+    card.onmouseover = () => card.style.background = '#faf7ef';
+    card.onmouseout = () => card.style.background = 'white';
+
+    card.innerHTML = `
+      <!-- TOP ROW: Number + Name + Arrow -->
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:32px;font-weight:700;color:#222;">${t.number}</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:#222;">${t.name}</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">${t.from} → ${t.to}</div>
+          </div>
+        </div>
+        <div style="font-size:20px;color:#ccc;">›</div>
+      </div>
+
+      <!-- MIDDLE ROW: From stop → time gap → To stop -->
+      <div style="display:flex;align-items:center;gap:0;margin-bottom:16px;">
+        <div style="flex:1;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#999;text-transform:uppercase;margin-bottom:4px;">From</div>
+          <div style="font-size:13px;font-weight:700;color:#222;">${fromStop ? fromStop.station : '—'}</div>
+          <div style="font-size:18px;font-weight:700;color:#222;margin-top:4px;">${depTime || '—'}</div>
+        </div>
+        <div style="text-align:center;padding:0 20px;flex-shrink:0;">
+          <div style="font-size:13px;font-weight:700;color:#F52727;background:#fff5f5;border:1px solid #ffd0d0;border-radius:20px;padding:4px 14px;">${timeDiff}</div>
+          <div style="height:2px;background:#e0dbd2;margin-top:8px;width:80px;"></div>
+        </div>
+        <div style="flex:1;text-align:right;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#999;text-transform:uppercase;margin-bottom:4px;">To</div>
+          <div style="font-size:13px;font-weight:700;color:#222;">${toStop ? toStop.station : '—'}</div>
+          <div style="font-size:18px;font-weight:700;color:#222;margin-top:4px;">${arrTime || '—'}</div>
+        </div>
+      </div>
+
+      <!-- BOTTOM ROW: Tags -->
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:var(--paper);border:1px solid var(--border);border-radius:20px;">🚆 ${t.type || '—'}</span>
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:var(--paper);border:1px solid var(--border);border-radius:20px;">📅 ${t.runsOn || 'Daily'}</span>
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:var(--paper);border:1px solid var(--border);border-radius:20px;">💺 ${t.classes || '—'}</span>
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:var(--paper);border:1px solid var(--border);border-radius:20px;">📏 ${t.distance || '—'}</span>
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:var(--paper);border:1px solid var(--border);border-radius:20px;">🚃 ${coachSummary}</span>
+      </div>
+    `;
+
+    list.appendChild(card);
+  });
+
   document.getElementById('searchResults').style.display = 'block';
 }
 
