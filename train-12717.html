@@ -734,6 +734,7 @@ ttHead.innerHTML = `<tr>
   <th>Arrival</th>
   <th>Departure</th>
   <th>Halt</th>
+  <th>Distance</th>
   <th>Schedule</th>
 </tr>`;
 document.getElementById('fullTimetable').appendChild(ttHead);
@@ -741,13 +742,14 @@ document.getElementById('fullTimetable').appendChild(ttHead);
 const ttBody = document.createElement('tbody');
 train.timetable.forEach(s => {
   const row = document.createElement('tr');
-  row.innerHTML = `
+row.innerHTML = `
     <td>${s.stop}</td>
     <td class="tt-station">${s.station}</td>
     <td class="tt-code">${s.code}</td>
     <td class="tt-time">${s.arrival}</td>
     <td class="tt-time">${s.departure}</td>
     <td>${s.halt}</td>
+    <td style="font-size:11px;font-weight:700;">${s.km !== undefined ? s.km + ' km' : '—'}</td>
     <td style="font-size:10px;color:#666;">${s.schedule}</td>
   `;
   ttBody.appendChild(row);
