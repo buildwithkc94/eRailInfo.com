@@ -423,28 +423,26 @@ let a;
 
 trainCategories.forEach(cat => {
   const s = cat.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-');
-  a = document.createElement("a");
-  a.className = "capsule";
-  a.setAttribute("data-cat", cat);
-  a.textContent = cat;
-  a.href = "category-" + s + ".html";
-  a.onclick = (e) => {
+  const capsule = document.createElement("a");
+  capsule.className = "capsule";
+  capsule.setAttribute("data-cat", cat);
+  capsule.textContent = cat;
+  capsule.href = "category-" + s + ".html";
+  capsule.onclick = (e) => {
     e.preventDefault();
-    // Remove active from all capsules
     document.querySelectorAll('#capsuleBar .capsule').forEach(c => {
       c.classList.remove('active');
       c.style.background = '';
       c.style.borderColor = '';
       c.style.color = '';
     });
-    // Apply color to clicked capsule
-    a.classList.add('active');
-    a.style.background = categoryColors[cat];
-    a.style.borderColor = categoryColors[cat];
-    a.style.color = ['#F5EB27','#F5F527','#27F549','#27D3F5'].includes(categoryColors[cat]) ? '#222' : 'white';
+    capsule.classList.add('active');
+    capsule.style.background = categoryColors[cat];
+    capsule.style.borderColor = categoryColors[cat];
+    capsule.style.color = ['#F5EB27','#F5F527','#27F549','#27D3F5'].includes(categoryColors[cat]) ? '#222' : 'white';
     filterByCategory(cat);
   };
-  capsuleBar.appendChild(a);
+  capsuleBar.appendChild(capsule);
 });
 
 </script>
