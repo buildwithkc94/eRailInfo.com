@@ -239,8 +239,11 @@ body.dark .result-card:hover { background: #2e2e2e; }
     <!-- LEFT: Train search -->
     <div class="search-card-bg" style="background:white;border:1px solid var(--border);border-radius:4px;padding:28px;">
       <div style="font-size:15px;font-weight:700;margin-bottom:20px;">Search by Train Number or Name</div>
-      <input type="text" id="trainSearchInput" placeholder="Enter train number or name" autocomplete="off"
-        style="width:100%;padding:14px;border:1px solid var(--border);background:var(--paper);outline:none;font-family:Inter,sans-serif;font-size:14px;border-radius:4px;margin-bottom:10px;box-sizing:border-box;">
+<div style="position:relative;margin-bottom:10px;">
+  <input type="text" id="trainSearchInput" placeholder="Enter train number or name" autocomplete="off"
+    style="width:100%;padding:14px;border:1px solid var(--border);background:var(--paper);outline:none;font-family:Inter,sans-serif;font-size:14px;border-radius:4px;box-sizing:border-box;">
+  <div class="station-suggestion" id="trainDropdown"></div>
+</div>
       <button onclick="handleTrainSearch()"
         style="width:100%;padding:14px;border:none;background:#222;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;cursor:pointer;border-radius:4px;">Search</button>
       <div style="font-size:11px;color:#aaa;margin-top:8px;">Example: 12717 Ratnachal Express</div>
@@ -657,8 +660,49 @@ function showResults(results, label, fromStop, toStop) {
   document.getElementById('searchResults').style.display = 'block';
 }
 
-// ── ENTER KEY ──
-document.getElementById('trainSearchInput').addEventListener('keydown', e => {
+// ── TRAIN SEARCH DROPDOWN ──
+const trainInput = document.getElementById('trainSearchInput');
+const trainDropdown = document.getElementById('trainDropdown');
+
+trainInput.addEventListener('input', () => {
+  const q = trainInput.value.trim().toLowerCase();
+  trainDropdown.innerHTML = '';
+  if (!q) { trainDropdown.style.display = 'none'; return; }
+
+  const matches = trains.filter(t =>
+    t.number.includes(q) ||
+    t.name.toLowerCase().includes(q) ||
+    t.from.toLowerCase().includes(q) ||
+    t.to.toLowerCase().includes(q)
+  ).slice(0, 8);
+
+  if (!matches.length) { trainDropdown.style.display = 'none'; return; }
+
+  matches.forEach(t => {
+    const item = document.createElement('div');
+    item.className = 'suggestion-item';
+    item.innerHTML = `
+      <span class="suggestion-code">${t.number}</span>
+      <span class="suggestion-name">${t.name} <span style="font-weight:400;color:#aaa;font-size:11px;">${t.from.split('(')[0].trim()} → ${t.to.split('(')[0].trim()}</span></span>
+    `;
+    item.onclick = () => {
+      trainInput.value = t.number + ' ' + t.name;
+      trainDropdown.style.display = 'none';
+      handleTrainSearch();
+    };
+    trainDropdown.appendChild(item);
+  });
+
+  trainDropdown.style.display = 'block';
+});
+
+document.addEventListener('click', (e) => {
+  if (!trainInput.contains(e.target) && !trainDropdown.contains(e.target)) {
+    trainDropdown.style.display = 'none';
+  }
+});
+
+trainInput.addEventListener('keydown', e => {
   if (e.key === 'Enter') handleTrainSearch();
 });
 
