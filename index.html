@@ -219,9 +219,18 @@ body.dark .result-card:hover { background: #2e2e2e; }
   .result-card {
     padding: 16px !important;
   }
- .station-input-wrap {
+.station-input-wrap {
     flex: 1 1 100% !important;
     width: 100% !important;
+  }
+
+  #stationRow {
+    grid-template-columns: 1fr !important;
+  }
+
+  #stationRow button[onclick="swapStations()"] {
+    width: 100% !important;
+    height: 40px !important;
   }
 
 }
@@ -312,7 +321,7 @@ body.dark .result-card:hover { background: #2e2e2e; }
     <!-- RIGHT: Station search -->
     <div class="search-card-bg" style="background:white;border:1px solid var(--border);border-radius:4px;padding:28px;">
       <div style="font-size:15px;font-weight:700;margin-bottom:20px;">Search Between Stations</div>
-      <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:10px;flex-wrap:wrap;">
+      <div id="stationRow" style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:10px;">
 
         <!-- FROM -->
         <div class="station-input-wrap">
@@ -324,7 +333,7 @@ body.dark .result-card:hover { background: #2e2e2e; }
 
         <!-- SWAP -->
         <button onclick="swapStations()"
-        style="width:44px;height:50px;border:1px solid var(--border);background:var(--paper);border-radius:4px;cursor:pointer;font-size:18px;flex-shrink:0;margin-top:0;order:3;">⇆</button>
+          style="width:44px;height:44px;border:1px solid var(--border);background:var(--paper);border-radius:4px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">⇆</button>
 
         <!-- TO -->
         <div class="station-input-wrap">
