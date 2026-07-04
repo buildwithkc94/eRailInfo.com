@@ -114,3 +114,27 @@ const trainCategories = [
   "Uday", "Vande Bharat", "Vande Bharat Sleeper",
   "Mail/Express", "Superfast"
 ];
+
+const categoryColors = {
+  "AC Express":           "#2c2c2c",
+  "AC Superfast":         "#2c2c2c",
+  "Amrit Bharat":         "#F59827",
+  "Antyodaya":            "#616161",
+  "Double Decker":        "#616161",
+  "Duronto":              "#27F549",
+  "Garib Rath":           "#943861",
+  "Humsafar":             "#27D3F5",
+  "Jan Shatabdi":         "#2798F5",
+  "Namo Bharat":          "#946B38",
+  "Rajdhani":             "#F54927",
+  "Sampark Kranti":       "#9827F5",
+  "Shatabdi":             "#2731F5",
+  "Suvidha":              "#8F9438",
+  "Tejas":                "#F5EB27",
+  "Toy Train":            "#616161",
+  "Uday":                 "#F5F527",
+  "Vande Bharat":         "#8000FF",
+  "Vande Bharat Sleeper": "#FF0080",
+  "Mail/Express":         "#877D39",
+  "Superfast":            "#F52727"
+};
