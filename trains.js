@@ -9,10 +9,10 @@ const trains = [
     type: "Superfast Express",
     runsOn: "Daily",
     rakeType: "LHB",
-    zone: "SCR – South Central Railway",
-    classes: "1A, 2A, 3A",
+    zone: "SCoR – South Coast Railway",
+    classes: "GEN, 2S, CC",
     pantry: true,
-    distance: "350 km",
+    distance: "350.2 km",
     avgSpeed: "55 kmph",
     coaches: [
       { code: "WAP-7",  type: "LGD/BZA" },
