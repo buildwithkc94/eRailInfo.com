@@ -735,6 +735,7 @@ ttHead.innerHTML = `<tr>
   <th>#</th>
   <th>Station</th>
   <th>Code</th>
+  <th>Zone</th>
   <th>Arrival</th>
   <th>Departure</th>
   <th>Halt</th>
@@ -748,8 +749,12 @@ train.timetable.forEach(s => {
   const row = document.createElement('tr');
 row.innerHTML = `
     <td>${s.stop}</td>
-    <td class="tt-station">${s.station}</td>
+    <td class="tt-station">
+      ${s.station}
+      <div style="font-size:10px;font-weight:400;color:var(--muted);margin-top:2px;">${s.state || '—'}</div>
+    </td>
     <td class="tt-code">${s.code}</td>
+    <td style="font-size:10px;font-weight:700;color:var(--muted);">${s.zone || '—'}</td>
     <td class="tt-time">${s.arrival}</td>
     <td class="tt-time">${s.departure}</td>
     <td>${s.halt}</td>
