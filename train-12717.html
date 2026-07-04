@@ -62,7 +62,7 @@
 /* ── TIMELINE ── */
 .journey-timeline {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   margin: 30px 0;
   position: relative;
   gap: 0;
@@ -78,7 +78,6 @@
   background: #ccc;
   z-index: 0;
   transform: translateY(-50%);
-  pointer-events: none;
 }
 
 .journey-endpoint {
@@ -130,8 +129,7 @@
   align-items: center;
   position: relative;
   z-index: 1;
-  margin-top: 0;
-  padding: 0;
+  height: 100%;
 }
 
 .journey-stop-mid {
@@ -740,10 +738,8 @@ document.getElementById('featuredCard').innerHTML = `
     <div class="train-header-left">
       <h2>${train.number} / ${train.name}</h2>
       <div class="meta">
-        <span class="meta-label">Train Type:</span> ${train.type}<br>
-        <span class="meta-label">${train.from} &rarr; ${train.to}</span> ${returnTrain ? returnTrain.number : ''} Trains<br>
-        <span class="meta-label">Schedule:</span> ${train.runsOn}<br>
-        <span class="meta-label">Classes:</span> ${train.classes}
+        <span class="meta-label">Train Type:</span> ${train.type} &nbsp;·&nbsp; <span class="meta-label">Schedule:</span> ${train.runsOn} &nbsp;·&nbsp; <span class="meta-label">Classes:</span> ${train.classes}<br>
+        <span style="font-size:11px;color:#888;">${train.from} &rarr; ${train.to} ${returnTrain ? '· Return: ' + returnTrain.number : ''}</span>
       </div>
     </div>
   </div>
