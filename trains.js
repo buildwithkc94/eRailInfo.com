@@ -31,7 +31,7 @@ const trains = [
       { code: "EOG",    type: "Generator Car" },
     ],
 timetable: [
-  { stop: 1,  code: "VSKP", station: "Visakhapatnam Junction (VSKP)", arrival: "Origin",        departure: "12:55 pm", day: 1, halt: "—",          km: 0,   zone: "ECoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
+  { stop: 1,  code: "VSKP", station: "Visakhapatnam Junction (VSKP)", arrival: "Origin",        departure: "12:55 pm", day: 1, halt: "Origin",          km: 0,   zone: "ECoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
   { stop: 2,  code: "DVW",  station: "Duvvada",                        arrival: "01:20 pm", departure: "01:22 pm", day: 1, halt: "2 min",       km: 16,  zone: "ECoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
   { stop: 3,  code: "AKP",  station: "Anakpalle",                      arrival: "01:39 pm", departure: "01:40 pm", day: 1, halt: "1 min",       km: 35,  zone: "ECoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
   { stop: 4,  code: "TUNI", station: "Tuni Junction (TUNI)",           arrival: "02:23 pm", departure: "02:25 pm", day: 1, halt: "2 min",       km: 100, zone: "SCR",  state: "Andhra Pradesh", schedule: "S M T W T F S" },
