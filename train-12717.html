@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="shared.css">
 <style>
 
-/* ── BACK LINK ── */
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -22,7 +21,6 @@
 }
 .back-link:hover { color: #222; }
 
-/* ── FEATURED CARD ── */
 .featured-card {
   background: white;
   border: 1px solid var(--border);
@@ -33,135 +31,83 @@
 }
 
 .train-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   margin-bottom: 20px;
   border-bottom: 1px solid var(--border);
   padding-bottom: 16px;
 }
 
-.train-header-left h2 {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0;
-}
+.train-header h2 { font-size: 20px; font-weight: 700; margin: 0 0 6px 0; }
+.train-header .meta { font-size: 12px; color: #666; line-height: 1.6; }
+.train-header .meta-label { font-weight: 700; color: #222; }
 
-.train-header-left .meta {
-  font-size: 12px;
-  color: #666;
-  margin-top: 4px;
-  line-height: 1.5;
-}
-
-.train-header-left .meta-label {
-  font-weight: 700;
-  color: #222;
-}
-
-/* ── TIMELINE ── */
+/* ── NEW STOP BOXES ── */
 .journey-timeline {
   display: flex;
   align-items: stretch;
   gap: 0;
-  margin: 24px 0;
+  margin: 20px 0;
 }
 
 .journey-stop-box {
   flex: 1;
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 14px 12px;
+  padding: 12px 10px;
   background: white;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
+  min-width: 0;
 }
 
 .journey-stop-box.origin { border-color: #6c8ebf; background: #f0f4ff; }
 .journey-stop-box.destination { border-color: #82b366; background: #f0fff4; }
 
-body.dark .journey-stop-box { background: #2a2a2a; border-color: #444; }
-body.dark .journey-stop-box.origin { background: #1a2030; border-color: #4a6090; }
-body.dark .journey-stop-box.destination { background: #1a2a1a; border-color: #4a7a4a; }
-
-.stop-num {
-  font-size: 11px;
-  font-weight: 700;
-  color: #6c8ebf;
-  margin-bottom: 2px;
-}
-
-.journey-stop-box.destination .stop-num { color: #82b366; }
-
-.stop-name {
-  font-size: 11px;
-  color: var(--muted);
-  line-height: 1.3;
-}
-
-.stop-code {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1;
-}
-
-.stop-time {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-  margin-top: 4px;
-}
-
-.stop-label {
-  font-size: 11px;
-  color: var(--muted);
-}
-
 .journey-arrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 6px;
+  padding: 0 4px;
   flex-shrink: 0;
   color: var(--muted);
-  font-size: 18px;
+  font-size: 16px;
 }
 
-.quick-stats { display: none; }
+.stop-num { font-size: 10px; font-weight: 700; color: #6c8ebf; }
+.journey-stop-box.destination .stop-num { color: #82b366; }
+.stop-name { font-size: 10px; color: var(--muted); line-height: 1.3; }
+.stop-code { font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.1; }
+.stop-time { font-size: 13px; font-weight: 700; color: var(--text); margin-top: 2px; }
+.stop-label { font-size: 10px; color: var(--muted); }
 
-.stat-box {
-  text-align: center;
-  padding: 10px 0;
+/* ── INFO BAR ── */
+.journey-info {
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  color: #666;
+  margin-top: 16px;
+  padding: 12px 20px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.journey-info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 20px;
   border-right: 1px solid var(--border);
 }
 
-.stat-box:last-child {
-  border-right: none;
-}
+.journey-info-item:last-child { border-right: none; }
 
-.stat-value {
-  font-size: 20px;
-  font-weight: 700;
-  color: #222;
-}
-
-.stat-label {
-  font-size: 10px;
-  color: var(--muted);
-  margin-top: 4px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
-/* ── TAB NAVIGATION ── */
+/* ── TABS ── */
 .train-tabs {
   border-bottom: 1px solid var(--border);
   margin-top: 30px;
   display: flex;
-  gap: 0;
 }
 
 .tab-btn {
@@ -183,270 +129,66 @@ body.dark .journey-stop-box.destination { background: #1a2a1a; border-color: #4a
 .tab-btn:hover { color: #222; }
 .tab-btn.active { color: #222; border-bottom-color: #222; }
 
-/* ── TAB CONTENT ── */
-.tab-content {
-  display: none;
-  padding: 30px 0;
-}
-
+.tab-content { display: none; padding: 30px 0; }
 .tab-content.active { display: block; }
 
 /* ── TIMETABLE ── */
-.timetable-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
+.timetable-wrapper { display: flex; justify-content: center; margin-top: 10px; }
 
 .tt-table {
   border-collapse: collapse;
   font-size: 12px;
   border: 1px solid var(--border);
   background: white;
-  max-width: 100%;
   width: 100%;
 }
 
-.tt-table thead tr {
-  background: var(--paper-dark);
-  border-bottom: 2px solid var(--border);
-}
-
-.tt-table th {
-  text-align: center;
-  padding: 12px 10px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-right: 1px solid var(--border);
-  white-space: nowrap;
-}
-
+.tt-table thead tr { background: var(--paper-dark); border-bottom: 2px solid var(--border); }
+.tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 1px solid var(--border); white-space: nowrap; }
 .tt-table th:last-child { border-right: none; }
-
-.tt-table td {
-  padding: 11px 10px;
-  border-bottom: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  vertical-align: middle;
-  text-align: center;
-  font-size: 11px;
-}
-
+.tt-table td { padding: 11px 10px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); vertical-align: middle; text-align: center; font-size: 11px; }
 .tt-table td:last-child { border-right: none; }
 .tt-table tbody tr:last-child td { border-bottom: none; }
 .tt-table tbody tr:hover { background: #faf7ef; }
-
 .tt-station { text-align: left; font-weight: 700; }
 .tt-time { font-weight: 700; }
 .tt-code { font-weight: 700; font-size: 10px; color: var(--muted); }
 
-/* ── RETURN JOURNEY ── */
-.return-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 20px;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.return-card h3 {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.return-card p {
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 16px;
-}
-
-.return-btn {
-  display: inline-block;
-  padding: 10px 24px;
-  background: #222;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  transition: background 0.15s;
-}
-
+/* ── RETURN ── */
+.return-card { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 20px; text-align: center; margin-top: 10px; }
+.return-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+.return-card p { font-size: 12px; color: #666; margin-bottom: 16px; }
+.return-btn { display: inline-block; padding: 10px 24px; background: #222; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
 .return-btn:hover { background: #444; }
 
-/* ── REVISIONS TABLE ── */
-.revisions-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-  border: 1px solid var(--border);
-  background: white;
-  margin-top: 10px;
-}
-
-.revisions-table thead tr {
-  background: var(--paper-dark);
-  border-bottom: 2px solid var(--border);
-}
-
-.revisions-table th {
-  text-align: left;
-  padding: 12px 14px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-right: 1px solid var(--border);
-}
-
+/* ── REVISIONS ── */
+.revisions-table { width: 100%; border-collapse: collapse; font-size: 12px; border: 1px solid var(--border); background: white; margin-top: 10px; }
+.revisions-table thead tr { background: var(--paper-dark); border-bottom: 2px solid var(--border); }
+.revisions-table th { text-align: left; padding: 12px 14px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 1px solid var(--border); }
 .revisions-table th:last-child { border-right: none; }
-
-.revisions-table td {
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  vertical-align: top;
-}
-
+.revisions-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); vertical-align: top; }
 .revisions-table td:last-child { border-right: none; }
 .revisions-table tbody tr:last-child td { border-bottom: none; }
 .revisions-table tbody tr:hover { background: #faf7ef; }
-
 .rev-version { font-weight: 700; width: 120px; white-space: nowrap; }
 .rev-date { width: 140px; white-space: nowrap; }
 
-/* ── MOBILE ── */
-@media (max-width: 768px) {
-
-  /* FEATURED CARD */
-  .featured-card { padding: 16px; }
-
-  .train-header h2 { font-size: 16px; }
-  .train-header .meta { font-size: 11px; }
-
-  /* JOURNEY TIMELINE — stack vertically on mobile */
-  .journey-timeline {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  .journey-timeline::before { display: none; }
-
-  .journey-endpoint {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    border-radius: 4px;
-  }
-
-  .journey-endpoint .ep-station { font-size: 10px; text-align: left; }
-  .journey-endpoint .ep-code { font-size: 22px; text-align: left; }
-  .journey-endpoint .ep-time { font-size: 14px; margin-top: 0; }
-  .journey-endpoint .ep-label { font-size: 10px; margin-top: 0; }
-
-  /* MIDDLE STOPS — horizontal scroll row */
-  .journey-middle {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    justify-content: flex-start;
-    padding: 16px 8px;
-    gap: 0;
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-    background: white;
-    position: relative;
-  }
-
-  .journey-middle::before {
-    content: "";
-    position: absolute;
-    top: 20px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #ccc;
-    z-index: 0;
-  }
-
-.journey-stop-mid {
-  flex-shrink: 0;
-  min-width: 90px;
-  padding: 0 8px;
-  position: relative;
-  z-index: 1;
-  text-align: center;
-}
-
-  .mid-dot { margin: 0 auto 6px; }
-  .mid-station { font-size: 10px; }
-  .mid-code { font-size: 12px; }
-  .mid-time { font-size: 10px; }
-
-  /* INFO BAR — stack vertically */
-  .journey-info {
-    flex-direction: column;
-    gap: 8px;
-    padding: 12px;
-    align-items: flex-start;
-  }
-
-  .journey-info-item {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    padding: 6px 0;
-    width: 100%;
-  }
-
-  .journey-info-item:last-child { border-bottom: none; }
-
-  /* TABS */
-  .train-tabs { overflow-x: auto; }
-  .tab-btn { padding: 12px 14px; font-size: 11px; }
-
-  /* TIMETABLE */
-  .tt-table { font-size: 10px; }
-  .tt-table th, .tt-table td { padding: 8px 6px; font-size: 10px; }
-
-  /* INFO GRID */
-  #infoDetails > div { grid-template-columns: 1fr 1fr !important; }
-
-  /* COACH ROW */
-  #coachRow { overflow-x: auto; padding-bottom: 8px; }
-
-}
-
-  /* ── DARK THEME FOR TRAIN PAGE ── */
+/* ── DARK THEME ── */
 body.dark .featured-card { background: #242424; border-color: #383838; }
 body.dark .train-header { border-bottom-color: #383838; }
 body.dark .train-header h2 { color: #e8e8e8; }
 body.dark .train-header .meta { color: #aaa; }
-body.dark .journey-endpoint { background: #2a2a2a; border-color: #444; }
-body.dark .journey-endpoint .ep-station { color: #aaa; }
-body.dark .journey-endpoint .ep-code { color: #e8e8e8; }
-body.dark .journey-endpoint .ep-time { color: #e8e8e8; }
-body.dark .journey-endpoint .ep-label { color: #888; }
-body.dark .journey-timeline::before { background: #444; }
-body.dark .mid-dot { border-color: #666; background: #2a2a2a; }
-body.dark .mid-station { color: #aaa; }
-body.dark .mid-code { color: #e8e8e8; }
-body.dark .mid-time { color: #ccc; }
+body.dark .train-header .meta-label { color: #e8e8e8; }
+body.dark .journey-stop-box { background: #2a2a2a; border-color: #444; }
+body.dark .journey-stop-box.origin { background: #1a2030; border-color: #4a6090; }
+body.dark .journey-stop-box.destination { background: #1a2a1a; border-color: #4a7a4a; }
+body.dark .stop-name { color: #aaa; }
+body.dark .stop-code { color: #e8e8e8; }
+body.dark .stop-time { color: #e8e8e8; }
+body.dark .stop-label { color: #888; }
 body.dark .journey-info { background: #2a2a2a; border-color: #383838; color: #aaa; }
 body.dark .journey-info-item { border-right-color: #383838; color: #aaa; }
-body.dark .overview-card { background: #2a2a2a; border-color: #383838; }
-body.dark .overview-card-label { color: #888; }
-body.dark .overview-card-value { color: #e8e8e8; }
-body.dark .coach-box { background: #2a2a2a; border-color: #383838; color: #e8e8e8; }
-body.dark .coach-box:hover { background: #333; }
-body.dark .coach-hint { background: #2a2a2a; border-color: #383838; color: #888; }
+body.dark .journey-arrow { color: #666; }
 body.dark .tt-table { background: #242424; border-color: #383838; }
 body.dark .tt-table thead tr { background: #2a2a2a; border-bottom-color: #444; }
 body.dark .tt-table th { color: #aaa; border-right-color: #383838; }
@@ -454,7 +196,7 @@ body.dark .tt-table td { border-bottom-color: #383838; border-right-color: #3838
 body.dark .tt-table tbody tr:hover { background: #2e2e2e; }
 body.dark .tab-btn { color: #888; }
 body.dark .tab-btn.active { color: #e8e8e8; border-bottom-color: #e8e8e8; }
-body.dark .tab-nav { border-bottom-color: #383838; }
+body.dark .train-tabs { border-bottom-color: #383838; }
 body.dark .revisions-table { background: #242424; border-color: #383838; }
 body.dark .revisions-table thead tr { background: #2a2a2a; }
 body.dark .revisions-table th { color: #aaa; border-right-color: #383838; }
@@ -462,14 +204,27 @@ body.dark .revisions-table td { border-bottom-color: #383838; border-right-color
 body.dark .return-card { background: #242424; border-color: #383838; }
 body.dark .return-card h3 { color: #e8e8e8; }
 body.dark .return-card p { color: #aaa; }
-body.dark .info-card { background: #2a2a2a; border-color: #383838; }
 body.dark .back-link { color: #888; }
 body.dark .back-link:hover { color: #e8e8e8; }
-  
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .featured-card { padding: 16px; }
+  .journey-timeline { flex-wrap: nowrap; overflow-x: auto; }
+  .journey-stop-box { min-width: 100px; }
+  .train-tabs { overflow-x: auto; }
+  .tab-btn { padding: 12px 14px; font-size: 11px; }
+  .tt-table { font-size: 10px; }
+  .tt-table th, .tt-table td { padding: 8px 6px; font-size: 10px; }
+  .journey-info { flex-direction: column; gap: 8px; padding: 12px; }
+  .journey-info-item { border-right: none; border-bottom: 1px solid var(--border); padding: 6px 0; width: 100%; }
+  .journey-info-item:last-child { border-bottom: none; }
+}
+
 </style>
 </head>
 <body>
-<!-- ═══ HEADER ═══ -->
+
 <header>
 <div class="container">
   <div class="topbar">
@@ -477,47 +232,39 @@ body.dark .back-link:hover { color: #e8e8e8; }
       <a href="index.html" class="logo">eRailInfo</a>
       <div class="tagline">Indian Railway Information</div>
     </div>
-    <ul class="nav-menu">
-      <li class="dropdown">
-        <a href="#">TRAINS &#9662;</a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Rajdhani Express</a></li>
-          <li><a href="#">Shatabdi Express</a></li>
-          <li><a href="#">Vande Bharat</a></li>
-          <li><a href="#">Duronto Express</a></li>
-          <li><a href="#">Humsafar Express</a></li>
-          <li><a href="#">Garib Rath</a></li>
-          <li><a href="#">Mail / Express</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">STATIONS &#9662;</a>
-        <ul class="dropdown-menu">
-          <li><a href="#">A Stations</a></li>
-          <li><a href="#">B Stations</a></li>
-          <li><a href="#">C Stations</a></li>
-          <li><a href="#">D Stations</a></li>
-          <li><a href="#">E Stations</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">UPDATES &#9662;</a>
-        <ul class="dropdown-menu">
-          <li><a href="revision-history.html">Revision History</a></li>
-        </ul>
-      </li>
-</ul>
-    </ul>
-    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 18V4a8 8 0 0 1 0 16z"/>
-      </svg>
-    </button>
+    <div style="display:flex;align-items:center;">
+      <ul class="nav-menu">
+        <li class="dropdown">
+          <a href="#">TRAINS &#9662;</a>
+          <ul class="dropdown-menu" id="trainsDropdown"></ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">STATIONS &#9662;</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">A Stations</a></li>
+            <li><a href="#">B Stations</a></li>
+            <li><a href="#">C Stations</a></li>
+            <li><a href="#">D Stations</a></li>
+            <li><a href="#">E Stations</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">UPDATES &#9662;</a>
+          <ul class="dropdown-menu">
+            <li><a href="revision-history.html">Revision History</a></li>
+          </ul>
+        </li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </div>
 </header>
 
-<!-- ═══ BROWSE BAR ═══ -->
 <div class="browse-bar">
 <div class="container">
   <div class="browse-bar-inner">
@@ -527,16 +274,11 @@ body.dark .back-link:hover { color: #e8e8e8; }
 </div>
 </div>
 
-<!-- ═══ TRAIN PAGE CONTENT ═══ -->
 <div class="container">
   <a href="index.html" class="back-link">&#8592; BACK TO SEARCH</a>
 
-  <!-- ═══ FEATURED CARD ═══ -->
-  <div class="featured-card" id="featuredCard">
-    <!-- Filled by JS -->
-  </div>
+  <div class="featured-card" id="featuredCard"></div>
 
-  <!-- ═══ TAB NAVIGATION ═══ -->
   <div class="train-tabs">
     <button class="tab-btn active" onclick="switchTab('info', this)">Info</button>
     <button class="tab-btn" onclick="switchTab('timetable', this)">Timetable</button>
@@ -544,21 +286,18 @@ body.dark .back-link:hover { color: #e8e8e8; }
     <button class="tab-btn" onclick="switchTab('revisions', this)">Revisions</button>
   </div>
 
-  <!-- ═══ INFO TAB ═══ -->
-<div class="tab-content active" id="tab-info">
-  <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">Train Details</h3>
-  <div id="infoDetails"></div>
-
-  <h3 style="font-size:14px;font-weight:700;margin:30px 0 8px;">Coach Composition</h3>
-  <p style="font-size:11px;font-weight:700;letter-spacing:1px;color:#777;text-transform:uppercase;margin-bottom:14px;" id="rakeLabel"></p>
-  <p style="font-size:11px;font-weight:700;letter-spacing:1px;color:#777;text-transform:uppercase;margin-bottom:14px;">Direction of Travel →</p>
-  <div id="coachRow" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;"></div>
-  <div id="coachHint" style="border:1px solid var(--border);border-radius:4px;padding:12px 16px;font-size:12px;">
-    &#9432; Tap on any coach to see details, berth info and seat layout.
+  <div class="tab-content active" id="tab-info">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px;">Train Details</h3>
+    <div id="infoDetails"></div>
+    <h3 style="font-size:14px;font-weight:700;margin:24px 0 8px;">Coach Composition</h3>
+    <p style="font-size:11px;font-weight:700;letter-spacing:1px;color:#777;text-transform:uppercase;margin-bottom:6px;" id="rakeLabel"></p>
+    <p style="font-size:11px;font-weight:700;letter-spacing:1px;color:#777;text-transform:uppercase;margin-bottom:14px;">Direction of Travel →</p>
+    <div id="coachRow"></div>
+    <div id="coachHint" style="border:1px solid var(--border);border-radius:4px;padding:12px 16px;font-size:12px;margin-top:10px;">
+      &#9432; Tap on any coach to see details, berth info and seat layout.
+    </div>
   </div>
-</div>
 
-  <!-- ═══ TIMETABLE TAB ═══ -->
   <div class="tab-content" id="tab-timetable">
     <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">Complete Timetable</h3>
     <div class="timetable-wrapper">
@@ -566,30 +305,25 @@ body.dark .back-link:hover { color: #e8e8e8; }
     </div>
   </div>
 
-  <!-- ═══ RETURN TAB ═══ -->
   <div class="tab-content" id="tab-return">
     <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">Return Journey</h3>
     <div id="returnContent"></div>
   </div>
 
-  <!-- ═══ REVISIONS TAB ═══ -->
   <div class="tab-content" id="tab-revisions">
     <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">Revision History</h3>
     <table class="revisions-table">
-      <thead>
-        <tr>
-          <th>Version</th>
-          <th>Effective Date</th>
-          <th>Summary of Changes</th>
-        </tr>
-      </thead>
+      <thead><tr>
+        <th>Version</th>
+        <th>Effective Date</th>
+        <th>Summary of Changes</th>
+      </tr></thead>
       <tbody id="revisionsBody"></tbody>
     </table>
   </div>
 
-</div><!-- end container -->
+</div>
 
-<!-- ═══ BOTTOM CAPSULES ═══ -->
 <div class="container">
   <div class="bottom-capsules">
     <div class="bottom-capsules-label">Pages</div>
@@ -602,8 +336,8 @@ body.dark .back-link:hover { color: #e8e8e8; }
   </div>
 </div>
 
-<!-- ═══ FOOTER ═══ -->
 <footer>eRailInfo &copy; 2026</footer>
+
 <script>
 if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
 function toggleTheme() {
@@ -611,23 +345,32 @@ function toggleTheme() {
   localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
 }
 </script>
-  <script src="trains.js"></script>
+
+<script src="trains.js"></script>
 <script>
 
-// ── GET TRAIN NUMBER FROM FILENAME ──
 const filename = window.location.pathname.split('/').pop();
 const trainNumber = filename.replace('train-', '').replace('.html', '');
 const train = trains.find(t => t.number === trainNumber) || trains[0];
-const returnTrain = train.number === '12717' ? trains.find(t => t.number === '12718') : trains.find(t => t.number === '12717');
+const returnTrain = trains.find(t => t.number !== train.number && t.name === train.name);
 
-// ── PAGE TITLE ──
 document.title = train.number + ' ' + train.name + ' — eRailInfo';
+
+// ── TRAINS DROPDOWN ──
+const trainsDropdown = document.getElementById('trainsDropdown');
+trainCategories.forEach(cat => {
+  const s = cat.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-');
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  a.textContent = cat;
+  a.href = 'category-' + s + '.html';
+  li.appendChild(a);
+  trainsDropdown.appendChild(li);
+});
 
 // ── CAPSULE BAR ──
 const capsuleBar = document.getElementById('capsuleBar');
-
 const lightTextColors = ['#F5EB27','#F5F527','#27F549','#27D3F5'];
-
 trainCategories.forEach(cat => {
   const s = cat.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-');
   const a = document.createElement('a');
@@ -635,7 +378,6 @@ trainCategories.forEach(cat => {
   a.setAttribute('data-cat', cat);
   a.textContent = cat;
   a.href = 'category-' + s + '.html';
-
   if (cat === train.category) {
     const color = categoryColors[cat] || '#2c2c2c';
     a.classList.add('active');
@@ -643,40 +385,31 @@ trainCategories.forEach(cat => {
     a.style.borderColor = color;
     a.style.color = lightTextColors.includes(color) ? '#222' : 'white';
   }
-
   capsuleBar.appendChild(a);
 });
 
-// ── BUILD FEATURED CARD ──
+// ── FEATURED CARD ──
 const firstStop = train.timetable[0];
 const lastStop = train.timetable[train.timetable.length - 1];
+const total = train.timetable.length;
+const mid1 = train.timetable[Math.round(total * 0.25)];
+const mid2 = train.timetable[Math.round(total * 0.5)];
+const mid3 = train.timetable[Math.round(total * 0.75)];
 
-// Pick 3 intermediate stops to show (evenly spaced)
-const stops = train.timetable;
-const total = stops.length;
-const mid1 = stops[Math.round(total * 0.25)];
-const mid2 = stops[Math.round(total * 0.5)];
-const mid3 = stops[Math.round(total * 0.75)];
-
-// Build 5 display stops: origin, mid1, mid2, mid3, destination
 const displayStops = [
   { ...firstStop, isOrigin: true },
-  mid1,
-  mid2,
-  mid3,
+  mid1, mid2, mid3,
   { ...lastStop, isDestination: true }
 ];
 
 document.getElementById('featuredCard').innerHTML = `
   <div class="train-header">
-    <div class="train-header-left">
-      <h2>${train.number} / ${train.name}</h2>
-      <div class="meta">
-        <span class="meta-label">Train Type:</span> ${train.type} &nbsp;·&nbsp;
-        <span class="meta-label">Schedule:</span> ${train.runsOn} &nbsp;·&nbsp;
-        <span class="meta-label">Classes:</span> ${train.classes}<br>
-        <span style="font-size:11px;color:#888;">${train.from} &rarr; ${train.to}${returnTrain ? ' &nbsp;·&nbsp; Return: ' + returnTrain.number : ''}</span>
-      </div>
+    <h2>${train.number} / ${train.name}</h2>
+    <div class="meta">
+      <span class="meta-label">Train Type:</span> ${train.type} &nbsp;·&nbsp;
+      <span class="meta-label">Schedule:</span> ${train.runsOn} &nbsp;·&nbsp;
+      <span class="meta-label">Classes:</span> ${train.classes}<br>
+      <span style="font-size:11px;color:#888;">${train.from} &rarr; ${train.to}${returnTrain ? ' &nbsp;·&nbsp; Return: ' + returnTrain.number : ''}</span>
     </div>
   </div>
 
@@ -688,7 +421,7 @@ document.getElementById('featuredCard').innerHTML = `
       const time = isOrigin ? s.departure : (s.arrival !== '—' ? s.arrival : s.departure);
       const label = isOrigin ? 'Departure' : isDest ? 'Arrival' : '';
       const stopNum = String(s.stop).padStart(2, '0');
-      const arrow = (!isDest) ? '<div class="journey-arrow">›</div>' : '';
+      const arrow = !isDest ? '<div class="journey-arrow">&#8250;</div>' : '';
       return `
         <div class="journey-stop-box ${boxClass}">
           <div class="stop-num">${stopNum}</div>
@@ -710,30 +443,50 @@ document.getElementById('featuredCard').innerHTML = `
   </div>
 `;
 
-// ── BUILD TIMETABLE ──
+// ── INFO TAB ──
+document.getElementById('infoDetails').innerHTML = `
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;">Type</div>
+      <div style="font-size:13px;font-weight:700;">${train.type}</div>
+    </div>
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;">Runs On</div>
+      <div style="font-size:13px;font-weight:700;">${train.runsOn}</div>
+    </div>
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;">Zone</div>
+      <div style="font-size:13px;font-weight:700;">${train.zone || '—'}</div>
+    </div>
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;">Classes</div>
+      <div style="font-size:13px;font-weight:700;">${train.classes}</div>
+    </div>
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;">Rake Type</div>
+      <div style="font-size:13px;font-weight:700;">${train.rakeType}</div>
+    </div>
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;">Pantry</div>
+      <div style="font-size:13px;font-weight:700;">${train.pantry ? '✓ Available' : '✗ Not Available'}</div>
+    </div>
+  </div>
+`;
+
+// ── TIMETABLE ──
 const ttHead = document.createElement('thead');
 ttHead.innerHTML = `<tr>
-  <th>#</th>
-  <th>Station</th>
-  <th>Code</th>
-  <th>Zone</th>
-  <th>Arrival</th>
-  <th>Departure</th>
-  <th>Halt</th>
-  <th>Distance</th>
-  <th>Schedule</th>
+  <th>#</th><th>Station</th><th>Code</th><th>Zone</th>
+  <th>Arrival</th><th>Departure</th><th>Halt</th><th>Distance</th><th>Schedule</th>
 </tr>`;
 document.getElementById('fullTimetable').appendChild(ttHead);
 
 const ttBody = document.createElement('tbody');
 train.timetable.forEach(s => {
   const row = document.createElement('tr');
-row.innerHTML = `
+  row.innerHTML = `
     <td>${s.stop}</td>
-    <td class="tt-station">
-      ${s.station}
-      <div style="font-size:10px;font-weight:400;color:var(--muted);margin-top:2px;">${s.state || '—'}</div>
-    </td>
+    <td class="tt-station">${s.station}<div style="font-size:10px;font-weight:400;color:var(--muted);margin-top:2px;">${s.state || ''}</div></td>
     <td class="tt-code">${s.code}</td>
     <td style="font-size:10px;font-weight:700;color:var(--muted);">${s.zone || '—'}</td>
     <td class="tt-time">${s.arrival}</td>
@@ -746,37 +499,7 @@ row.innerHTML = `
 });
 document.getElementById('fullTimetable').appendChild(ttBody);
 
-// ── BUILD INFO TAB ──
-document.getElementById('infoDetails').innerHTML = `
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
-      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Type</div>
-      <div style="font-size:13px;font-weight:700;">${train.type}</div>
-    </div>
-    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
-      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Runs On</div>
-      <div style="font-size:13px;font-weight:700;">${train.runsOn}</div>
-    </div>
-    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
-      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Zone</div>
-      <div style="font-size:13px;font-weight:700;">${train.zone || '—'}</div>
-    </div>
-    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
-      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Classes</div>
-      <div style="font-size:13px;font-weight:700;">${train.classes}</div>
-    </div>
-    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
-      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Rake Type</div>
-      <div style="font-size:13px;font-weight:700;">${train.rakeType}</div>
-    </div>
-    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
-      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Pantry</div>
-      <div style="font-size:13px;font-weight:700;">${train.pantry ? '✓ Available' : '✗ Not Available'}</div>
-    </div>
-  </div>
-`;
-
-// ── BUILD RETURN TAB ──
+// ── RETURN TAB ──
 if (returnTrain) {
   document.getElementById('returnContent').innerHTML = `
     <div class="return-card">
@@ -787,50 +510,38 @@ if (returnTrain) {
   `;
 }
 
-// ── BUILD COACH LAYOUT ──
+// ── COACH LAYOUT ──
 document.getElementById('rakeLabel').textContent = 'Rake Composition – ' + (train.rakeType || 'LHB');
 if (train.coaches && train.coaches.length) {
   const coachRow = document.getElementById('coachRow');
-coachRow.style.cssText = 'display:flex;align-items:center;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:0;margin-bottom:12px;padding-bottom:8px;-webkit-overflow-scrolling:touch;';
-
-train.coaches.forEach((c, i) => {
-  const box = document.createElement('div');
-  const isEmpty = c.type === '';
+  coachRow.style.cssText = 'display:flex;align-items:center;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:0;margin-bottom:12px;padding-bottom:8px;-webkit-overflow-scrolling:touch;';
   const dark = document.body.classList.contains('dark');
-  box.style.cssText = `border:1px solid var(--border);background:${dark?'#2a2a2a':'white'};color:${dark?'#e8e8e8':'#222'};padding:${isEmpty ? '8px 10px' : '10px 8px'};text-align:center;min-width:${isEmpty ? 'auto' : '72px'};border-radius:4px;cursor:pointer;flex-shrink:0;`;
-  box.innerHTML = `
-    <div style="font-size:17px;font-weight:700;">${c.code}</div>
-    <div style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:#777;text-transform:uppercase;margin-top:4px;line-height:1.3;">${c.type}</div>
-  `;
-  box.onmouseover = () => box.style.background = document.body.classList.contains('dark') ? '#333' : '#ebe5d8';
-  box.onmouseout = () => box.style.background = document.body.classList.contains('dark') ? '#2a2a2a' : 'white';
-  coachRow.appendChild(box);
-
-  // Add connector line between coaches (not after last one)
-  if (i < train.coaches.length - 1) {
-    const line = document.createElement('div');
-    line.style.cssText = 'width:12px;height:2px;background:#ccc;flex-shrink:0;align-self:center;';
-    coachRow.appendChild(line);
-  }
-});
-}
+  train.coaches.forEach((c, i) => {
+    const isEmpty = c.type === '';
+    const box = document.createElement('div');
+    box.style.cssText = `border:1px solid var(--border);background:${dark?'#2a2a2a':'white'};color:${dark?'#e8e8e8':'#222'};padding:${isEmpty?'8px 10px':'10px 8px'};text-align:center;min-width:${isEmpty?'auto':'72px'};border-radius:4px;cursor:pointer;flex-shrink:0;`;
+    box.innerHTML = `<div style="font-size:15px;font-weight:700;">${c.code}</div><div style="font-size:9px;font-weight:700;color:#777;text-transform:uppercase;margin-top:3px;">${c.type}</div>`;
+    box.onmouseover = () => box.style.background = dark ? '#333' : '#ebe5d8';
+    box.onmouseout = () => box.style.background = dark ? '#2a2a2a' : 'white';
+    coachRow.appendChild(box);
+    if (i < train.coaches.length - 1) {
+      const line = document.createElement('div');
+      line.style.cssText = 'width:12px;height:2px;background:#ccc;flex-shrink:0;align-self:center;';
+      coachRow.appendChild(line);
+    }
+  });
   const hint = document.getElementById('coachHint');
-if (hint) {
-  const d = document.body.classList.contains('dark');
-  hint.style.background = d ? '#2a2a2a' : 'white';
-  hint.style.color = d ? '#888' : '#666';
+  hint.style.background = dark ? '#2a2a2a' : 'white';
+  hint.style.color = dark ? '#888' : '#666';
 }
-  // ── BUILD REVISIONS TAB ──
+
+// ── REVISIONS TAB ──
 const revisionsBody = document.getElementById('revisionsBody');
 if (train.revisions && train.revisions.length) {
   let v = train.revisions.length;
   train.revisions.forEach(r => {
     const row = document.createElement('tr');
-    row.innerHTML = `
-      <td class="rev-version">v${v}</td>
-      <td class="rev-date">${r.date}</td>
-      <td>${r.summary}</td>
-    `;
+    row.innerHTML = `<td class="rev-version">v${v}</td><td class="rev-date">${r.date}</td><td>${r.summary}</td>`;
     revisionsBody.appendChild(row);
     v--;
   });
@@ -844,28 +555,19 @@ function switchTab(name, btn) {
   btn.classList.add('active');
 }
 
-// ── HELPER FUNCTIONS ──
+// ── RUN TIME ──
 function getRunTime() {
-  const dep = firstStop.departure;
-  const arr = lastStop.arrival;
-
   function toMins(t) {
+    if (!t || t === '—') return 0;
     let [time, period] = t.split(' ');
     let [h, m] = time.split(':').map(Number);
     if (period === 'pm' && h !== 12) h += 12;
     if (period === 'am' && h === 12) h = 0;
     return h * 60 + m;
   }
-
-  let diff = toMins(arr) - toMins(dep);
+  let diff = toMins(lastStop.arrival) - toMins(firstStop.departure);
   if (diff < 0) diff += 1440;
-  const hrs = Math.floor(diff / 60);
-  const mins = diff % 60;
-  return hrs + ' hrs ' + mins + ' mins';
-}
-
-function calculateStops() {
-  return (train.timetable.length - 2) * 20; // rough estimate
+  return Math.floor(diff / 60) + ' hrs ' + (diff % 60) + ' mins';
 }
 
 </script>
