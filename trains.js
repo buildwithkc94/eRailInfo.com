@@ -96,7 +96,7 @@ timetable: [
   { stop: 10, code: "TUNI", station: "Tuni Junction (TUNI)",           arrival: "11:05 am", departure: "11:07 am", day: 1, halt: "2 min",       km: 250, zone: "SCR",  state: "Andhra Pradesh", schedule: "S M T W T F S" },
   { stop: 11, code: "AKP",  station: "Anakpalle",                      arrival: "11:49 am", departure: "11:50 am", day: 1, halt: "1 min",       km: 315, zone: "ECoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
   { stop: 12, code: "DVW",  station: "Duvvada",                        arrival: "12:07 pm", departure: "12:08 pm", day: 1, halt: "1 min",       km: 334, zone: "ECoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
-  { stop: 13, code: "VSKP", station: "Visakhapatnam Junction (VSKP)", arrival: "12:45 pm", departure: "—",        day: 1, halt: "Destination", km: 350, zone: "ECoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
+  { stop: 13, code: "VSKP", station: "Visakhapatnam Junction (VSKP)", arrival: "12:45 pm", departure: "Destination",        day: 1, halt: "Destination", km: 350, zone: "ECoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
 ],
     revisions: [
       { date: "15 Jun 2026", summary: "Coach composition updated." },
