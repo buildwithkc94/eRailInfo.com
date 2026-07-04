@@ -126,8 +126,7 @@
   flex: 1;
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
-  padding-top: 41px;
+  align-items: center;
   position: relative;
   z-index: 1;
 }
@@ -138,6 +137,7 @@
   align-items: center;
   text-align: center;
   position: relative;
+  padding-top: 0;
 }
 
 .mid-dot {
@@ -581,11 +581,6 @@ body.dark .back-link:hover { color: #e8e8e8; }
         </ul>
       </li>
 </ul>
-    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 18V4a8 8 0 0 1 0 16z"/>
-      </svg>
-    </button>
     </ul>
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
       <svg viewBox="0 0 24 24" fill="currentColor">
@@ -632,7 +627,7 @@ body.dark .back-link:hover { color: #e8e8e8; }
   <p style="font-size:11px;font-weight:700;letter-spacing:1px;color:#777;text-transform:uppercase;margin-bottom:14px;" id="rakeLabel"></p>
   <p style="font-size:11px;font-weight:700;letter-spacing:1px;color:#777;text-transform:uppercase;margin-bottom:14px;">Direction of Travel →</p>
   <div id="coachRow" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;"></div>
-  <div style="border:1px solid var(--border);background:white;border-radius:4px;padding:12px 16px;font-size:12px;color:#666;">
+  <div id="coachHint" style="border:1px solid var(--border);border-radius:4px;padding:12px 16px;font-size:12px;">
     &#9432; Tap on any coach to see details, berth info and seat layout.
   </div>
 </div>
@@ -683,17 +678,6 @@ body.dark .back-link:hover { color: #e8e8e8; }
 
 <!-- ═══ FOOTER ═══ -->
 <footer>eRailInfo &copy; 2026</footer>
-
-  <script>
-function toggleTheme() {
-  document.body.classList.toggle('dark');
-  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-}
-// Apply saved theme on load
-if (localStorage.getItem('theme') === 'dark') {
-  document.body.classList.add('dark');
-}
-</script>
 <script>
 if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
 function toggleTheme() {
@@ -846,30 +830,30 @@ document.getElementById('fullTimetable').appendChild(ttBody);
 
 // ── BUILD INFO TAB ──
 document.getElementById('infoDetails').innerHTML = `
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-    <div style="border:1px solid var(--border);padding:16px;border-radius:4px;">
-      <div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Type</div>
-      <div style="font-size:14px;font-weight:700;">${train.type}</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Type</div>
+      <div style="font-size:13px;font-weight:700;">${train.type}</div>
     </div>
-    <div style="border:1px solid var(--border);padding:16px;border-radius:4px;">
-      <div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Runs On</div>
-      <div style="font-size:14px;font-weight:700;">${train.runsOn}</div>
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Runs On</div>
+      <div style="font-size:13px;font-weight:700;">${train.runsOn}</div>
     </div>
-    <div style="border:1px solid var(--border);padding:16px;border-radius:4px;">
-      <div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Zone</div>
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Zone</div>
       <div style="font-size:13px;font-weight:700;">${train.zone || '—'}</div>
     </div>
-    <div style="border:1px solid var(--border);padding:16px;border-radius:4px;">
-      <div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Classes</div>
-      <div style="font-size:14px;font-weight:700;">${train.classes}</div>
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Classes</div>
+      <div style="font-size:13px;font-weight:700;">${train.classes}</div>
     </div>
-    <div style="border:1px solid var(--border);padding:16px;border-radius:4px;">
-      <div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Rake Type</div>
-      <div style="font-size:14px;font-weight:700;">${train.rakeType}</div>
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Rake Type</div>
+      <div style="font-size:13px;font-weight:700;">${train.rakeType}</div>
     </div>
-    <div style="border:1px solid var(--border);padding:16px;border-radius:4px;">
-      <div style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Pantry</div>
-      <div style="font-size:14px;font-weight:700;">${train.pantry ? '✓ Available' : '✗ Not Available'}</div>
+    <div style="border:1px solid var(--border);padding:10px 14px;border-radius:4px;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">Pantry</div>
+      <div style="font-size:13px;font-weight:700;">${train.pantry ? '✓ Available' : '✗ Not Available'}</div>
     </div>
   </div>
 `;
@@ -894,13 +878,14 @@ coachRow.style.cssText = 'display:flex;align-items:center;flex-wrap:nowrap;overf
 train.coaches.forEach((c, i) => {
   const box = document.createElement('div');
   const isEmpty = c.type === '';
-  box.style.cssText = `border:1px solid var(--border);background:white;padding:${isEmpty ? '8px 10px' : '10px 8px'};text-align:center;min-width:${isEmpty ? 'auto' : '72px'};border-radius:4px;cursor:pointer;flex-shrink:0;`;
+  const dark = document.body.classList.contains('dark');
+  box.style.cssText = `border:1px solid var(--border);background:${dark?'#2a2a2a':'white'};color:${dark?'#e8e8e8':'#222'};padding:${isEmpty ? '8px 10px' : '10px 8px'};text-align:center;min-width:${isEmpty ? 'auto' : '72px'};border-radius:4px;cursor:pointer;flex-shrink:0;`;
   box.innerHTML = `
     <div style="font-size:17px;font-weight:700;">${c.code}</div>
     <div style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:#777;text-transform:uppercase;margin-top:4px;line-height:1.3;">${c.type}</div>
   `;
-  box.onmouseover = () => box.style.background = '#ebe5d8';
-  box.onmouseout = () => box.style.background = 'white';
+  box.onmouseover = () => box.style.background = document.body.classList.contains('dark') ? '#333' : '#ebe5d8';
+  box.onmouseout = () => box.style.background = document.body.classList.contains('dark') ? '#2a2a2a' : 'white';
   coachRow.appendChild(box);
 
   // Add connector line between coaches (not after last one)
@@ -910,6 +895,12 @@ train.coaches.forEach((c, i) => {
     coachRow.appendChild(line);
   }
 });
+}
+  const hint = document.getElementById('coachHint');
+if (hint) {
+  const d = document.body.classList.contains('dark');
+  hint.style.background = d ? '#2a2a2a' : 'white';
+  hint.style.color = d ? '#888' : '#666';
 }
   // ── BUILD REVISIONS TAB ──
 const revisionsBody = document.getElementById('revisionsBody');
