@@ -78,6 +78,7 @@
   background: #ccc;
   z-index: 0;
   transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .journey-endpoint {
@@ -129,6 +130,8 @@
   align-items: center;
   position: relative;
   z-index: 1;
+  margin-top: 0;
+  padding: 0;
 }
 
 .journey-stop-mid {
@@ -137,7 +140,6 @@
   align-items: center;
   text-align: center;
   position: relative;
-  padding-top: 0;
 }
 
 .mid-dot {
@@ -150,6 +152,7 @@
   z-index: 2;
   position: relative;
   display: block;
+  flex-shrink: 0;
 }
 
 .mid-station {
