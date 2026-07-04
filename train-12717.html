@@ -63,149 +63,70 @@
 .journey-timeline {
   display: flex;
   align-items: stretch;
-  margin: 30px 0;
-  position: relative;
   gap: 0;
+  margin: 24px 0;
 }
 
-.journey-timeline::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 150px;
-  right: 150px;
-  height: 2px;
-  background: #ccc;
-  z-index: 0;
-  transform: translateY(-50%);
-}
-
-.journey-endpoint {
-  width: 150px;
-  flex-shrink: 0;
-  padding: 16px 12px;
-  border: 1px solid var(--border);
-  background: white;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.journey-endpoint .ep-station {
-  font-size: 10px;
-  color: #666;
-  margin-bottom: 4px;
-  text-align: center;
-  line-height: 1.3;
-  word-break: break-word;
-}
-
-.journey-endpoint .ep-code {
-  font-size: 26px;
-  font-weight: 700;
-  color: #222;
-  text-align: center;
-}
-
-.journey-endpoint .ep-time {
-  font-size: 15px;
-  font-weight: 700;
-  margin-top: 8px;
-}
-
-.journey-endpoint .ep-label {
-  font-size: 11px;
-  color: #777;
-  margin-top: 2px;
-}
-
-.journey-middle {
+.journey-stop-box {
   flex: 1;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  height: 100%;
-}
-
-.journey-stop-mid {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 12px;
+  background: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  justify-content: center;
+  gap: 4px;
 }
 
-.mid-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid #999;
-  background: white;
-  z-index: 2;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: block;
-  flex-shrink: 0;
-}
+.journey-stop-box.origin { border-color: #6c8ebf; background: #f0f4ff; }
+.journey-stop-box.destination { border-color: #82b366; background: #f0fff4; }
 
-.mid-station {
+body.dark .journey-stop-box { background: #2a2a2a; border-color: #444; }
+body.dark .journey-stop-box.origin { background: #1a2030; border-color: #4a6090; }
+body.dark .journey-stop-box.destination { background: #1a2a1a; border-color: #4a7a4a; }
+
+.stop-num {
   font-size: 11px;
-  color: #666;
+  font-weight: 700;
+  color: #6c8ebf;
   margin-bottom: 2px;
-  margin-top: 20px;
 }
 
-.mid-code {
+.journey-stop-box.destination .stop-num { color: #82b366; }
+
+.stop-name {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.stop-code {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+
+.stop-time {
   font-size: 14px;
   font-weight: 700;
-  color: #222;
-}
-
-.mid-time {
-  font-size: 11px;
-  color: #555;
+  color: var(--text);
   margin-top: 4px;
-  font-weight: 700;
 }
 
-.mid-duration {
-  font-size: 10px;
-  color: #999;
-  margin-top: 2px;
+.stop-label {
+  font-size: 11px;
+  color: var(--muted);
 }
 
-.journey-info {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  text-align: center;
-  font-size: 12px;
-  color: #666;
-  margin-top: 20px;
-  padding: 12px 20px;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-}
-
-.journey-info-item {
+.journey-arrow {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 20px;
-  border-right: 1px solid var(--border);
-}
-
-.journey-info-item:last-child {
-  border-right: none;
+  justify-content: center;
+  padding: 0 6px;
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 18px;
 }
 
 .quick-stats { display: none; }
@@ -737,54 +658,48 @@ const mid1 = stops[Math.round(total * 0.25)];
 const mid2 = stops[Math.round(total * 0.5)];
 const mid3 = stops[Math.round(total * 0.75)];
 
+// Build 5 display stops: origin, mid1, mid2, mid3, destination
+const displayStops = [
+  { ...firstStop, isOrigin: true },
+  mid1,
+  mid2,
+  mid3,
+  { ...lastStop, isDestination: true }
+];
+
 document.getElementById('featuredCard').innerHTML = `
   <div class="train-header">
     <div class="train-header-left">
       <h2>${train.number} / ${train.name}</h2>
       <div class="meta">
-        <span class="meta-label">Train Type:</span> ${train.type} &nbsp;·&nbsp; <span class="meta-label">Schedule:</span> ${train.runsOn} &nbsp;·&nbsp; <span class="meta-label">Classes:</span> ${train.classes}<br>
-        <span style="font-size:11px;color:#888;">${train.from} &rarr; ${train.to} ${returnTrain ? '· Return: ' + returnTrain.number : ''}</span>
+        <span class="meta-label">Train Type:</span> ${train.type} &nbsp;·&nbsp;
+        <span class="meta-label">Schedule:</span> ${train.runsOn} &nbsp;·&nbsp;
+        <span class="meta-label">Classes:</span> ${train.classes}<br>
+        <span style="font-size:11px;color:#888;">${train.from} &rarr; ${train.to}${returnTrain ? ' &nbsp;·&nbsp; Return: ' + returnTrain.number : ''}</span>
       </div>
     </div>
   </div>
 
   <div class="journey-timeline">
-
-    <div class="journey-endpoint">
-      <div class="ep-station">${firstStop.station.split('(')[0].trim()}</div>
-      <div class="ep-code">${firstStop.code}</div>
-      <div class="ep-time">${firstStop.departure}</div>
-      <div class="ep-label">Departure</div>
-    </div>
-
-    <div class="journey-middle">
-      <div class="journey-stop-mid">
-        <div class="mid-dot"></div>
-        <div class="mid-station">${mid1.station.split('(')[0].trim()}</div>
-        <div class="mid-code">${mid1.code}</div>
-        <div class="mid-time">${mid1.arrival}</div>
-      </div>
-      <div class="journey-stop-mid">
-        <div class="mid-dot"></div>
-        <div class="mid-station">${mid2.station.split('(')[0].trim()}</div>
-        <div class="mid-code">${mid2.code}</div>
-        <div class="mid-time">${mid2.arrival}</div>
-      </div>
-      <div class="journey-stop-mid">
-        <div class="mid-dot"></div>
-        <div class="mid-station">${mid3.station.split('(')[0].trim()}</div>
-        <div class="mid-code">${mid3.code}</div>
-        <div class="mid-time">${mid3.arrival}</div>
-      </div>
-    </div>
-
-    <div class="journey-endpoint" style="text-align:right;">
-      <div class="ep-station">${lastStop.station.split('(')[0].trim()}</div>
-      <div class="ep-code">${lastStop.code}</div>
-      <div class="ep-time">${lastStop.arrival}</div>
-      <div class="ep-label">Arrival</div>
-    </div>
-
+    ${displayStops.map((s, i) => {
+      const isOrigin = i === 0;
+      const isDest = i === displayStops.length - 1;
+      const boxClass = isOrigin ? 'origin' : isDest ? 'destination' : '';
+      const time = isOrigin ? s.departure : (s.arrival !== '—' ? s.arrival : s.departure);
+      const label = isOrigin ? 'Departure' : isDest ? 'Arrival' : '';
+      const stopNum = String(s.stop).padStart(2, '0');
+      const arrow = (!isDest) ? '<div class="journey-arrow">›</div>' : '';
+      return `
+        <div class="journey-stop-box ${boxClass}">
+          <div class="stop-num">${stopNum}</div>
+          <div class="stop-name">${s.station.split('(')[0].trim()}</div>
+          <div class="stop-code">${s.code}</div>
+          <div class="stop-time">${time}</div>
+          ${label ? `<div class="stop-label">${label}</div>` : ''}
+        </div>
+        ${arrow}
+      `;
+    }).join('')}
   </div>
 
   <div class="journey-info">
