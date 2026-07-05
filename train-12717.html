@@ -138,15 +138,15 @@
 .tt-table {
   border-collapse: collapse;
   font-size: 12px;
-  border: 1px solid var(--border);
+  border: 3px solid #222;
   background: white;
   width: 100%;
 }
 
-.tt-table thead tr { border-bottom: 3px solid #333; }
-.tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 2px solid #333; white-space: nowrap; color: inherit; }
+.tt-table thead tr { border-bottom: 4px solid #222; }
+.tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 3px solid #222; white-space: nowrap; color: inherit; }
 .tt-table th:last-child { border-right: none; }
-.tt-table td { padding: 11px 10px; border-bottom: 2px solid #333; border-right: 2px solid #333; vertical-align: middle; text-align: center; font-size: 11px; }
+.tt-table td { padding: 11px 10px; border-bottom: 3px solid #222; border-right: 3px solid #222; vertical-align: middle; text-align: center; font-size: 11px; }
 .tt-table td:last-child { border-right: none; }
 .tt-table tbody tr:last-child td { border-bottom: none; }
 .tt-table tbody tr:hover { background: #faf7ef; }
@@ -562,7 +562,9 @@ const colColors = {
 };
 
 function thCell(label, color) {
-  return `<th style="border-right:2px solid var(--border);background:${color}20;color:${color};font-weight:800;font-size:11px;">${label}</th>`;
+  const dark = document.body.classList.contains('dark');
+  const textColor = dark ? 'white' : '#222';
+  return `<th style="border-right:3px solid #222;background:${color};color:${textColor};font-weight:800;font-size:11px;">${label}</th>`;
 }
 
 const ttHead = document.createElement('thead');
