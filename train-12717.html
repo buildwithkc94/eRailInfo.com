@@ -163,11 +163,11 @@
 .return-btn:hover { background: #444; }
 
 /* ── REVISIONS ── */
-.revisions-table { width: 100%; border-collapse: collapse; font-size: 12px; border: 1px solid var(--border); background: white; margin-top: 10px; }
-.revisions-table thead tr { background: var(--paper-dark); border-bottom: 2px solid var(--border); }
-.revisions-table th { text-align: left; padding: 12px 14px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 1px solid var(--border); }
+.revisions-table { width: 100%; border-collapse: collapse; font-size: 12px; border: 4px solid #222; background: white; margin-top: 10px; }
+.revisions-table thead tr { border-bottom: 4px solid #222; }
+.revisions-table th { text-align: left; padding: 12px 14px; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; border-right: 2px solid #222; }
 .revisions-table th:last-child { border-right: none; }
-.revisions-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); vertical-align: top; }
+.revisions-table td { padding: 12px 14px; border-bottom: 2px solid #222; border-right: 2px solid #222; vertical-align: top; }
 .revisions-table td:last-child { border-right: none; }
 .revisions-table tbody tr:last-child td { border-bottom: none; }
 .revisions-table tbody tr:hover { background: #faf7ef; }
@@ -355,6 +355,28 @@ function updateDynamicElements() {
   buildInfoDetails();
   buildCoaches();
   rebuildTimetable();
+  rebuildRevisions();
+}
+
+function rebuildRevisions() {
+  const dark = document.body.classList.contains('dark');
+  const txt = dark ? 'white' : '#222';
+  const revHead = document.querySelector('.revisions-table thead tr');
+  if (revHead) {
+    revHead.innerHTML = `
+      <th style="background:#C7A348;color:${txt};border-right:2px solid #222;">Version</th>
+      <th style="background:#C77448;color:${txt};border-right:2px solid #222;">Effective Date</th>
+      <th style="background:#48C78E;color:${txt};">Summary of Changes</th>
+    `;
+  }
+  const body = document.getElementById('revisionsBody');
+  if (body) {
+    body.querySelectorAll('tr').forEach(row => {
+      row.querySelectorAll('td').forEach(td => {
+        td.style.color = txt;
+      });
+    });
+  }
 }
 
 function rebuildTimetable() {
@@ -620,10 +642,28 @@ if (returnTrain) {
 // ── REVISIONS ──
 const revisionsBody = document.getElementById('revisionsBody');
 if (train.revisions && train.revisions.length) {
+  // Build colored headers
+  const revHead = document.querySelector('.revisions-table thead tr');
+  if (revHead) {
+    const dark = document.body.classList.contains('dark');
+    const txt = dark ? 'white' : '#222';
+    revHead.innerHTML = `
+      <th style="background:#C7A348;color:${txt};border-right:2px solid #222;">Version</th>
+      <th style="background:#C77448;color:${txt};border-right:2px solid #222;">Effective Date</th>
+      <th style="background:#48C78E;color:${txt};">Summary of Changes</th>
+    `;
+  }
+
   let v = train.revisions.length;
   train.revisions.forEach(r => {
+    const dark = document.body.classList.contains('dark');
+    const txt = dark ? 'white' : '#222';
     const row = document.createElement('tr');
-    row.innerHTML = `<td class="rev-version">v${v}</td><td class="rev-date">${r.date}</td><td>${r.summary}</td>`;
+    row.innerHTML = `
+      <td class="rev-version" style="background:#C7A34820;color:${txt};">v${v}</td>
+      <td class="rev-date" style="background:#C7744820;color:${txt};">${r.date}</td>
+      <td style="background:#48C78E20;color:${txt};">${r.summary}</td>
+    `;
     revisionsBody.appendChild(row);
     v--;
   });
