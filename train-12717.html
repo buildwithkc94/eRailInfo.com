@@ -143,10 +143,10 @@
   width: 100%;
 }
 
-.tt-table thead tr { background: var(--paper-dark); border-bottom: 3px solid var(--border); }
-.tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 1px solid var(--border); white-space: nowrap; color: inherit; }
+.tt-table thead tr { border-bottom: 3px solid #333; }
+.tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 2px solid #333; white-space: nowrap; color: inherit; }
 .tt-table th:last-child { border-right: none; }
-.tt-table td { padding: 11px 10px; border-bottom: 2px solid var(--border); border-right: 2px solid var(--border); vertical-align: middle; text-align: center; font-size: 11px; }
+.tt-table td { padding: 11px 10px; border-bottom: 2px solid #333; border-right: 2px solid #333; vertical-align: middle; text-align: center; font-size: 11px; }
 .tt-table td:last-child { border-right: none; }
 .tt-table tbody tr:last-child td { border-bottom: none; }
 .tt-table tbody tr:hover { background: #faf7ef; }
@@ -192,8 +192,8 @@ body.dark .journey-info-item { border-right-color: #383838; color: #aaa; }
 body.dark .journey-arrow { color: #666; }
 body.dark .tt-table { background: #242424; border-color: #383838; }
 body.dark .tt-table thead tr { background: #2a2a2a; border-bottom-color: #444; }
-body.dark .tt-table th { border-right-color: #383838; }
-body.dark .tt-table td { border-bottom-color: #383838; border-right-color: #383838; }
+body.dark .tt-table th { border-right-color: #555; }
+body.dark .tt-table td { border-bottom-color: #555; border-right-color: #555; }
 body.dark .tt-table tbody tr:hover { background: #2e2e2e; }
 body.dark .tab-btn { color: #888; }
 body.dark .tab-btn.active { color: #e8e8e8; border-bottom-color: #e8e8e8; }
@@ -352,11 +352,52 @@ function toggleTheme() {
 }
 
 function updateDynamicElements() {
-  const dark = document.body.classList.contains('dark');
-  // Update info boxes
   buildInfoDetails();
-  // Update coach boxes
   buildCoaches();
+  rebuildTimetable();
+}
+
+function rebuildTimetable() {
+  const table = document.getElementById('fullTimetable');
+  table.innerHTML = '';
+  const ttHead = document.createElement('thead');
+  ttHead.innerHTML = `<tr>
+    ${thCell('#', colColors.sno)}
+    ${thCell('Station', colColors.station)}
+    ${thCell('Code', colColors.code)}
+    ${thCell('Zone', colColors.zone)}
+    ${thCell('Arrival', colColors.time)}
+    ${thCell('Departure', colColors.time)}
+    ${thCell('Halt', colColors.halt)}
+    ${thCell('Distance', colColors.distance)}
+    ${thCell('Schedule', colColors.schedule)}
+  </tr>`;
+  table.appendChild(ttHead);
+  const ttBody = document.createElement('tbody');
+  train.timetable.forEach(s => {
+    const row = document.createElement('tr');
+    const dark = document.body.classList.contains('dark');
+    const txt = dark ? 'white' : '#222';
+    const sub = dark ? '#aaa' : '#666';
+    function tdCell(content, color, extra='') {
+      return `<td style="background:${color}20;color:${txt};${extra}">${content}</td>`;
+    }
+    row.innerHTML = `
+      ${tdCell(s.stop, colColors.sno, 'font-weight:700;')}
+      <td style="background:${colColors.station}20;text-align:left;font-weight:700;color:${txt};">
+        ${s.station}
+        <div style="font-size:10px;font-weight:400;color:${sub};margin-top:2px;">${s.state||''}</div>
+      </td>
+      ${tdCell(s.code, colColors.code, 'font-weight:700;font-size:10px;')}
+      ${tdCell(s.zone||'—', colColors.zone, 'font-size:10px;font-weight:700;')}
+      ${tdCell(s.arrival, colColors.time, 'font-weight:700;')}
+      ${tdCell(s.departure, colColors.time, 'font-weight:700;')}
+      ${tdCell(s.halt, colColors.halt, 'font-weight:700;')}
+      ${tdCell(s.km!==undefined?s.km+' km':'—', colColors.distance, 'font-size:11px;font-weight:700;')}
+      ${tdCell(s.schedule, colColors.schedule, 'font-size:10px;')}`;
+    ttBody.appendChild(row);
+  });
+  table.appendChild(ttBody);
 }
 </script>
 
