@@ -349,6 +349,23 @@ function toggleTheme() {
   document.body.classList.toggle('dark');
   localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
   updateCoachTheme();
+  rebuildInfoDetails();
+}
+
+function rebuildInfoDetails() {
+  const catColor = categoryColors[train.category] || '#2c2c2c';
+  const rakeColor = train.rakeType === 'ICF' ? '#2731F5' : '#943861';
+  const pantryColor = train.pantry ? '#27F549' : '#F54927';
+  document.getElementById('infoDetails').innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+      ${infoBox('Type', train.type, catColor)}
+      ${infoBox('Runs On', train.runsOn, '#27D3F5')}
+      ${infoBox('Zone', train.zone || '—', '#2798F5')}
+      ${infoBox('Classes', train.classes, '#946B38')}
+      ${infoBox('Rake Type', train.rakeType, rakeColor)}
+      ${infoBox('Pantry', train.pantry ? '✓ Available' : '✗ Not Available', pantryColor)}
+    </div>
+  `;
 }
 
 function updateCoachTheme() {
@@ -475,9 +492,10 @@ const pantryText = train.pantry ? '#222' : 'white';
 function infoBox(label, value, bgColor) {
   const dark = document.body.classList.contains('dark');
   const valueColor = dark ? 'white' : '#222';
+  const labelColor = dark ? '#aaa' : '#555';
   return `
     <div style="border:1px solid ${bgColor};padding:10px 14px;border-radius:4px;background:${bgColor}20;">
-      <div style="font-size:9px;color:${bgColor};font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">${label}</div>
+      <div style="font-size:9px;color:${labelColor};font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">${label}</div>
       <div style="font-size:13px;font-weight:700;color:${valueColor};">${value}</div>
     </div>
   `;
