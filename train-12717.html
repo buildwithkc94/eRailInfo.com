@@ -143,10 +143,10 @@
   width: 100%;
 }
 
-.tt-table thead tr { background: var(--paper-dark); border-bottom: 2px solid var(--border); }
+.tt-table thead tr { background: var(--paper-dark); border-bottom: 3px solid var(--border); }
 .tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 1px solid var(--border); white-space: nowrap; color: inherit; }
 .tt-table th:last-child { border-right: none; }
-.tt-table td { padding: 11px 10px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); vertical-align: middle; text-align: center; font-size: 11px; }
+.tt-table td { padding: 11px 10px; border-bottom: 2px solid var(--border); border-right: 2px solid var(--border); vertical-align: middle; text-align: center; font-size: 11px; }
 .tt-table td:last-child { border-right: none; }
 .tt-table tbody tr:last-child td { border-bottom: none; }
 .tt-table tbody tr:hover { background: #faf7ef; }
@@ -521,7 +521,7 @@ const colColors = {
 };
 
 function thCell(label, color) {
-  return `<th style="border-right:1px solid var(--border);background:${color}20;color:${color};">${label}</th>`;
+  return `<th style="border-right:2px solid var(--border);background:${color}20;color:${color};font-weight:800;font-size:11px;">${label}</th>`;
 }
 
 const ttHead = document.createElement('thead');
