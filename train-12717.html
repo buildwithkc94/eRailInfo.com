@@ -521,7 +521,7 @@ const colColors = {
 };
 
 function thCell(label, color) {
-  return `<th style="border-right:1px solid var(--border);color:${color};">${label}</th>`;
+  return `<th style="border-right:1px solid var(--border);background:${color}20;color:${color};">${label}</th>`;
 }
 
 const ttHead = document.createElement('thead');
@@ -541,19 +541,25 @@ document.getElementById('fullTimetable').appendChild(ttHead);
 const ttBody = document.createElement('tbody');
 train.timetable.forEach(s => {
   const row = document.createElement('tr');
+ const dark = document.body.classList.contains('dark');
+  const txt = dark ? 'white' : '#222';
+  const sub = dark ? '#aaa' : '#666';
+  function tdCell(content, color, extra='') {
+    return `<td style="background:${color}20;color:${txt};${extra}">${content}</td>`;
+  }
   row.innerHTML = `
-    <td style="font-weight:700;color:${colColors.sno};">${s.stop}</td>
-    <td class="tt-station" style="color:${colColors.station};">
+    ${tdCell(s.stop, colColors.sno, 'font-weight:700;')}
+    <td style="background:${colColors.station}20;text-align:left;font-weight:700;color:${txt};">
       ${s.station}
-      <div style="font-size:10px;font-weight:400;color:var(--muted);margin-top:2px;">${s.state||''}</div>
+      <div style="font-size:10px;font-weight:400;color:${sub};margin-top:2px;">${s.state||''}</div>
     </td>
-    <td class="tt-code" style="color:${colColors.code};">${s.code}</td>
-    <td style="font-size:10px;font-weight:700;color:${colColors.zone};">${s.zone||'—'}</td>
-    <td class="tt-time" style="color:${colColors.time};">${s.arrival}</td>
-    <td class="tt-time" style="color:${colColors.time};">${s.departure}</td>
-    <td style="font-weight:700;color:${colColors.halt};">${s.halt}</td>
-    <td style="font-size:11px;font-weight:700;color:${colColors.distance};">${s.km!==undefined?s.km+' km':'—'}</td>
-    <td style="font-size:10px;color:${colColors.schedule};">${s.schedule}</td>`;
+    ${tdCell(s.code, colColors.code, 'font-weight:700;font-size:10px;')}
+    ${tdCell(s.zone||'—', colColors.zone, 'font-size:10px;font-weight:700;')}
+    ${tdCell(s.arrival, colColors.time, 'font-weight:700;')}
+    ${tdCell(s.departure, colColors.time, 'font-weight:700;')}
+    ${tdCell(s.halt, colColors.halt, 'font-weight:700;')}
+    ${tdCell(s.km!==undefined?s.km+' km':'—', colColors.distance, 'font-size:11px;font-weight:700;')}
+    ${tdCell(s.schedule, colColors.schedule, 'font-size:10px;')}`;
   ttBody.appendChild(row);
 });
 document.getElementById('fullTimetable').appendChild(ttBody);
