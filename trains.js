@@ -54,9 +54,7 @@ timetable: [
   { stop: 13, code: "BZA",  station: "Vijayawada Junction",      arrival: "19:15", departure: "Destination",        day: 1, halt: "Destination", km: 350.2, zone: "SCoR",  state: "Andhra Pradesh", schedule: "S M T W T F S" },
 ],
     revisions: [
-      { date: "18 Jun 2026", summary: "Departure time from VSKP changed to 12:55 pm." },
-      { date: "10 Jun 2026", summary: "Coach composition updated." },
-      { date: "01 Jun 2026", summary: "Route optimization completed." },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
   {
