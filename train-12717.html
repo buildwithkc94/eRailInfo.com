@@ -144,7 +144,7 @@
 }
 
 .tt-table thead tr { background: var(--paper-dark); border-bottom: 2px solid var(--border); }
-.tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 1px solid var(--border); white-space: nowrap; }
+.tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 1px solid var(--border); white-space: nowrap; color: inherit; }
 .tt-table th:last-child { border-right: none; }
 .tt-table td { padding: 11px 10px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); vertical-align: middle; text-align: center; font-size: 11px; }
 .tt-table td:last-child { border-right: none; }
@@ -152,7 +152,8 @@
 .tt-table tbody tr:hover { background: #faf7ef; }
 .tt-station { text-align: left; font-weight: 700; }
 .tt-time { font-weight: 700; }
-.tt-code { font-weight: 700; font-size: 10px; color: var(--muted); }
+.tt-code { font-weight: 700; font-size: 10px; }
+.tt-station { text-align: left; font-weight: 700; }
 
 /* ── RETURN ── */
 .return-card { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 20px; text-align: center; margin-top: 10px; }
@@ -191,8 +192,8 @@ body.dark .journey-info-item { border-right-color: #383838; color: #aaa; }
 body.dark .journey-arrow { color: #666; }
 body.dark .tt-table { background: #242424; border-color: #383838; }
 body.dark .tt-table thead tr { background: #2a2a2a; border-bottom-color: #444; }
-body.dark .tt-table th { color: #aaa; border-right-color: #383838; }
-body.dark .tt-table td { border-bottom-color: #383838; border-right-color: #383838; color: #e8e8e8; }
+body.dark .tt-table th { border-right-color: #383838; }
+body.dark .tt-table td { border-bottom-color: #383838; border-right-color: #383838; }
 body.dark .tt-table tbody tr:hover { background: #2e2e2e; }
 body.dark .tab-btn { color: #888; }
 body.dark .tab-btn.active { color: #e8e8e8; border-bottom-color: #e8e8e8; }
