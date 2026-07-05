@@ -472,11 +472,13 @@ const rakeColor = train.rakeType === 'ICF' ? '#2731F5' : '#943861';
 const pantryColor = train.pantry ? '#27F549' : '#F54927';
 const pantryText = train.pantry ? '#222' : 'white';
 
-function infoBox(label, value, bgColor, textColor = 'white') {
+function infoBox(label, value, bgColor) {
+  const dark = document.body.classList.contains('dark');
+  const valueColor = dark ? 'white' : '#222';
   return `
     <div style="border:1px solid ${bgColor};padding:10px 14px;border-radius:4px;background:${bgColor}20;">
       <div style="font-size:9px;color:${bgColor};font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">${label}</div>
-      <div style="font-size:13px;font-weight:700;color:${bgColor};">${value}</div>
+      <div style="font-size:13px;font-weight:700;color:${valueColor};">${value}</div>
     </div>
   `;
 }
