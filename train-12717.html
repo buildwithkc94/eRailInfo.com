@@ -348,10 +348,43 @@ if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark'
 function toggleTheme() {
   document.body.classList.toggle('dark');
   localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  updateCoachTheme();
+  rebuildCoaches();
   rebuildInfoDetails();
 }
 
+  function rebuildCoaches() {
+  const dark = document.body.classList.contains('dark');
+  const coachColor = '#F52727';
+  const coachRow = document.getElementById('coachRow');
+  coachRow.innerHTML = '';
+  coachRow.style.cssText = 'display:flex;align-items:center;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:0;margin-bottom:12px;padding-bottom:8px;-webkit-overflow-scrolling:touch;';
+
+  train.coaches.forEach((c, i) => {
+    const isEmpty = c.type === '';
+    const box = document.createElement('div');
+    box.style.cssText = `border:1px solid ${coachColor};background:${coachColor}20;padding:${isEmpty?'8px 10px':'10px 8px'};text-align:center;min-width:${isEmpty?'auto':'72px'};border-radius:4px;cursor:pointer;flex-shrink:0;`;
+    box.innerHTML = `
+      <div style="font-size:15px;font-weight:700;color:${dark?'white':'#222'};">${c.code}</div>
+      <div style="font-size:9px;font-weight:700;color:${coachColor};text-transform:uppercase;margin-top:3px;">${c.type}</div>
+    `;
+    box.onmouseover = () => box.style.background = coachColor + '40';
+    box.onmouseout = () => box.style.background = coachColor + '20';
+    coachRow.appendChild(box);
+    if (i < train.coaches.length - 1) {
+      const line = document.createElement('div');
+      line.style.cssText = `width:12px;height:2px;background:${coachColor}60;flex-shrink:0;align-self:center;`;
+      coachRow.appendChild(line);
+    }
+  });
+
+  const hint = document.getElementById('coachHint');
+  if (hint) {
+    hint.style.background = dark ? '#2a2a2a' : 'white';
+    hint.style.color = dark ? '#888' : '#666';
+  }
+}
+
+function rebuildInfoDetails() {
 function rebuildInfoDetails() {
   const catColor = categoryColors[train.category] || '#2c2c2c';
   const rakeColor = train.rakeType === 'ICF' ? '#2731F5' : '#943861';
@@ -552,26 +585,7 @@ if (returnTrain) {
 // ── COACH LAYOUT ──
 document.getElementById('rakeLabel').textContent = 'Rake Composition – ' + (train.rakeType || 'LHB');
 if (train.coaches && train.coaches.length) {
-  const coachRow = document.getElementById('coachRow');
-  coachRow.style.cssText = 'display:flex;align-items:center;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:0;margin-bottom:12px;padding-bottom:8px;-webkit-overflow-scrolling:touch;';
-  const dark = document.body.classList.contains('dark');
-  train.coaches.forEach((c, i) => {
-    const isEmpty = c.type === '';
-    const box = document.createElement('div');
-    box.style.cssText = `border:1px solid var(--border);background:${dark?'#2a2a2a':'white'};color:${dark?'#e8e8e8':'#222'};padding:${isEmpty?'8px 10px':'10px 8px'};text-align:center;min-width:${isEmpty?'auto':'72px'};border-radius:4px;cursor:pointer;flex-shrink:0;`;
-    box.innerHTML = `<div style="font-size:15px;font-weight:700;">${c.code}</div><div style="font-size:9px;font-weight:700;color:#777;text-transform:uppercase;margin-top:3px;">${c.type}</div>`;
-    box.onmouseover = () => box.style.background = dark ? '#333' : '#ebe5d8';
-    box.onmouseout = () => box.style.background = dark ? '#2a2a2a' : 'white';
-    coachRow.appendChild(box);
-    if (i < train.coaches.length - 1) {
-      const line = document.createElement('div');
-      line.style.cssText = 'width:12px;height:2px;background:#ccc;flex-shrink:0;align-self:center;';
-      coachRow.appendChild(line);
-    }
-  });
-  const hint = document.getElementById('coachHint');
-  hint.style.background = dark ? '#2a2a2a' : 'white';
-  hint.style.color = dark ? '#888' : '#666';
+  rebuildCoaches();
 }
 
 // ── REVISIONS TAB ──
