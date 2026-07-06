@@ -633,7 +633,24 @@ function buildCoaches() {
     }
   });
 
-  document.getElementById('rakeLabel').textContent = 'Rake Composition – ' + (train.rakeType || 'LHB');
+  const dark = document.body.classList.contains('dark');
+const txt = dark ? 'white' : '#222';
+
+document.getElementById('rakeLabel').innerHTML =
+  `Rake Composition – 
+   <span style="
+      display:inline-block;
+      padding:3px 10px;
+      margin-left:6px;
+      background:#2731F5;
+      border:3px solid #2731F5;
+      border-radius:999px;
+      font-weight:700;
+      color:${txt};
+      line-height:1.2;
+   ">
+      ${train.rakeType || 'LHB'}
+   </span>`;
   const hint = document.getElementById('coachHint');
   if (hint) {
     hint.style.background = dark ? '#2a2a2a' : 'white';
