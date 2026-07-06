@@ -27,8 +27,8 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
 .logo-badge {
   display: flex;
   flex-direction: column;
-  width: 120px;
-  height: 56px;
+  width: 62px;
+  height: 62px;
   border-radius: 14px;
   overflow: hidden;
   text-decoration: none;
@@ -38,11 +38,12 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
 .logo-badge-text {
   background: #fff;
   color: #0a2647;
-  font-size: 14px;
+  font-size: 7px;
   font-weight: 800;
   text-align: center;
-  height: 22px;
-  line-height: 22px;
+  height: 20px;
+  line-height: 20px;
+  letter-spacing: -0.2px;
 }
 
 .header-right { display: flex; align-items: center; gap: 20px; }
