@@ -22,12 +22,17 @@
 .back-link:hover { color: #222; }
 
 .featured-card {
-  background: #E2DAFC;
-  border: 1px solid var(--border);
+  background: #e8e0ff;
+  border: 1px solid #c4b8f0;
   border-radius: 4px;
   padding: 24px;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+body.dark .featured-card {
+  background: #1e1a2e;
+  border-color: #3d3560;
 }
 
 .train-header {
@@ -50,24 +55,29 @@
 
 .journey-stop-box {
   flex: 1;
-  border: 1px solid #BEEEE5;
+  border: 3px solid #222;
   border-radius: 6px;
   padding: 12px 10px;
-  background: #BEEEE5;
-
+  background: #C3C74820;
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* vertically center */
-  align-items: center;       /* horizontally center */
-
   gap: 2px;
   min-width: 0;
-  min-height: 98px;          /* keeps all boxes the same height */
-  text-align: center;
 }
 
-.journey-stop-box.origin { border-color: #6c8ebf; background: #f0f4ff; }
-.journey-stop-box.destination { border-color: #82b366; background: #f0fff4; }
+.journey-stop-box.origin {
+  border-color: #6c8ebf;
+  background: #6c8ebf25;
+}
+
+.journey-stop-box.destination {
+  border-color: #82b366;
+  background: #82b36625;
+}
+
+body.dark .journey-stop-box { background: #C3C74815; border-color: #444; }
+body.dark .journey-stop-box.origin { background: #1a2030; border-color: #4a6090; }
+body.dark .journey-stop-box.destination { background: #1a2a1a; border-color: #4a7a4a; }
 
 .journey-arrow {
   display: flex;
