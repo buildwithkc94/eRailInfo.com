@@ -25,26 +25,24 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
 
 /* ── LOGO BADGE — stacked navy/white/navy design, fixed colors, NOT affected by dark mode ── */
 .logo-badge {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 120px;
   height: 56px;
-  background: #0a2647;
   border-radius: 14px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-decoration: none;
   flex-shrink: 0;
 }
+.logo-badge-band { background: #0a2647; flex: 1; }
 .logo-badge-text {
-  width: 100%;
   background: #fff;
   color: #0a2647;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
   text-align: center;
-  padding: 7px 0;
+  height: 22px;
+  line-height: 22px;
 }
 
 .header-right { display: flex; align-items: center; gap: 20px; }
