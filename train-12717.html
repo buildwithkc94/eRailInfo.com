@@ -653,7 +653,7 @@ function buildCoaches() {
     }
   });
 
-  const rakeColor = train.rakeType === 'ICF' ? '#2731F5' : '#943861';
+  const rakeColor = train.rakeType === 'ICF' ? '#2731F5' : '#27D3F5';
 const dark2 = document.body.classList.contains('dark');
 const rakeTxt = dark2 ? 'white' : '#222';
 document.getElementById('rakeLabel').innerHTML = `Rake Composition – <span style="display:inline-block;background:${rakeColor}25;border:3px solid #000000;border-radius:8px;padding:2px 10px;font-weight:700;color:${rakeTxt};font-size:11px;vertical-align:middle;margin-left:4px;">${train.rakeType || 'LHB'}</span>`;
