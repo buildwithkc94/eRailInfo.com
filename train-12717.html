@@ -183,10 +183,25 @@ body.dark .train-header .meta-label { color: #e8e8e8; }
 body.dark .journey-stop-box { background: #BEEEE5; border-color: #BEEEE5; }
 body.dark .journey-stop-box.origin { background: #1a2030; border-color: #4a6090; }
 body.dark .journey-stop-box.destination { background: #1a2a1a; border-color: #4a7a4a; }
-body.dark .stop-name { color: #aaa; }
-body.dark .stop-code { color: #e8e8e8; }
-body.dark .stop-time { color: #e8e8e8; }
-body.dark .stop-label { color: #888; }
+/* Middle boxes only */
+body.dark .journey-stop-box:not(.origin):not(.destination) .stop-name,
+body.dark .journey-stop-box:not(.origin):not(.destination) .stop-code,
+body.dark .journey-stop-box:not(.origin):not(.destination) .stop-time,
+body.dark .journey-stop-box:not(.origin):not(.destination) .stop-label {
+    color: #222;
+}
+
+/* Keep origin and destination as they are */
+body.dark .journey-stop-box.origin .stop-name,
+body.dark .journey-stop-box.origin .stop-code,
+body.dark .journey-stop-box.origin .stop-time,
+body.dark .journey-stop-box.origin .stop-label,
+body.dark .journey-stop-box.destination .stop-name,
+body.dark .journey-stop-box.destination .stop-code,
+body.dark .journey-stop-box.destination .stop-time,
+body.dark .journey-stop-box.destination .stop-label {
+    color: #e8e8e8;
+}
 body.dark .journey-info { background: #2a2a2a; border-color: #383838; color: #aaa; }
 body.dark .journey-info-item { border-right-color: #383838; color: #aaa; }
 body.dark .journey-arrow { color: #666; }
