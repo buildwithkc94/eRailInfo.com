@@ -65,6 +65,21 @@ body.dark .featured-card {
   min-width: 0;
 }
 
+body.dark .journey-stop-box {
+  border: 3px solid #222 !important;
+  background: #C3C74820;
+}
+
+body.dark .journey-stop-box.origin {
+  border: 3px solid #6c8ebf !important;
+  background: #6c8ebf25;
+}
+
+body.dark .journey-stop-box.destination {
+  border: 3px solid #82b366 !important;
+  background: #82b36625;
+}
+
 .journey-stop-box.origin {
   border-color: #6c8ebf;
   background: #6c8ebf25;
@@ -78,6 +93,7 @@ body.dark .featured-card {
 body.dark .journey-stop-box { background: #C3C74820; border-color: #222; }
 body.dark .journey-stop-box.origin { background: #6c8ebf25; border-color: #6c8ebf; }
 body.dark .journey-stop-box.destination { background: #82b36625; border-color: #82b366; }
+body.dark .journey-stop-box:not(.origin):not(.destination) { border-color: #222 !important; }
 
 .journey-arrow {
   display: flex;
