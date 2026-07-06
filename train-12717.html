@@ -638,10 +638,10 @@ function buildCoaches() {
     const color = getCoachColor(c.code);
     const txt = dark ? 'white' : '#222';
     const box = document.createElement('div');
-    box.style.cssText = `border:2px solid ${color};background:${color}25;padding:6px 10px;text-align:center;min-width:auto;width:fit-content;border-radius:4px;cursor:pointer;flex-shrink:0;`;
+    box.style.cssText = `border:2px solid ${color};background:${color}25;padding:4px 8px;text-align:center;min-width:auto;width:fit-content;border-radius:4px;cursor:pointer;flex-shrink:0;`;
     box.innerHTML = `
-      <div style="font-size:15px;font-weight:700;color:${dark?'white':'#222'};">${c.code}</div>
-      <div style="font-size:9px;font-weight:700;color:${dark?'#aaa':color};text-transform:uppercase;margin-top:3px;">${c.type}</div>
+      <div style="font-size:13px;font-weight:700;color:${dark?'white':'#222'};">${c.code}</div>
+      <div style="font-size:8px;font-weight:700;color:${dark?'#aaa':color};text-transform:uppercase;margin-top:2px;">${c.type}</div>
     `;
     box.onmouseover = () => box.style.background = color + '50';
     box.onmouseout = () => box.style.background = color + '25';
