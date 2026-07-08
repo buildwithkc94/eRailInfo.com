@@ -154,12 +154,14 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
   overflow: hidden;
   text-overflow: ellipsis;
   justify-content: center;
-  transition: filter 0.15s;
+  transition: filter 0.15s, box-shadow 0.15s, transform 0.15s;
 }
 #capsuleBar .capsule:hover {
   filter: brightness(1.2);
   background: #0a2647;
   border-color: #000;
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
 }
 
 .page-hero { text-align: center; padding: 60px 0 40px; }
