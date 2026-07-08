@@ -156,6 +156,14 @@ body.dark .search-card-bg .station-pill-box input[type="text"] {
   border: 3px solid #fff !important;
   transition: box-shadow 0.15s, transform 0.15s;
 }
+.search-card-bg button[onclick="swapStations()"] {
+  background: #0a2647 !important;
+  border: 3px solid #000 !important;
+  color: #fff !important;
+}
+body.dark .search-card-bg button[onclick="swapStations()"] {
+  border-color: #fff !important;
+}
 .search-card-bg input[type="text"]:hover,
 .search-card-bg .station-pill-box:hover,
 .search-card-bg button[onclick]:hover {
