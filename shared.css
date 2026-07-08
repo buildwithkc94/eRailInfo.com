@@ -139,6 +139,11 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
   border: 3px solid #000;
   color: #fff;
 }
+.search-card-bg input[type="text"],
+.search-card-bg .station-pill-box,
+.search-card-bg button[onclick="swapStations()"] {
+  border: 3px solid #000 !important;
+}
 /* ── BROWSE BAR — equal-size navy cells, matches logo style, fixed across themes ── */
 #capsuleBar {
   display: grid !important;
@@ -257,6 +262,11 @@ body.dark .search-card-bg {
   background: #0a2647 !important;
   border-color: #fff !important;
   color: #e8e8e8 !important;
+}
+body.dark .search-card-bg input[type="text"],
+body.dark .search-card-bg .station-pill-box,
+body.dark .search-card-bg button[onclick="swapStations()"] {
+  border-color: #fff !important;
 }
 
 body.dark .search-card-bg div,
