@@ -522,7 +522,7 @@ trainCategories.forEach(cat => {
   const capsule = document.createElement('a');
   capsule.className = 'capsule';
   capsule.setAttribute('data-cat', cat);
-  capsule.textContent = cat;
+  capsule.innerHTML = `<span class="capsule-text">${cat}</span>`;
   capsule.href = '#';
   capsule.onclick = (e) => {
     e.preventDefault();
