@@ -103,12 +103,6 @@ body.dark .station-pill-input { color: #e8e8e8; }
   border-radius: 0 0 4px 4px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
-  .station-suggestion:hover {
-  box-shadow: 6px 6px 0 #000;
-}
-body.dark .station-suggestion:hover {
-  box-shadow: 6px 6px 0 #fff;
-}
 
 body.dark .station-suggestion {
   background: #0a2647;
@@ -122,11 +116,18 @@ body.dark .station-suggestion {
   padding: 12px 14px;
   cursor: pointer;
   border-bottom: 1px solid rgba(255,255,255,0.2);
-  transition: background 0.1s;
+  transition: background 0.1s, box-shadow 0.15s;
   color: #fff;
+  position: relative;
 }
 
-.suggestion-item:hover { background: rgba(255,255,255,0.12); }
+.suggestion-item:hover {
+  background: rgba(255,255,255,0.12);
+  box-shadow: inset 0 0 0 2px #000;
+}
+body.dark .suggestion-item:hover {
+  box-shadow: inset 0 0 0 2px #fff;
+}
 
 .suggestion-item:last-child { border-bottom: none; }
 
