@@ -22,8 +22,8 @@
 .back-link:hover { color: #222; }
 
 .featured-card {
-  background: #e8e0ff;
-  border: 4px solid #000000;
+  background: #0a2647;
+  border: 4px solid #fff;
   border-radius: 4px;
   padding: 24px;
   margin-top: 30px;
@@ -31,19 +31,19 @@
 }
 
 body.dark .featured-card {
-  background: #e8e0ff;
-  border-color: #c4b8f0;
+  background: #0a2647;
+  border-color: #fff;
 }
 
 .train-header {
   margin-bottom: 20px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
   padding-bottom: 16px;
 }
 
-.train-header h2 { font-size: 20px; font-weight: 700; margin: 0 0 6px 0; }
-.train-header .meta { font-size: 12px; color: #666; line-height: 1.6; }
-.train-header .meta-label { font-weight: 700; color: #222; }
+.train-header h2 { font-size: 20px; font-weight: 700; margin: 0 0 6px 0; color: #fff; }
+.train-header .meta { font-size: 12px; color: #d8dee8; line-height: 1.6; }
+.train-header .meta-label { font-weight: 700; color: #fff; }
 
 /* ── STOP BOXES ── */
 .journey-timeline {
@@ -55,10 +55,10 @@ body.dark .featured-card {
 
 .journey-stop-box {
   flex: 1;
-  border: 3px solid #222;
+  border: 3px solid #fff;
   border-radius: 6px;
   padding: 12px 10px;
-  background: #C3C74820;
+  background: #0a2647;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -66,8 +66,8 @@ body.dark .featured-card {
 }
 
 body.dark .journey-stop-box {
-  border: 3px solid #222 !important;
-  background: #C3C74820;
+  border: 3px solid #fff !important;
+  background: #0a2647;
 }
 
 body.dark .journey-stop-box.origin {
@@ -90,10 +90,10 @@ body.dark .journey-stop-box.destination {
   background: #82b36625;
 }
 
-body.dark .journey-stop-box { background: #C3C74820; border-color: #222; }
+body.dark .journey-stop-box { background: #0a2647; border-color: #fff; }
 body.dark .journey-stop-box.origin { background: #6c8ebf25; border-color: #6c8ebf; }
 body.dark .journey-stop-box.destination { background: #82b36625; border-color: #82b366; }
-body.dark .journey-stop-box:not(.origin):not(.destination) { border-color: #222 !important; }
+body.dark .journey-stop-box:not(.origin):not(.destination) { border-color: #fff !important; }
 
 .journey-arrow {
   display: flex;
@@ -101,7 +101,7 @@ body.dark .journey-stop-box:not(.origin):not(.destination) { border-color: #222 
   justify-content: center;
   padding: 0 4px;
   flex-shrink: 0;
-  color: var(--muted);
+  color: #cfd8e6;
   font-size: 16px;
 }
 
@@ -113,16 +113,10 @@ body.dark .journey-stop-box:not(.origin):not(.destination) { border-color: #222 
   width: 100%;
 }
 .journey-stop-box.destination .stop-num { color: #82b366; }
-.stop-name { font-size: 10px; color: var(--muted); line-height: 1.3; }
-.stop-code { font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.1; }
-.stop-time { font-size: 13px; font-weight: 700; color: var(--text); margin-top: 2px; }
-.stop-label { font-size: 10px; color: var(--muted); }
-
-body.dark .stop-code { color: #222; }
-body.dark .stop-time { color: #222; }
-body.dark .stop-name { color: #555; }
-body.dark .stop-label { color: #555; }
-body.dark .stop-num { color: #6c8ebf; }
+.stop-name { font-size: 10px; color: #cfd8e6; line-height: 1.3; }
+.stop-code { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.1; }
+.stop-time { font-size: 13px; font-weight: 700; color: #fff; margin-top: 2px; }
+.stop-label { font-size: 10px; color: #cfd8e6; }
 
 /* ── INFO BAR ── */
 .journey-info {
@@ -131,8 +125,8 @@ body.dark .stop-num { color: #6c8ebf; }
   font-size: 12px;
   margin-top: 16px;
   padding: 0;
-  background: #946B3820;
-  border: 3px solid #000000;
+  background: #0a2647;
+  border: 3px solid #fff;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -142,10 +136,10 @@ body.dark .stop-num { color: #6c8ebf; }
   align-items: center;
   gap: 6px;
   padding: 12px 20px;
-  border-right: 3px solid #000000;
+  border-right: 3px solid #fff;
   flex: 1;
   justify-content: center;
-  color: #222;
+  color: #fff;
   font-weight: 700;
 }
 
@@ -224,22 +218,11 @@ body.dark .stop-num { color: #6c8ebf; }
 
 /* ── DARK THEME ── */
 body.dark .featured-card { background: #F9FFF2; border-color: #000000; }
-body.dark .train-header { border-bottom-color: #c4b8f0; }
-body.dark .train-header h2 { color: #222; }
-body.dark .train-header .meta { color: #444; }
-body.dark .train-header .meta-label { color: #222; }
-body.dark .featured-card { color: #222; }
-body.dark .featured-card span { color: #444; }
+body.dark .train-header { border-bottom-color: rgba(255,255,255,0.3); }
 body.dark .journey-stop-box { background: #BEEEE5; border-color: #BEEEE5; }
 body.dark .journey-stop-box.origin { background: #1a2030; border-color: #4a6090; }
 body.dark .journey-stop-box.destination { background: #1a2a1a; border-color: #4a7a4a; }
 /* Middle boxes only */
-body.dark .journey-stop-box:not(.origin):not(.destination) .stop-name,
-body.dark .journey-stop-box:not(.origin):not(.destination) .stop-code,
-body.dark .journey-stop-box:not(.origin):not(.destination) .stop-time,
-body.dark .journey-stop-box:not(.origin):not(.destination) .stop-label {
-    color: #222;
-}
 
 /* Keep origin and destination as they are */
 body.dark .journey-stop-box.origin .stop-name,
@@ -252,9 +235,8 @@ body.dark .journey-stop-box.destination .stop-time,
 body.dark .journey-stop-box.destination .stop-label {
     color: #e8e8e8;
 }
-body.dark .journey-info { background: #946B3820; border-color: #000000; }
-body.dark .journey-info-item { border-right-color: #000000; color: #222; }
-body.dark .journey-arrow { color: #666; }
+body.dark .journey-info { background: #0a2647; border-color: #fff; }
+body.dark .journey-info-item { border-right-color: #fff; color: #fff; }
 body.dark .tt-table { background: #242424; border-color: #383838; }
 body.dark .tt-table thead tr { background: #2a2a2a; border-bottom-color: #444; }
 body.dark .tt-table th { border-right-color: #555; }
