@@ -133,6 +133,34 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
 .browse-bar-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; margin-right: 6px; white-space: nowrap; }
 .capsule { display: inline-flex; align-items: center; padding: 6px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-weight: 400; color: #333; text-decoration: none; background: white; cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap; }.capsule:hover { background: var(--paper); border-color: #b0a898; }
 .capsule.active { background: #2c2c2c; color: white; border-color: #2c2c2c; }
+/* ── BROWSE BAR — equal-size navy cells, matches logo style, fixed across themes ── */
+#capsuleBar {
+  display: grid !important;
+  grid-template-columns: repeat(11, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+#capsuleBar .capsule {
+  height: 42px;
+  width: auto;
+  padding: 0 6px;
+  background: #0a2647;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  justify-content: center;
+  transition: filter 0.15s;
+}
+#capsuleBar .capsule:hover {
+  filter: brightness(1.2);
+  background: #0a2647;
+  border-color: #000;
+}
 
 .page-hero { text-align: center; padding: 60px 0 40px; }
 .page-hero h1 { font-family: 'Inter', sans-serif; font-size: 64px; font-weight: 700; }
@@ -163,6 +191,8 @@ footer { padding: 30px 0; border-top: 1px solid var(--border); text-align: cente
   .browse-bar { padding: 10px 0; }
   .browse-bar-inner { gap: 6px; }
   .capsule { font-size: 11px; padding: 5px 10px; }
+  #capsuleBar { grid-template-columns: repeat(3, 1fr) !important; }
+  #capsuleBar .capsule { height: 38px; font-size: 10px; }
 
   /* PAGE HERO */
   .page-hero h1 { font-size: 40px; }
@@ -190,6 +220,11 @@ body.dark header { border-bottom-color: #383838; background: #1a1a1a; }
 body.dark .browse-bar { background: #242424; border-bottom-color: #383838; }
 body.dark .capsule { background: #2a2a2a; color: #ccc; border-color: #444; }
 body.dark .capsule:hover { background: #333; border-color: #555; }
+body.dark #capsuleBar .capsule {
+  background: #0a2647 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
 body.dark .tagline { color: #777; }
 
 /* Dark — search cards */
