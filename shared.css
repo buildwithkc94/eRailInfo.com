@@ -59,7 +59,7 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
-  background: #943861;
+  background: #0a2647;
   border: none;
   border-radius: 8px;
   padding: 10px 18px;
@@ -74,12 +74,12 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
   transform: translate(-2px, -2px);
 }
 
-.dropdown-menu { display: none; position: absolute; top: 100%; left: 0; margin-top: 6px; padding-top: 14px; min-width: 180px; background: #943861; border: 2px solid #000; padding-bottom: 8px; list-style: none; z-index: 1000; box-shadow: 5px 5px 0 rgba(0,0,0,.9); }
+.dropdown-menu { display: none; position: absolute; top: 100%; left: 0; margin-top: 6px; padding-top: 14px; min-width: 180px; background: #0a2647; border: 2px solid #000; padding-bottom: 8px; list-style: none; z-index: 1000; box-shadow: 5px 5px 0 rgba(0,0,0,.9); }
 .dropdown-menu li a {
   display: block;
   margin: 4px 8px;
   padding: 8px 12px;
-  background: #946B38;
+  background: #123a63;
   color: #fff;
   border: 2px solid #000;
   border-radius: 6px;
@@ -106,7 +106,7 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
   min-width: 90px;
   max-height: 320px;
   overflow-y: auto;
-  background: #943861;
+  background: #0a2647;
   border: 2px solid #000;
   padding: 8px 0;
   list-style: none;
@@ -117,7 +117,7 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
   display: block;
   margin: 4px 8px;
   padding: 8px 12px;
-  background: #946B38;
+  background: #123a63;
   color: #fff;
   border: 2px solid #000;
   border-radius: 6px;
