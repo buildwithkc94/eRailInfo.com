@@ -340,10 +340,10 @@ body.dark .footer-links a { color: #666; }
 body.dark .no-results-bg { background: #242424 !important; border-color: #383838 !important; }
 
 /* Dark — dropdown suggestions */
-body.dark .station-suggestion { background: #242424 !important; border-color: #383838 !important; }
-body.dark .suggestion-item { border-bottom-color: #383838 !important; color: #e8e8e8 !important; }
-body.dark .suggestion-item:hover { background: #333 !important; }
-body.dark .suggestion-code { color: #aaa !important; }
+body.dark .station-suggestion { background: #0a2647 !important; border-color: #fff !important; }
+body.dark .suggestion-item { border-bottom-color: rgba(255,255,255,0.2) !important; color: #fff !important; }
+body.dark .suggestion-item:hover { background: rgba(255,255,255,0.12) !important; }
+body.dark .suggestion-code { color: #b8c4d6 !important; }
 
 /* Dark — station input pill */
 body.dark .station-pill {
