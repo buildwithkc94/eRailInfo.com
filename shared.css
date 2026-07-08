@@ -134,6 +134,11 @@ header { padding: 20px 0; border-bottom: 1px solid var(--border); }
 .browse-bar-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; margin-right: 6px; white-space: nowrap; }
 .capsule { display: inline-flex; align-items: center; padding: 6px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-weight: 400; color: #333; text-decoration: none; background: white; cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap; }.capsule:hover { background: var(--paper); border-color: #b0a898; }
 .capsule.active { background: #2c2c2c; color: white; border-color: #2c2c2c; }
+.search-card-bg {
+  background: #0a2647;
+  border: 3px solid #000;
+  color: #fff;
+}
 /* ── BROWSE BAR — equal-size navy cells, matches logo style, fixed across themes ── */
 #capsuleBar {
   display: grid !important;
@@ -249,8 +254,8 @@ body.dark .tagline { color: #777; }
 
 /* Dark — search cards */
 body.dark .search-card-bg {
-  background: #242424 !important;
-  border-color: #383838 !important;
+  background: #0a2647 !important;
+  border-color: #fff !important;
   color: #e8e8e8 !important;
 }
 
