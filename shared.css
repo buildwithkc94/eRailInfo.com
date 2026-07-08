@@ -153,6 +153,9 @@ body.dark .search-card-bg .station-pill-box input[type="text"] {
 .search-card-bg button[onclick] {
   border: 3px solid #fff !important;
 }
+body.dark #trainSearchInput {
+  border: 3px solid #fff !important;
+}
 /* ── BROWSE BAR — equal-size navy cells, matches logo style, fixed across themes ── */
 #capsuleBar {
   display: grid !important;
