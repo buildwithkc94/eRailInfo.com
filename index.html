@@ -453,6 +453,30 @@ function toggleTheme() {
   localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
 }
 </script>
+<script>
+document.querySelectorAll('.dropdown > a.nav-btn, .dropdown-submenu > a.submenu-trigger').forEach(trigger => {
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const menu = this.nextElementSibling;
+    const isOpen = menu.classList.contains('open');
+
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => {
+      if (m !== menu && !m.contains(menu) && !menu.contains(m)) {
+        m.classList.remove('open');
+      }
+    });
+
+    menu.classList.toggle('open', !isOpen);
+  });
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => m.classList.remove('open'));
+  }
+});
+</script>
 
 <script src="trains.js"></script>
 <script>
