@@ -147,29 +147,31 @@ body.dark .journey-stop-box:not(.origin):not(.destination) { border-color: #fff 
 
 /* ── TABS ── */
 .train-tabs {
-  border-bottom: 1px solid var(--border);
   margin-top: 30px;
+  margin-bottom: 10px;
   display: flex;
+  gap: 10px;
 }
 
 .tab-btn {
-  background: none;
-  border: none;
-  border-bottom: 3px solid transparent;
-  padding: 14px 20px;
+  background: #0a2647;
+  color: #fff;
+  border: 3px solid #000;
+  border-radius: 8px;
+  padding: 10px 20px;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: var(--muted);
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.15s, border-color 0.15s;
-  margin-bottom: -1px;
+  transition: box-shadow 0.15s, transform 0.15s;
 }
 
-.tab-btn:hover { color: #222; }
-.tab-btn.active { color: #222; border-bottom-color: #222; }
+.tab-btn:hover {
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
+}
 
 .tab-content { display: none; padding: 30px 0; }
 .tab-content.active { display: block; }
@@ -242,9 +244,8 @@ body.dark .tt-table thead tr { background: #2a2a2a; border-bottom-color: #444; }
 body.dark .tt-table th { border-right-color: #555; }
 body.dark .tt-table td { border-bottom-color: #555; border-right-color: #555; }
 body.dark .tt-table tbody tr:hover { background: #2e2e2e; }
-body.dark .tab-btn { color: #888; }
-body.dark .tab-btn.active { color: #e8e8e8; border-bottom-color: #e8e8e8; }
-body.dark .train-tabs { border-bottom-color: #383838; }
+body.dark .tab-btn { border-color: #fff; }
+body.dark .tab-btn:hover { box-shadow: 4px 4px 0 #fff; }
 body.dark .revisions-table { background: #242424; border-color: #383838; }
 body.dark .revisions-table thead tr { background: #2a2a2a; }
 body.dark .revisions-table th { color: #aaa; border-right-color: #383838; }
@@ -791,6 +792,13 @@ function buildReturnCard() {
 }
 
 buildReturnCard();
+  const initialActiveTab = document.querySelector('.tab-btn.active');
+if (initialActiveTab) {
+  const lightTextColors = ['#F5EB27','#F5F527','#27F549','#27D3F5'];
+  const color = categoryColors[train.category] || '#0a2647';
+  initialActiveTab.style.background = color;
+  initialActiveTab.style.color = lightTextColors.includes(color) ? '#222' : '#fff';
+}
 
 // ── REVISIONS ──
 const revisionsBody = document.getElementById('revisionsBody');
@@ -825,9 +833,17 @@ if (train.revisions && train.revisions.length) {
 // ── TABS ──
 function switchTab(name, btn) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = '';
+    b.style.color = '';
+  });
   document.getElementById('tab-' + name).classList.add('active');
   btn.classList.add('active');
+  const lightTextColors = ['#F5EB27','#F5F527','#27F549','#27D3F5'];
+  const color = categoryColors[train.category] || '#0a2647';
+  btn.style.background = color;
+  btn.style.color = lightTextColors.includes(color) ? '#222' : '#fff';
 }
 
 // ── RUN TIME ──
