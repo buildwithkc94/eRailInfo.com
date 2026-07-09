@@ -457,8 +457,38 @@ function toggleTheme() {
   document.body.classList.toggle('dark');
   localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
 }
+
+let use24Hour = localStorage.getItem('timeFormat') === '24';
+
+function toggleTimeFormat() {
+  use24Hour = !use24Hour;
+  localStorage.setItem('timeFormat', use24Hour ? '24' : '12');
+  updateDelhiTime();
+}
+
+function updateDelhiTime() {
+  const now = new Date();
+  let timeStr = now.toLocaleTimeString('en-US', {
+    timeZone: 'Asia/Kolkata',
+    hour12: !use24Hour,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+  if (!use24Hour) timeStr = timeStr.toUpperCase();
+
+  const dayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long' }).toUpperCase();
+  const day = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', day: '2-digit' });
+  const month = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', month: 'long' }).toUpperCase();
+  const year = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric' });
+
+  document.getElementById('timeCapsuleTime').textContent = timeStr;
+  document.getElementById('timeCapsuleDate').textContent = dayStr + ' · ' + day + '/' + month + '/' + year;
+}
+
+updateDelhiTime();
+setInterval(updateDelhiTime, 1000);
 </script>
-<script>
 document.querySelectorAll('.dropdown > a.nav-btn, .dropdown-submenu > a.submenu-trigger').forEach(trigger => {
   trigger.addEventListener('click', function(e) {
     e.preventDefault();
