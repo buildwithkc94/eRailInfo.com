@@ -198,7 +198,6 @@ body.dark .search-card-bg .station-pill-box input[type="text"] {
   border: 3px solid #fff !important;
   color: #fff !important;
 }
-.search-card-bg input[type="text"]:not(.station-pill-input):hover,
 .search-card-bg button[onclick]:hover {
   box-shadow: 4px 4px 0 #fff;
   transform: translate(-2px, -2px);
