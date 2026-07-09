@@ -252,6 +252,17 @@ body.dark #trainSearchInput {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-100%); }
 }
+.station-card-bg {
+  background: #0a2647 !important;
+  border: 3px solid #000 !important;
+  color: #fff !important;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.station-card-bg:hover {
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
+}
+
 .page-hero { text-align: center; padding: 60px 0 40px; }
 .page-hero h1 { font-family: 'Inter', sans-serif; font-size: 64px; font-weight: 700; }
 .page-hero p { color: #666; margin-top: 10px; font-size: 14px; }
@@ -371,21 +382,36 @@ body.dark .search-card-bg button[onclick] {
 
 /* Dark — station cards */
 body.dark .station-card-bg {
-  background: #242424 !important;
-  border-color: #383838 !important;
-  color: #e8e8e8 !important;
+  background: #0a2647 !important;
+  border-color: #fff !important;
+  color: #fff !important;
 }
+body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
 
 /* Dark — features row */
-body.dark .features-bg {
-  background: #242424 !important;
-  border-color: #383838 !important;
+body.dark .feature-item-bg { border-color: #fff !important; }
+body.dark .feature-item-bg:hover { box-shadow: 4px 4px 0 #fff; }
+body.dark .feature-title-text { color: #fff !important; }
+body.dark .feature-desc-text { color: #cfd8e6 !important; }
+
+.features-bg {
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+  gap: 12px;
 }
-body.dark .feature-item-bg {
-  border-color: #383838 !important;
+.feature-item-bg {
+  background: #0a2647 !important;
+  border: 3px solid #000 !important;
+  border-radius: 8px;
+  transition: box-shadow 0.15s, transform 0.15s;
 }
-body.dark .feature-title-text { color: #e8e8e8 !important; }
-body.dark .feature-desc-text { color: #aaa !important; }
+.feature-item-bg:hover {
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
+}
+.feature-title-text { color: #fff !important; }
+.feature-desc-text { color: #cfd8e6 !important; }
 
 /* Dark — inputs */
 body.dark input[type="text"] {
