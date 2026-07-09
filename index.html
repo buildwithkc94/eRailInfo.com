@@ -243,12 +243,16 @@ body.dark .result-card:hover { background: #2e2e2e; }
 <header>
 <div class="container">
   <div class="topbar">
-    <a href="index.html" class="logo-badge">
+<a href="index.html" class="logo-badge">
   <div class="logo-badge-band"></div>
   <div class="logo-badge-text">eRailInfo</div>
   <div class="logo-badge-band"></div>
 </a>
-    <div class="header-right">
+<div id="delhiTimeCapsule" class="time-capsule" onclick="toggleTimeFormat()">
+  <div class="time-capsule-time" id="timeCapsuleTime"></div>
+  <div class="time-capsule-date" id="timeCapsuleDate"></div>
+</div>
+<div class="header-right">
       <ul class="nav-menu">
         <li class="dropdown">
           <a href="#" class="nav-btn">&#128646; TRAINS &#9662;</a>
