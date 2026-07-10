@@ -855,7 +855,7 @@ function showResults(results, label, fromStop, toStop) {
     card.href = 'train-' + t.number + '.html';
 
     card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;padding-bottom:14px;border-bottom:3px solid #fff;">
         <div style="display:flex;align-items:center;gap:16px;">
           <div style="font-size:32px;font-weight:700;">${t.number}</div>
           <div>
@@ -872,8 +872,7 @@ function showResults(results, label, fromStop, toStop) {
           <div style="font-size:18px;font-weight:700;margin-top:4px;">${depTime || '—'}</div>
         </div>
         <div style="text-align:center;padding:0 20px;flex-shrink:0;">
-        <div style="font-size:13px;font-weight:700;color:#fff;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.4);border-radius:6px;padding:4px 14px;">${timeDiff}</div>
-        <div style="height:2px;background:rgba(255,255,255,0.3);margin-top:8px;width:80px;"></div>
+        <div style="font-size:13px;font-weight:700;color:#fff;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;padding:4px 14px;">${timeDiff}</div>
         </div>
         <div style="flex:1;text-align:right;">
           <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#999;text-transform:uppercase;margin-bottom:4px;">To</div>
@@ -886,10 +885,10 @@ function showResults(results, label, fromStop, toStop) {
     style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:5px 12px;background:${categoryColors[t.category] || '#2c2c2c'};color:${lightTextColors.includes(categoryColors[t.category]) ? '#222' : '#fff'};border:2px solid #000;border-radius:8px;cursor:pointer;">${t.category}</span>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:8px;">
-  <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.4);border-radius:6px;color:#fff;">🚆 ${t.type || '—'}</span>
-        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.4);border-radius:6px;color:#fff;">📅 ${t.runsOn || 'Daily'}</span>
-        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.4);border-radius:6px;color:#fff;">💺 ${t.classes || '—'}</span>
-        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.4);border-radius:6px;color:#fff;">📏 ${distDisplay}</span>
+  <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;">🚆 ${t.type || '—'}</span>
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;">📅 ${t.runsOn || 'Daily'}</span>
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;">💺 ${t.classes || '—'}</span>
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;">📏 ${distDisplay}</span>
       </div>
     `;
 
