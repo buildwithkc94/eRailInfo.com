@@ -281,69 +281,80 @@ body.dark .back-link:hover { color: #e8e8e8; }
 </head>
 <body>
 
-<script>
-if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-function toggleTheme() {
-  document.body.classList.toggle('dark');
-  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-}
-
-let use24Hour = localStorage.getItem('timeFormat') === '24';
-
-function toggleTimeFormat() {
-  use24Hour = !use24Hour;
-  localStorage.setItem('timeFormat', use24Hour ? '24' : '12');
-  updateDelhiTime();
-}
-
-function updateDelhiTime() {
-  const now = new Date();
-  let timeStr = now.toLocaleTimeString('en-US', {
-    timeZone: 'Asia/Kolkata',
-    hour12: !use24Hour,
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  });
-  if (!use24Hour) timeStr = timeStr.toUpperCase();
-
-  const dayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long' }).toUpperCase();
-  const day = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', day: '2-digit' });
-  const month = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', month: 'long' }).toUpperCase();
-  const year = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric' });
-
-  document.getElementById('timeCapsuleTime').textContent = timeStr;
-  document.getElementById('timeCapsuleDate').textContent = dayStr + ' · ' + day + '/' + month + '/' + year;
-}
-
-updateDelhiTime();
-setInterval(updateDelhiTime, 1000);
-</script>
-<script>
-document.querySelectorAll('.dropdown > a.nav-btn, .dropdown-submenu > a.submenu-trigger').forEach(trigger => {
-  trigger.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    const menu = this.nextElementSibling;
-    const isOpen = menu.classList.contains('open');
-
-    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => {
-      if (m !== menu && !m.contains(menu) && !menu.contains(m)) {
-        m.classList.remove('open');
-      }
-    });
-
-    menu.classList.toggle('open', !isOpen);
-  });
-});
-
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.dropdown')) {
-    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => m.classList.remove('open'));
-  }
-});
-</script>
-
+<header>
+<div class="container">
+  <div class="topbar">
+<a href="index.html" class="logo-badge">
+  <div class="logo-badge-band"></div>
+  <div class="logo-badge-text">eRailInfo</div>
+  <div class="logo-badge-band"></div>
+</a>
+<div id="delhiTimeCapsule" class="time-capsule" onclick="toggleTimeFormat()">
+  <div class="time-capsule-time" id="timeCapsuleTime"></div>
+  <div class="time-capsule-date" id="timeCapsuleDate"></div>
+</div>
+<div class="header-right">
+      <ul class="nav-menu">
+        <li class="dropdown">
+          <a href="#" class="nav-btn">&#128646; TRAINS &#9662;</a>
+          <ul class="dropdown-menu" id="trainsDropdown"></ul>
+        </li>
+        <li class="dropdown">
+  <a href="#" class="nav-btn">&#127963; STATIONS &#9662;</a>
+  <ul class="dropdown-menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="submenu-trigger">METRO</a>
+      <ul class="submenu">
+        <li><a href="#">Ahmedabad</a></li>
+        <li><a href="#">Agra</a></li>
+        <li><a href="#">Bangalore</a></li>
+        <li><a href="#">Bhopal</a></li>
+        <li><a href="#">Chennai</a></li>
+        <li><a href="#">Hyderabad</a></li>
+        <li><a href="#">Indore</a></li>
+        <li><a href="#">Jaipur</a></li>
+        <li><a href="#">Kanpur</a></li>
+        <li><a href="#">Kochi</a></li>
+        <li><a href="#">Kolkata</a></li>
+        <li><a href="#">Lucknow</a></li>
+        <li><a href="#">Mumbai</a></li>
+        <li><a href="#">Nagpur</a></li>
+        <li><a href="#">Patna</a></li>
+        <li><a href="#">Pune</a></li>
+        <li><a href="#">Surat (In progress)</a></li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="submenu-trigger">SUBURBAN/MMTS</a>
+      <ul class="submenu">
+        <li><a href="#">Bangalore</a></li>
+        <li><a href="#">Chennai</a></li>
+        <li><a href="#">Delhi</a></li>
+        <li><a href="#">Hyderabad</a></li>
+        <li><a href="#">Kolkata</a></li>
+        <li><a href="#">Mumbai</a></li>
+        <li><a href="#">Pune</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+        <li class="dropdown">
+          <a href="#" class="nav-btn">&#128276; UPDATES &#9662;</a>
+          <ul class="dropdown-menu">
+            <li><a href="revision-history.html">Revision History</a></li>
+            <li><a href="revision-history.html">Feedback</a></li>
+          </ul>
+        </li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+</header>
 <div class="browse-bar">
 <div class="container">
   <div class="browse-bar-inner">
@@ -426,80 +437,62 @@ if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark'
 function toggleTheme() {
   document.body.classList.toggle('dark');
   localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  updateDynamicElements();
 }
 
-function updateDynamicElements() {
-  buildInfoDetails();
-  buildCoaches();
-  rebuildTimetable();
-  rebuildRevisions();
-  buildReturnCard();
+let use24Hour = localStorage.getItem('timeFormat') === '24';
+
+function toggleTimeFormat() {
+  use24Hour = !use24Hour;
+  localStorage.setItem('timeFormat', use24Hour ? '24' : '12');
+  updateDelhiTime();
 }
 
-function rebuildRevisions() {
-  const dark = document.body.classList.contains('dark');
-  const txt = dark ? 'white' : '#222';
-  const revHead = document.querySelector('.revisions-table thead tr');
-  if (revHead) {
-    revHead.innerHTML = `
-      <th style="background:#C7A348;color:${txt};border-right:2px solid #222;">Version</th>
-      <th style="background:#C77448;color:${txt};border-right:2px solid #222;">Effective Date</th>
-      <th style="background:#48C78E;color:${txt};">Summary of Changes</th>
-    `;
-  }
-  const body = document.getElementById('revisionsBody');
-  if (body) {
-    body.querySelectorAll('tr').forEach(row => {
-      row.querySelectorAll('td').forEach(td => {
-        td.style.color = txt;
-      });
-    });
-  }
-}
-
-function rebuildTimetable() {
-  const table = document.getElementById('fullTimetable');
-  table.innerHTML = '';
-  const ttHead = document.createElement('thead');
-  ttHead.innerHTML = `<tr>
-    ${thCell('#', colColors.sno)}
-    ${thCell('Station', colColors.station)}
-    ${thCell('Code', colColors.code)}
-    ${thCell('Zone', colColors.zone)}
-    ${thCell('Arrival', colColors.time)}
-    ${thCell('Departure', colColors.time)}
-    ${thCell('Halt', colColors.halt)}
-    ${thCell('Distance', colColors.distance)}
-    ${thCell('Schedule', colColors.schedule)}
-  </tr>`;
-  table.appendChild(ttHead);
-  const ttBody = document.createElement('tbody');
-  train.timetable.forEach(s => {
-    const row = document.createElement('tr');
-    const dark = document.body.classList.contains('dark');
-    const txt = dark ? 'white' : '#222';
-    const sub = dark ? '#aaa' : '#666';
-    function tdCell(content, color, extra='') {
-      return `<td style="background:${color}20;color:${txt};${extra}">${content}</td>`;
-    }
-    row.innerHTML = `
-      ${tdCell(s.stop, colColors.sno, 'font-weight:700;')}
-      <td style="background:${colColors.station}20;text-align:left;font-weight:700;color:${txt};">
-        ${s.station}
-        <div style="font-size:10px;font-weight:400;color:${sub};margin-top:2px;">${s.state||''}</div>
-      </td>
-      ${tdCell(s.code, colColors.code, 'font-weight:700;font-size:10px;')}
-      ${tdCell(s.zone||'—', colColors.zone, 'font-size:10px;font-weight:700;')}
-      ${tdCell(s.arrival, colColors.time, 'font-weight:700;')}
-      ${tdCell(s.departure, colColors.time, 'font-weight:700;')}
-      ${tdCell(s.halt, colColors.halt, 'font-weight:700;')}
-      ${tdCell(s.km!==undefined?s.km+' km':'—', colColors.distance, 'font-size:11px;font-weight:700;')}
-      ${tdCell(s.schedule, colColors.schedule, 'font-size:10px;')}`;
-    ttBody.appendChild(row);
+function updateDelhiTime() {
+  const now = new Date();
+  let timeStr = now.toLocaleTimeString('en-US', {
+    timeZone: 'Asia/Kolkata',
+    hour12: !use24Hour,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
   });
-  table.appendChild(ttBody);
+  if (!use24Hour) timeStr = timeStr.toUpperCase();
+
+  const dayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long' }).toUpperCase();
+  const day = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', day: '2-digit' });
+  const month = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', month: 'long' }).toUpperCase();
+  const year = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric' });
+
+  document.getElementById('timeCapsuleTime').textContent = timeStr;
+  document.getElementById('timeCapsuleDate').textContent = dayStr + ' · ' + day + '/' + month + '/' + year;
 }
+
+updateDelhiTime();
+setInterval(updateDelhiTime, 1000);
+</script>
+<script>
+document.querySelectorAll('.dropdown > a.nav-btn, .dropdown-submenu > a.submenu-trigger').forEach(trigger => {
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const menu = this.nextElementSibling;
+    const isOpen = menu.classList.contains('open');
+
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => {
+      if (m !== menu && !m.contains(menu) && !menu.contains(m)) {
+        m.classList.remove('open');
+      }
+    });
+
+    menu.classList.toggle('open', !isOpen);
+  });
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => m.classList.remove('open'));
+  }
+});
 </script>
 
 <script>
