@@ -147,20 +147,23 @@ body.dark .suggestion-item:hover {
 /* ── SEARCH RESULTS ── */
 .result-card {
   display: block;
-  border: 1px solid var(--border);
-  background: white;
+  border: 3px solid #000;
+  background: #0a2647;
   border-radius: 4px;
   padding: 20px 24px;
   margin-bottom: 12px;
   text-decoration: none;
-  color: inherit;
-  transition: background 0.15s;
+  color: #fff;
+  transition: box-shadow 0.15s, transform 0.15s;
 }
 
-.result-card:hover { background: #faf7ef; }
+.result-card:hover {
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
+}
 
-body.dark .result-card { background: #242424; border-color: #383838; color: #e8e8e8; }
-body.dark .result-card:hover { background: #2e2e2e; }
+body.dark .result-card { border-color: #fff; }
+body.dark .result-card:hover { box-shadow: 4px 4px 0 #fff; }
 
 /* ── MOBILE ── */
 @media (max-width: 768px) {
@@ -763,6 +766,21 @@ function filterByCategory(cat) {
   const results = trains.filter(t => t.category === cat);
   showResults(results, cat.toUpperCase() + ' (' + results.length + ')', null, null);
   document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
+
+  document.querySelectorAll('#capsuleBar .capsule').forEach(c => {
+    c.classList.remove('active');
+    c.style.background = '';
+    c.style.borderColor = '';
+    c.style.color = '';
+  });
+  const matchingCapsule = [...document.querySelectorAll('#capsuleBar .capsule')].find(c => c.getAttribute('data-cat') === cat);
+  if (matchingCapsule) {
+    matchingCapsule.classList.add('active');
+    const color = categoryColors[cat] || '#2c2c2c';
+    matchingCapsule.style.background = color;
+    matchingCapsule.style.borderColor = color;
+    matchingCapsule.style.color = lightTextColors.includes(color) ? '#222' : 'white';
+  }
 }
 
 // ── SHOW RESULTS ──
@@ -847,8 +865,12 @@ function showResults(results, label, fromStop, toStop) {
           <div style="font-size:18px;font-weight:700;margin-top:4px;">${arrTime || '—'}</div>
         </div>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
-        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:var(--paper);border:1px solid var(--border);border-radius:6px;">🚆 ${t.type || '—'}</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+  <span class="result-category-capsule" onclick="event.preventDefault();event.stopPropagation();filterByCategory('${t.category}');"
+    style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:5px 12px;background:${categoryColors[t.category] || '#2c2c2c'};color:${lightTextColors.includes(categoryColors[t.category]) ? '#222' : '#fff'};border:2px solid #000;border-radius:8px;cursor:pointer;">${t.category}</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;">
+  <span style="font-size:11px;font-weight:700;padding:4px 10px;background:var(--paper);border:1px solid var(--border);border-radius:6px;">🚆 ${t.type || '—'}</span>
         <span style="font-size:11px;font-weight:700;padding:4px 10px;background:var(--paper);border:1px solid var(--border);border-radius:6px;">📅 ${t.runsOn || 'Daily'}</span>
         <span style="font-size:11px;font-weight:700;padding:4px 10px;background:var(--paper);border:1px solid var(--border);border-radius:6px;">💺 ${t.classes || '—'}</span>
         <span style="font-size:11px;font-weight:700;padding:4px 10px;background:var(--paper);border:1px solid var(--border);border-radius:6px;">📏 ${distDisplay}</span>
