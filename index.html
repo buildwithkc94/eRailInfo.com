@@ -208,15 +208,17 @@ body.dark .result-card:hover { box-shadow: 4px 4px 0 #fff; }
 
   .features-grid-wrap {
     grid-template-columns: 1fr !important;
+    gap: 12px !important;
   }
 
-  .features-grid-wrap > div {
-    border-right: none !important;
-    border-bottom: 1px solid var(--border) !important;
+  .feature-item-bg {
+    border: 3px solid #000 !important;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  .features-grid-wrap > div:last-child {
-    border-bottom: none !important;
+  body.dark .feature-item-bg {
+    border-color: #fff !important;
   }
 
   .result-card {
