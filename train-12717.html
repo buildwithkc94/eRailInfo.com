@@ -281,76 +281,68 @@ body.dark .back-link:hover { color: #e8e8e8; }
 </head>
 <body>
 
-<header>
-<div class="container">
-  <div class="topbar">
-    <a href="index.html" class="logo-badge">
-      <div class="logo-badge-band"></div>
-      <div class="logo-badge-text">eRailInfo</div>
-      <div class="logo-badge-band"></div>
-    </a>
-    <div class="header-right">
-      <ul class="nav-menu">
-        <li class="dropdown">
-          <a href="#" class="nav-btn">&#128646; TRAINS &#9662;</a>
-          <ul class="dropdown-menu" id="trainsDropdown"></ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="nav-btn">&#127963; STATIONS &#9662;</a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-submenu">
-              <a href="#" class="submenu-trigger">Metro</a>
-              <ul class="submenu">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-                <li><a href="#">7</a></li>
-                <li><a href="#">8</a></li>
-                <li><a href="#">9</a></li>
-                <li><a href="#">10</a></li>
-                <li><a href="#">11</a></li>
-                <li><a href="#">12</a></li>
-                <li><a href="#">13</a></li>
-                <li><a href="#">14</a></li>
-                <li><a href="#">15</a></li>
-                <li><a href="#">16</a></li>
-                <li><a href="#">17</a></li>
-              </ul>
-            </li>
-            <li class="dropdown-submenu">
-              <a href="#" class="submenu-trigger">Suburban/MMTS</a>
-              <ul class="submenu">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-                <li><a href="#">7</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="nav-btn">&#128276; UPDATES &#9662;</a>
-          <ul class="dropdown-menu">
-            <li><a href="revision-history.html">Revision History</a></li>
-            <li><a href="revision-history.html">Feedback</a></li>
-          </ul>
-        </li>
-      </ul>
-      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-</div>
-</header>
+<script>
+if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+
+let use24Hour = localStorage.getItem('timeFormat') === '24';
+
+function toggleTimeFormat() {
+  use24Hour = !use24Hour;
+  localStorage.setItem('timeFormat', use24Hour ? '24' : '12');
+  updateDelhiTime();
+}
+
+function updateDelhiTime() {
+  const now = new Date();
+  let timeStr = now.toLocaleTimeString('en-US', {
+    timeZone: 'Asia/Kolkata',
+    hour12: !use24Hour,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+  if (!use24Hour) timeStr = timeStr.toUpperCase();
+
+  const dayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long' }).toUpperCase();
+  const day = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', day: '2-digit' });
+  const month = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', month: 'long' }).toUpperCase();
+  const year = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric' });
+
+  document.getElementById('timeCapsuleTime').textContent = timeStr;
+  document.getElementById('timeCapsuleDate').textContent = dayStr + ' · ' + day + '/' + month + '/' + year;
+}
+
+updateDelhiTime();
+setInterval(updateDelhiTime, 1000);
+</script>
+<script>
+document.querySelectorAll('.dropdown > a.nav-btn, .dropdown-submenu > a.submenu-trigger').forEach(trigger => {
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const menu = this.nextElementSibling;
+    const isOpen = menu.classList.contains('open');
+
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => {
+      if (m !== menu && !m.contains(menu) && !menu.contains(m)) {
+        m.classList.remove('open');
+      }
+    });
+
+    menu.classList.toggle('open', !isOpen);
+  });
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => m.classList.remove('open'));
+  }
+});
+</script>
 
 <div class="browse-bar">
 <div class="container">
