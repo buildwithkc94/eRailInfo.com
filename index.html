@@ -791,19 +791,17 @@ function showResults(results, label, fromStop, toStop) {
   const list = document.getElementById('resultsList');
   list.innerHTML = '';
 
-  const pillsWrap = document.getElementById('resultsCategoryPills');
+const pillsWrap = document.getElementById('resultsCategoryPills');
   pillsWrap.innerHTML = '';
   const uniqueCats = [...new Set(results.map(t => t.category))];
-  if (uniqueCats.length > 1) {
-    uniqueCats.forEach(cat => {
-      const pill = document.createElement('a');
-      pill.href = '#';
-      pill.className = 'category-pill';
-      pill.textContent = cat;
-      pill.onclick = (e) => { e.preventDefault(); filterByCategory(cat); };
-      pillsWrap.appendChild(pill);
-    });
-  }
+  uniqueCats.forEach(cat => {
+    const pill = document.createElement('a');
+    pill.href = '#';
+    pill.className = 'category-pill';
+    pill.textContent = cat;
+    pill.onclick = (e) => { e.preventDefault(); filterByCategory(cat); };
+    pillsWrap.appendChild(pill);
+  });
 
   if (!results.length) {
     list.innerHTML = '<div class="no-results-bg" style="text-align:center;padding:40px;color:#888;background:white;border:1px solid var(--border);border-radius:4px;">No trains found.</div>';
