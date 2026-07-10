@@ -763,8 +763,12 @@ function handleStationSearch() {
   showResults(results, 'TRAINS FOUND (' + results.length + ')', fromSelected, toSelected);
 }
 
-// ── CATEGORY FILTER ──
-function filterByCategory(cat) {
+// ── CATEGORY FILTER (within current search results) ──
+function filterResultsByCategory(cat) {
+  const filtered = lastResults.filter(t => t.category === cat);
+  showResults(filtered, cat.toUpperCase() + ' (' + filtered.length + ')', lastFromStop, lastToStop);
+  document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
+}
   const results = trains.filter(t => t.category === cat);
   showResults(results, cat.toUpperCase() + ' (' + results.length + ')', null, null);
   document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
@@ -786,7 +790,14 @@ function filterByCategory(cat) {
 }
 
 // ── SHOW RESULTS ──
+let lastResults = [];
+let lastFromStop = null;
+let lastToStop = null;
+
 function showResults(results, label, fromStop, toStop) {
+  lastResults = results;
+  lastFromStop = fromStop;
+  lastToStop = toStop;
   document.getElementById('resultsLabel').textContent = label;
   const list = document.getElementById('resultsList');
   list.innerHTML = '';
@@ -799,7 +810,7 @@ const pillsWrap = document.getElementById('resultsCategoryPills');
     pill.href = '#';
     pill.className = 'category-pill';
     pill.textContent = cat;
-    pill.onclick = (e) => { e.preventDefault(); filterByCategory(cat); };
+    pill.onclick = (e) => { e.preventDefault(); filterResultsByCategory(cat); };
     pillsWrap.appendChild(pill);
   });
 
