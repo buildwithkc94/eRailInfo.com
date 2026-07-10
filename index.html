@@ -769,6 +769,9 @@ function filterResultsByCategory(cat) {
   showResults(filtered, cat.toUpperCase() + ' (' + filtered.length + ')', lastFromStop, lastToStop);
   document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
 }
+
+// ── CATEGORY FILTER (Browse bar, whole database) ──
+function filterByCategory(cat) {
   const results = trains.filter(t => t.category === cat);
   showResults(results, cat.toUpperCase() + ' (' + results.length + ')', null, null);
   document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
