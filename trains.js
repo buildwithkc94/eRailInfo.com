@@ -141,6 +141,6 @@ const categoryColors = {
   "Uday":                 "#F5F527",
   "Vande Bharat":         "#8000FF",
   "Vande Bharat Sleeper": "#FF0080",
-  "Mail/Express":         "#877D39",
+  "Mail/Express":         "#915907",
   "Superfast":            "#F52727"
 };
