@@ -702,12 +702,15 @@ function renderPill(pillBox, input, station, type) {
   input.style.minWidth = '0';
   input.style.flex = '0';
   input.style.padding = '0';
+  pillBox.style.width = 'fit-content';
+  pillBox.style.minHeight = '0';
 }
 
 function removePill(type) {
   if (type === 'from') {
     fromSelected = null;
-    const pill = document.getElementById('fromPillBox').querySelector('.station-pill');
+    const fromBox = document.getElementById('fromPillBox');
+    const pill = fromBox.querySelector('.station-pill');
     if (pill) pill.remove();
     const input = document.getElementById('fromInput');
     input.placeholder = 'From station';
@@ -715,9 +718,12 @@ function removePill(type) {
     input.style.minWidth = '';
     input.style.flex = '';
     input.style.padding = '';
+    fromBox.style.width = '';
+    fromBox.style.minHeight = '';
   } else {
     toSelected = null;
-    const pill = document.getElementById('toPillBox').querySelector('.station-pill');
+    const toBox = document.getElementById('toPillBox');
+    const pill = toBox.querySelector('.station-pill');
     if (pill) pill.remove();
     const input = document.getElementById('toInput');
     input.placeholder = 'To station';
@@ -725,6 +731,8 @@ function removePill(type) {
     input.style.minWidth = '';
     input.style.flex = '';
     input.style.padding = '';
+    toBox.style.width = '';
+    toBox.style.minHeight = '';
   }
 }
 
