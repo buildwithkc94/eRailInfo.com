@@ -987,7 +987,7 @@ timetable: [
       { stop: 40, code: "GTL",  station: "Guntakal Jn",       arrival: "11:30",  departure: "Destination", day: 2, halt: "Destination", km: 1056, zone: "SCoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1055,7 +1055,7 @@ timetable: [
       { stop: 43, code: "VSKP", station: "Visakhapatnam Jn",   arrival: "11:30",  departure: "Destination", day: 2, halt: "Destination", km: 1056, zone: "SCoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1093,7 +1093,7 @@ timetable: [
       { stop: 14, code: "MAS", station: "MGR Chennai Ctrl",  arrival: "13:05",  departure: "Destination", day: 1, halt: "Destination", km: 431, zone: "SR", state: "Tamil Nadu", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1130,7 +1130,7 @@ timetable: [
       { stop: 14, code: "BZA", station: "Vijayawada Jn",     arrival: "21:35",  departure: "Destination", day: 1, halt: "Destination", km: 431, zone: "SCoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1167,7 +1167,7 @@ timetable: [
       { stop: 13, code: "MS",   station: "Chennai Egmore",   arrival: "14:15",  departure: "Destination", day: 1, halt: "Destination", km: 493, zone: "SR", state: "Tamil Nadu", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1202,7 +1202,7 @@ timetable: [
       { stop: 12, code: "MDU",  station: "Madurai Jn",           arrival: "20:35",  departure: "Destination", day: 1, halt: "Destination", km: 493, zone: "SR", state: "Tamil Nadu", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1262,7 +1262,7 @@ timetable: [
       { stop: 35, code: "SMVB", station: "SMVT Bengaluru",    arrival: "12:25",  departure: "Destination", day: 2, halt: "Destination", km: 951, zone: "SWR", state: "Karnataka", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1305,7 +1305,7 @@ timetable: [
       { stop: 19, code: "TPTY", station: "Tirupati",         arrival: "06:55",  departure: "Destination", day: 2, halt: "Destination", km: 735, zone: "SCoR", state: "Andhra Pradesh", schedule: "Sun Mon Tue Thu Fri" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1344,7 +1344,7 @@ timetable: [
       { stop: 16, code: "SC",   station: "Secunderabad Jn",   arrival: "06:15",  departure: "Destination", day: 2, halt: "Destination", km: 735, zone: "SCR", state: "Telangana", schedule: "Mon Tue Wed Fri Sat" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1390,7 +1390,7 @@ timetable: [
       { stop: 22, code: "TPTY", station: "Tirupati",         arrival: "05:55",  departure: "Destination", day: 2, halt: "Destination", km: 685, zone: "SCoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1435,7 +1435,7 @@ timetable: [
       { stop: 22, code: "LPI",  station: "Lingampalli",       arrival: "06:45",  departure: "Destination", day: 2, halt: "Destination", km: 685, zone: "SCR", state: "Telangana", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1470,7 +1470,7 @@ timetable: [
       { stop: 11, code: "BZA",  station: "Vijayawada Jn",    arrival: "22:20",  departure: "Destination", day: 1, halt: "Destination", km: 349, zone: "SCoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  
@@ -1504,7 +1504,200 @@ timetable: [
       { stop: 11, code: "SC",   station: "Secunderabad Jn",  arrival: "12:40",  departure: "Destination", day: 1, halt: "Destination", km: 349, zone: "SCR", state: "Telangana", schedule: "S M T W T F S" },
     ],
     revisions: [
-      { date: "12-JULY-2026", summary: "Initial Release" },
+      { date: "31-JULY-2026", summary: "Initial Release" },
+    ],
+  },
+
+{
+    number: "94801",
+    name: "Ahmedabad - Bhuj Namo Bharat Rapid Rail",
+    from: "Ahmedabad Junction (ADI)",
+    to: "Bhuj (BHUJ)",
+    category: "Namo Bharat",
+    revised: false,
+    type: "Namo Bharat Rapid Rail",
+    runsOn: "Sun, Mon, Tue, Wed, Thu, Fri (No Sat)",
+    rakeType: "TrainSet",
+    zone: "WR – Western Railway",
+    classes: "CC", // not shown in screenshot — assumed based on Namo Bharat rakes, please confirm
+    pantry: false, // not shown in screenshot — assumed for a ~6hr trainset run, please confirm
+    distance: "359 km",
+    avgSpeed: "62 kmph",
+    coaches: [
+      { code: "C12", type: "" },
+      { code: "C11", type: "" },
+      { code: "C10", type: "" },
+      { code: "C9",  type: "" },
+      { code: "C8",  type: "" },
+      { code: "C7",  type: "" },
+      { code: "C6",  type: "" },
+      { code: "C5",  type: "" },
+      { code: "C4",  type: "" },
+      { code: "C3",  type: "" },
+      { code: "C2",  type: "" },
+      { code: "C1",  type: "" },
+    ],
+    timetable: [
+      { stop: 1,  code: "ADI",  station: "Ahmedabad Junction",   arrival: "Origin", departure: "17:25", day: 1, halt: "Origin",      km: 0,   zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 2,  code: "SBT",  station: "Sabarmati Junction",   arrival: "17:36",  departure: "17:37", day: 1, halt: "1 min",       km: 5,   zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 3,  code: "CLDY", station: "Chandlodiya",          arrival: "17:41",  departure: "17:42", day: 1, halt: "1 min",       km: 11,  zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 4,  code: "ABD",  station: "Ambli Road",           arrival: "17:48",  departure: "17:50", day: 1, halt: "2 min",       km: 17,  zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 5,  code: "SAU",  station: "Sanand",               arrival: "17:58",  departure: "18:00", day: 1, halt: "2 min",       km: 28,  zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 6,  code: "VG",   station: "Viramgam Junction",    arrival: "18:25",  departure: "18:27", day: 1, halt: "2 min",       km: 65,  zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 7,  code: "DHG",  station: "Dhrangadhra Junction", arrival: "19:12",  departure: "19:14", day: 1, halt: "2 min",       km: 131, zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 8,  code: "HVD",  station: "Halvad",               arrival: "19:38",  departure: "19:40", day: 1, halt: "2 min",       km: 162, zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 9,  code: "SIOB", station: "Samakhiali Junction",  arrival: "20:50",  departure: "20:52", day: 1, halt: "2 min",       km: 247, zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 10, code: "BCOB", station: "Bhachau",              arrival: "21:05",  departure: "21:07", day: 1, halt: "2 min",       km: 263, zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 11, code: "GIMB", station: "Gandhidham Junction",  arrival: "21:45",  departure: "21:55", day: 1, halt: "10 min",      km: 300, zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 12, code: "AJE",  station: "Anjar",                arrival: "22:13",  departure: "22:15", day: 1, halt: "2 min",       km: 317, zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+      { stop: 13, code: "BHUJ", station: "Bhuj",                 arrival: "23:10",  departure: "Destination", day: 1, halt: "Destination", km: 359, zone: "WR", state: "Gujarat", schedule: "S M T W T F -" },
+    ],
+    revisions: [
+      { date: "31-JULY-2026", summary: "Initial Release" },
+    ],
+  },
+  {
+    number: "94802",
+    name: "Bhuj - Ahmedabad Namo Bharat Rapid Rail",
+    from: "Bhuj (BHUJ)",
+    to: "Ahmedabad Junction (ADI)",
+    category: "Namo Bharat",
+    revised: false,
+    type: "Namo Bharat Rapid Rail",
+    runsOn: "Mon, Tue, Wed, Thu, Fri, Sat (No Sun)",
+    rakeType: "TrainSet",
+    zone: "WR – Western Railway",
+    classes: "CC", // placeholder, same as 94801 — please confirm
+    pantry: false, // placeholder, same as 94801 — please confirm
+    distance: "359 km",
+    avgSpeed: "64 kmph",
+    coaches: [
+      { code: "C12", type: "" },
+      { code: "C11", type: "" },
+      { code: "C10", type: "" },
+      { code: "C9",  type: "" },
+      { code: "C8",  type: "" },
+      { code: "C7",  type: "" },
+      { code: "C6",  type: "" },
+      { code: "C5",  type: "" },
+      { code: "C4",  type: "" },
+      { code: "C3",  type: "" },
+      { code: "C2",  type: "" },
+      { code: "C1",  type: "" },
+    ],
+    timetable: [
+      { stop: 1,  code: "BHUJ", station: "Bhuj",                 arrival: "Origin", departure: "05:15", day: 1, halt: "Origin",      km: 0,   zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 2,  code: "AJE",  station: "Anjar",                arrival: "05:40",  departure: "05:42", day: 1, halt: "2 min",       km: 42,  zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 3,  code: "GIMB", station: "Gandhidham Junction",  arrival: "05:55",  departure: "06:05", day: 1, halt: "10 min",      km: 58,  zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 4,  code: "BCOB", station: "Bhachau",              arrival: "06:36",  departure: "06:38", day: 1, halt: "2 min",       km: 95,  zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 5,  code: "SIOB", station: "Samakhiali Junction",  arrival: "06:56",  departure: "06:58", day: 1, halt: "2 min",       km: 111, zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 6,  code: "HVD",  station: "Halvad",               arrival: "07:55",  departure: "07:57", day: 1, halt: "2 min",       km: 196, zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 7,  code: "DHG",  station: "Dhrangadhra Junction", arrival: "08:25",  departure: "08:27", day: 1, halt: "2 min",       km: 228, zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 8,  code: "VG",   station: "Viramgam Junction",    arrival: "09:21",  departure: "09:23", day: 1, halt: "2 min",       km: 293, zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 9,  code: "SAU",  station: "Sanand",               arrival: "09:49",  departure: "09:51", day: 1, halt: "2 min",       km: 330, zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 10, code: "ABD",  station: "Ambli Road",           arrival: "10:01",  departure: "10:02", day: 1, halt: "1 min",       km: 342, zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 11, code: "CLDY", station: "Chandlodiya",          arrival: "10:09",  departure: "10:11", day: 1, halt: "2 min",       km: 348, zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 12, code: "SBT",  station: "Sabarmati Junction",   arrival: "10:18",  departure: "10:20", day: 1, halt: "2 min",       km: 353, zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+      { stop: 13, code: "ADI",  station: "Ahmedabad Junction",   arrival: "10:50",  departure: "Destination", day: 1, halt: "Destination", km: 359, zone: "WR", state: "Gujarat", schedule: "- M T W T F S" },
+    ],
+    revisions: [
+      { date: "31-JULY-2026", summary: "Initial Release" },
+    ],
+  },
+  {
+    number: "94803",
+    name: "Jaynagar - Patna Namo Bharat Rapid Rail",
+    from: "Jaynagar (JYG)",
+    to: "Patna Junction (PNBE)",
+    category: "Namo Bharat",
+    revised: false,
+    type: "Namo Bharat Rapid Rail",
+    runsOn: "Mon, Tue, Wed, Thu, Fri, Sat (No Sun)",
+    rakeType: "TrainSet",
+    zone: "ECR – East Central Railway",
+    classes: "CC", // placeholder, please confirm
+    pantry: false, // placeholder, please confirm
+    distance: "266 km",
+    avgSpeed: "47 kmph",
+    coaches: [
+      { code: "C16", type: "" },
+      { code: "C15", type: "" },
+      { code: "C14", type: "" },
+      { code: "C13", type: "" },
+      { code: "C12", type: "" },
+      { code: "C11", type: "" },
+      { code: "C10", type: "" },
+      { code: "C9",  type: "" },
+      { code: "C8",  type: "" },
+      { code: "C7",  type: "" },
+      { code: "C6",  type: "" },
+      { code: "C5",  type: "" },
+      { code: "C4",  type: "" },
+      { code: "C3",  type: "" },
+      { code: "C2",  type: "" },
+      { code: "C1",  type: "" },
+    ],
+    timetable: [
+      { stop: 1, code: "JYG",  station: "Jaynagar",           arrival: "Origin", departure: "05:00", day: 1, halt: "Origin",      km: 0,   zone: "ECR", state: "Bihar", schedule: "- M T W T F S" },
+      { stop: 2, code: "MBI",  station: "Madhubani",          arrival: "05:22",  departure: "05:24", day: 1, halt: "2 min",       km: 31,  zone: "ECR", state: "Bihar", schedule: "- M T W T F S" },
+      { stop: 3, code: "SKI",  station: "Sakri Junction",     arrival: "05:39",  departure: "05:41", day: 1, halt: "2 min",       km: 48,  zone: "ECR", state: "Bihar", schedule: "- M T W T F S" },
+      { stop: 4, code: "DBG",  station: "Darbhanga Junction", arrival: "06:15",  departure: "06:20", day: 1, halt: "5 min",       km: 68,  zone: "ECR", state: "Bihar", schedule: "- M T W T F S" },
+      { stop: 5, code: "SPJ",  station: "Samastipur Junction", arrival: "07:20", departure: "07:25", day: 1, halt: "5 min",       km: 105, zone: "ECR", state: "Bihar", schedule: "- M T W T F S" },
+      { stop: 6, code: "BJU",  station: "Barauni Junction",   arrival: "08:35",  departure: "08:40", day: 1, halt: "5 min",       km: 156, zone: "ECR", state: "Bihar", schedule: "- M T W T F S" },
+      { stop: 7, code: "MKA",  station: "Mokama",             arrival: "09:16",  departure: "09:18", day: 1, halt: "2 min",       km: 177, zone: "ECR", state: "Bihar", schedule: "- M T W T F S" },
+      { stop: 8, code: "BARH", station: "Barh",               arrival: "09:35",  departure: "09:37", day: 1, halt: "2 min",       km: 203, zone: "ECR", state: "Bihar", schedule: "- M T W T F S" },
+      { stop: 9, code: "PNBE", station: "Patna Junction",     arrival: "10:40",  departure: "Destination", day: 1, halt: "Destination", km: 266, zone: "ECR", state: "Bihar", schedule: "- M T W T F S" },
+    ],
+    revisions: [
+      { date: "31-JULY-2026", summary: "Initial Release" },
+    ],
+  },
+{
+    number: "94804",
+    name: "Patna - Jaynagar Namo Bharat Rapid Rail",
+    from: "Patna Junction (PNBE)",
+    to: "Jaynagar (JYG)",
+    category: "Namo Bharat",
+    revised: false,
+    type: "Namo Bharat Rapid Rail",
+    runsOn: "Sun, Mon, Tue, Wed, Thu, Fri (No Sat)",
+    rakeType: "TrainSet",
+    zone: "ECR – East Central Railway",
+    classes: "CC", // placeholder, please confirm
+    pantry: false, // placeholder, please confirm
+    distance: "266 km",
+    avgSpeed: "46 kmph",
+    coaches: [
+      { code: "C16", type: "" },
+      { code: "C15", type: "" },
+      { code: "C14", type: "" },
+      { code: "C13", type: "" },
+      { code: "C12", type: "" },
+      { code: "C11", type: "" },
+      { code: "C10", type: "" },
+      { code: "C9",  type: "" },
+      { code: "C8",  type: "" },
+      { code: "C7",  type: "" },
+      { code: "C6",  type: "" },
+      { code: "C5",  type: "" },
+      { code: "C4",  type: "" },
+      { code: "C3",  type: "" },
+      { code: "C2",  type: "" },
+      { code: "C1",  type: "" },
+    ],
+    timetable: [
+      { stop: 1, code: "PNBE", station: "Patna Junction",     arrival: "Origin", departure: "17:55", day: 1, halt: "Origin",      km: 0,   zone: "ECR", state: "Bihar", schedule: "S M T W T F -" },
+      { stop: 2, code: "BARH", station: "Barh",               arrival: "18:35",  departure: "18:37", day: 1, halt: "2 min",       km: 63,  zone: "ECR", state: "Bihar", schedule: "S M T W T F -" },
+      { stop: 3, code: "MKA",  station: "Mokama",             arrival: "18:54",  departure: "18:56", day: 1, halt: "2 min",       km: 89,  zone: "ECR", state: "Bihar", schedule: "S M T W T F -" },
+      { stop: 4, code: "BJU",  station: "Barauni Junction",   arrival: "20:00",  departure: "20:05", day: 1, halt: "5 min",       km: 110, zone: "ECR", state: "Bihar", schedule: "S M T W T F -" },
+      { stop: 5, code: "SPJ",  station: "Samastipur Junction", arrival: "20:55", departure: "21:00", day: 1, halt: "5 min",       km: 161, zone: "ECR", state: "Bihar", schedule: "S M T W T F -" },
+      { stop: 6, code: "DBG",  station: "Darbhanga Junction", arrival: "22:08",  departure: "22:13", day: 1, halt: "5 min",       km: 198, zone: "ECR", state: "Bihar", schedule: "S M T W T F -" },
+      { stop: 7, code: "SKI",  station: "Sakri Junction",     arrival: "22:30",  departure: "22:32", day: 1, halt: "2 min",       km: 218, zone: "ECR", state: "Bihar", schedule: "S M T W T F -" },
+      { stop: 8, code: "MBI",  station: "Madhubani",          arrival: "22:45",  departure: "22:47", day: 1, halt: "2 min",       km: 235, zone: "ECR", state: "Bihar", schedule: "S M T W T F -" },
+      { stop: 9, code: "JYG",  station: "Jaynagar",           arrival: "23:45",  departure: "Destination", day: 1, halt: "Destination", km: 266, zone: "ECR", state: "Bihar", schedule: "S M T W T F -" },
+    ],
+    revisions: [
+      { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
  ];
