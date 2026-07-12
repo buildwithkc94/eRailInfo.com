@@ -747,7 +747,11 @@ function handleTrainSearch() {
     t.number.includes(q) || t.name.toLowerCase().includes(q) ||
     t.from.toLowerCase().includes(q) || t.to.toLowerCase().includes(q)
   );
-  showResults(results, 'SEARCH RESULTS (' + results.length + ')', null, null);
+  allSearchResults = results;
+  allSearchLabel = 'SEARCH RESULTS (' + results.length + ')';
+  allSearchFromStop = null;
+  allSearchToStop = null;
+  showResults(results, allSearchLabel, null, null);
 }
 
 // ── STATION SEARCH ──
@@ -766,7 +770,11 @@ function handleStationSearch() {
     return fromIndex !== -1 && toIndex !== -1 && fromIndex < toIndex;
   });
 
-  showResults(results, 'TRAINS FOUND (' + results.length + ')', fromSelected, toSelected);
+  allSearchResults = results;
+  allSearchLabel = 'TRAINS FOUND (' + results.length + ')';
+  allSearchFromStop = fromSelected;
+  allSearchToStop = toSelected;
+  showResults(results, allSearchLabel, fromSelected, toSelected);
 }
 
 // ── CATEGORY FILTER (within current search results) ──
@@ -802,6 +810,15 @@ function filterByCategory(cat) {
 let lastResults = [];
 let lastFromStop = null;
 let lastToStop = null;
+let allSearchResults = [];
+let allSearchLabel = '';
+let allSearchFromStop = null;
+let allSearchToStop = null;
+
+function showAllResults() {
+  showResults(allSearchResults, allSearchLabel, allSearchFromStop, allSearchToStop);
+  document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
+}
 
 function showResults(results, label, fromStop, toStop) {
   lastResults = results;
@@ -813,7 +830,15 @@ function showResults(results, label, fromStop, toStop) {
 
 const pillsWrap = document.getElementById('resultsCategoryPills');
   pillsWrap.innerHTML = '';
-  const uniqueCats = [...new Set(results.map(t => t.category))];
+  const uniqueCats = [...new Set(allSearchResults.map(t => t.category))];
+  if (uniqueCats.length > 1) {
+    const allPill = document.createElement('a');
+    allPill.href = '#';
+    allPill.className = 'category-pill';
+    allPill.textContent = 'All Trains';
+    allPill.onclick = (e) => { e.preventDefault(); showAllResults(); };
+    pillsWrap.appendChild(allPill);
+  }
   uniqueCats.forEach(cat => {
     const pill = document.createElement('a');
     pill.href = '#';
