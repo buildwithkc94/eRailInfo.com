@@ -59,7 +59,7 @@ timetable: [
   },
  
 {
-    number: "12718 ",
+    number: "12718",
     name: "Ratnachal Express",
     from: "Vijayawada Junction (BZA)",
     to: "Visakhapatnam Junction (VSKP)",
