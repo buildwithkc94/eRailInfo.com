@@ -698,6 +698,10 @@ function renderPill(pillBox, input, station, type) {
   pill.innerHTML = `${station.code} / ${station.station.split('(')[0].trim()} <button class="station-pill-remove" onclick="removePill('${type}')">✕</button>`;
   pillBox.insertBefore(pill, input);
   input.placeholder = '';
+  input.style.width = '0';
+  input.style.minWidth = '0';
+  input.style.flex = '0';
+  input.style.padding = '0';
 }
 
 function removePill(type) {
@@ -705,12 +709,22 @@ function removePill(type) {
     fromSelected = null;
     const pill = document.getElementById('fromPillBox').querySelector('.station-pill');
     if (pill) pill.remove();
-    document.getElementById('fromInput').placeholder = 'From station';
+    const input = document.getElementById('fromInput');
+    input.placeholder = 'From station';
+    input.style.width = '';
+    input.style.minWidth = '';
+    input.style.flex = '';
+    input.style.padding = '';
   } else {
     toSelected = null;
     const pill = document.getElementById('toPillBox').querySelector('.station-pill');
     if (pill) pill.remove();
-    document.getElementById('toInput').placeholder = 'To station';
+    const input = document.getElementById('toInput');
+    input.placeholder = 'To station';
+    input.style.width = '';
+    input.style.minWidth = '';
+    input.style.flex = '';
+    input.style.padding = '';
   }
 }
 
