@@ -270,7 +270,6 @@ timetable: [
   distance: "420 km",
   avgSpeed: "61 kmph",
   coaches: [
-    { code: "EOG", type: "" },
     { code: "DL1", type: "" },
     { code: "D7", type: "" },
     { code: "D6", type: "" },
