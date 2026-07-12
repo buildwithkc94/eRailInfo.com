@@ -908,7 +908,7 @@ timetable: [
     },
   ],
 },
-  / ══════════════════════════════════════════════════════════════════
+  // ══════════════════════════════════════════════════════════════════
 // NEW TRAIN OBJECTS — paste these into trains.js, inside the trains
 // array, right before the closing "];"
 //
