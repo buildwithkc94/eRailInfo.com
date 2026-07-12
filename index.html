@@ -802,7 +802,7 @@ function handleStationSearch() {
 // ── CATEGORY FILTER (within current search results) ──
 function filterResultsByCategory(cat) {
   const filtered = allSearchResults.filter(t => t.category === cat);
-  showResults(filtered, cat.toUpperCase() + ' (' + filtered.length + ')', allSearchFromStop, allSearchToStop);
+  showResults(filtered, cat.toUpperCase() + ' (' + filtered.length + ')', allSearchFromStop, allSearchToStop, cat);
   document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -842,7 +842,7 @@ function showAllResults() {
   document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
 }
 
-function showResults(results, label, fromStop, toStop) {
+function showResults(results, label, fromStop, toStop, activeCategory = null) {
   lastResults = results;
   lastFromStop = fromStop;
   lastToStop = toStop;
@@ -858,6 +858,10 @@ const pillsWrap = document.getElementById('resultsCategoryPills');
     allPill.href = '#';
     allPill.className = 'category-pill';
     allPill.textContent = 'All Trains';
+    if (!activeCategory) {
+      allPill.style.background = '#2c2c2c';
+      allPill.style.borderColor = '#2c2c2c';
+    }
     allPill.onclick = (e) => { e.preventDefault(); showAllResults(); };
     pillsWrap.appendChild(allPill);
   }
@@ -866,6 +870,12 @@ const pillsWrap = document.getElementById('resultsCategoryPills');
     pill.href = '#';
     pill.className = 'category-pill';
     pill.textContent = cat;
+    if (cat === activeCategory) {
+      const color = categoryColors[cat] || '#2c2c2c';
+      pill.style.background = color;
+      pill.style.borderColor = color;
+      pill.style.color = lightTextColors.includes(color) ? '#222' : '#fff';
+    }
     pill.onclick = (e) => { e.preventDefault(); filterResultsByCategory(cat); };
     pillsWrap.appendChild(pill);
   });
