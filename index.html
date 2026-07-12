@@ -779,8 +779,8 @@ function handleStationSearch() {
 
 // ── CATEGORY FILTER (within current search results) ──
 function filterResultsByCategory(cat) {
-  const filtered = lastResults.filter(t => t.category === cat);
-  showResults(filtered, cat.toUpperCase() + ' (' + filtered.length + ')', lastFromStop, lastToStop);
+  const filtered = allSearchResults.filter(t => t.category === cat);
+  showResults(filtered, cat.toUpperCase() + ' (' + filtered.length + ')', allSearchFromStop, allSearchToStop);
   document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
 }
 
