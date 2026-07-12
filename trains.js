@@ -116,6 +116,7 @@ timetable: [
       { date: "31-JULY-2026", summary: "Initial Release" },
     ],
   },
+];
 
 const trainCategories = [
   "AC Express", "AC Superfast", "Amrit Bharat", "Antyodaya",
