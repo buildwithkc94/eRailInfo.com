@@ -620,8 +620,9 @@ function buildCoaches() {
 
   function getCoachColor(code) {
     if (code === 'SLR') return '#8F9438';
-    if (code === 'GEN') return '#F54927';
-    if (code.match(/^D\d/)) return '#943861';
+    if (code === 'GS') return '#73551E';
+    if (code.match(/^B\d/)) return '#1E732B';
+    if (code.match(/^D\d|^DE/)) return '#943861';
     if (code.match(/^C\d|^CE/)) return '#27F549';
     if (code === 'WAP-7' || code === 'WAP-4') return '#2c2c2c';
     if (code === 'EOG') return '#616161';
