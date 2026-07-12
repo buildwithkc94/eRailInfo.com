@@ -719,7 +719,7 @@ const categoryColors = {
   "Suvidha":              "#8F9438",
   "Tejas":                "#F5EB27",
   "Toy Train":            "#616161",
-  "Uday":                 "#F5F527",
+  "Uday":                 "#ff8b58",
   "Vande Bharat":         "#8000FF",
   "Vande Bharat Sleeper": "#FF0080",
   "Mail/Express":         "#915907",
