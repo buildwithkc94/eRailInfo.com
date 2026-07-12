@@ -43,7 +43,7 @@ timetable: [
   { stop: 2,  code: "DVD",  station: "Duvvada",                        arrival: "13:20", departure: "13:22", day: 1, halt: "2 min",       km: 17.2,  zone: "SCoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
   { stop: 3,  code: "AKP",  station: "Anakpalle",                      arrival: "13:39", departure: "13:40", day: 1, halt: "1 min",       km: 33,  zone: "SCoR", state: "Andhra Pradesh", schedule: "S M T W T F S" },
   { stop: 4,  code: "TUNI", station: "Tuni Junction",           arrival: "14:23", departure: "14:25", day: 1, halt: "2 min",       km: 96.9, zone: "SCoR",  state: "Andhra Pradesh", schedule: "S M T W T F S" },
-  { stop: 5,  code: "ANY",  station: "Annavaram",                      arrival: "14:39", departure: "14:40", day: 1, halt: "1 min",       km: 113.6, zone: "SCoR",  state: "Andhra Pradesh", schedule: "S M T W T F S" },
+  { stop: 5,  code: "ANV",  station: "Annavaram",                      arrival: "14:39", departure: "14:40", day: 1, halt: "1 min",       km: 113.6, zone: "SCoR",  state: "Andhra Pradesh", schedule: "S M T W T F S" },
   { stop: 6,  code: "SLO",  station: "Samalkot Junction",        arrival: "15:04", departure: "15:05", day: 1, halt: "1 min",       km: 150.5, zone: "SCoR",  state: "Andhra Pradesh", schedule: "S M T W T F S" },
   { stop: 7,  code: "APT",  station: "Anaparti",                       arrival: "15:29", departure: "15:30", day: 1, halt: "1 min",       km: 177, zone: "SCoR",  state: "Andhra Pradesh", schedule: "S M T W T F S" },
   { stop: 8,  code: "RJY",  station: "Rajahmundry",              arrival: "15:53", departure: "15:55", day: 1, halt: "2 min",       km: 200.6, zone: "SCoR",  state: "Andhra Pradesh", schedule: "S M T W T F S" },
