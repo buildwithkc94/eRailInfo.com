@@ -1711,6 +1711,14 @@ const trainCategories = [
   "Mail/Express", "Superfast"
 ];
 
+function findReturnTrain(t) {
+  return trains.find(o =>
+    o.number !== t.number &&
+    o.name === t.name &&
+    o.from === t.to &&
+    o.to === t.from
+  );
+}
 const categoryColors = {
   "AC Express":           "#2c2c2c",
   "AC Superfast":         "#2c2c2c",
