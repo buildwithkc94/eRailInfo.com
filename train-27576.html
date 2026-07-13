@@ -618,9 +618,12 @@ function buildCoaches() {
   coachRow.innerHTML = '';
   if (!train.coaches || !train.coaches.length) return;
 
-  function getCoachColor(code) {
+function getCoachColor(code) {
     if (code === 'SLR') return '#8F9438';
     if (code === 'GEN') return '#F54927';
+    if (code.match(/^H\d/)) return '#FF0554';
+    if (code.match(/^B\d/)) return '#BF5B49';
+    if (code.match(/^A\d/)) return '#102370';
     if (code.match(/^D\d/)) return '#943861';
     if (code.match(/^C\d|^CE/)) return '#27F549';
     if (code === 'WAP-7' || code === 'WAP-4') return '#2c2c2c';
