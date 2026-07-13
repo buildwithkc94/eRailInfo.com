@@ -621,10 +621,10 @@ function buildCoaches() {
   function getCoachColor(code) {
     if (code === 'SLR') return '#8F9438';
     if (code === 'GEN') return '#F54927';
-    if (code.match(/^D\d/)) return '#943861';
+    if (code.match(/^D\d|^DL/)) return '#943861';
     if (code.match(/^C\d|^CE/)) return '#27F549';
-    if (code === 'WAP-7' || code === 'WAP-4') return '#2c2c2c';
-    if (code === 'EOG') return '#616161';
+    if (code === 'WAP-7' || code === 'WAP-4') return '#7698F5';
+    if (code === 'EOG') return '#704010';
     return '#2c2c2c';
   }
 
