@@ -1714,7 +1714,6 @@ const trainCategories = [
 function findReturnTrain(t) {
   return trains.find(o =>
     o.number !== t.number &&
-    o.name === t.name &&
     o.from === t.to &&
     o.to === t.from
   );
