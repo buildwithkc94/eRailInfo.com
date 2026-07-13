@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Train — eRailInfo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #555;
+  padding: 20px 0 0;
+}
+.back-link:hover { color: #222; }
+
+.featured-card {
+  background: #0a2647;
+  border: 4px solid #fff;
+  border-radius: 4px;
+  padding: 24px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+body.dark .featured-card {
+  background: #0a2647;
+  border-color: #fff;
+}
+
+.train-header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 16px;
+}
+
+.train-header h2 { font-size: 20px; font-weight: 700; margin: 0 0 6px 0; color: #fff; }
+.train-header .meta { font-size: 12px; color: #d8dee8; line-height: 1.6; }
+.train-header .meta-label { font-weight: 700; color: #fff; }
+
+/* ── STOP BOXES ── */
+.journey-timeline {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 20px 0;
+}
+
+.journey-stop-box {
+  flex: 1;
+  border: 3px solid #fff;
+  border-radius: 6px;
+  padding: 12px 10px;
+  background: #0a2647;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+body.dark .journey-stop-box {
+  border: 3px solid #fff !important;
+  background: #0a2647;
+}
+
+body.dark .journey-stop-box.origin {
+  border: 3px solid #6c8ebf !important;
+  background: #6c8ebf25;
+}
+
+body.dark .journey-stop-box.destination {
+  border: 3px solid #82b366 !important;
+  background: #82b36625;
+}
+
+.journey-stop-box.origin {
+  border-color: #6c8ebf;
+  background: #6c8ebf25;
+}
+
+.journey-stop-box.destination {
+  border-color: #82b366;
+  background: #82b36625;
+}
+
+body.dark .journey-stop-box { background: #0a2647; border-color: #fff; }
+body.dark .journey-stop-box.origin { background: #6c8ebf25; border-color: #6c8ebf; }
+body.dark .journey-stop-box.destination { background: #82b36625; border-color: #82b366; }
+body.dark .journey-stop-box:not(.origin):not(.destination) { border-color: #fff !important; }
+
+.journey-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  flex-shrink: 0;
+  color: #cfd8e6;
+  font-size: 16px;
+}
+
+.stop-num {
+  font-size: 10px;
+  font-weight: 700;
+  color: #6c8ebf;
+  text-align: center;
+  width: 100%;
+}
+.journey-stop-box.destination .stop-num { color: #82b366; }
+.stop-name { font-size: 10px; color: #cfd8e6; line-height: 1.3; }
+.stop-code { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.1; }
+.stop-time { font-size: 13px; font-weight: 700; color: #fff; margin-top: 2px; }
+.stop-label { font-size: 10px; color: #cfd8e6; }
+
+/* ── INFO BAR ── */
+.journey-info {
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: 16px;
+  padding: 0;
+  background: #0a2647;
+  border: 3px solid #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.journey-info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+  border-right: 3px solid #fff;
+  flex: 1;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+}
+
+.journey-info-item:last-child { border-right: none; }
+
+/* ── TABS ── */
+.train-tabs {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.tab-btn {
+  background: #0a2647;
+  color: #fff;
+  border: 3px solid #000;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.tab-btn:hover {
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
+}
+
+.tab-content { display: none; padding: 30px 0; }
+.tab-content.active { display: block; }
+
+/* ── TIMETABLE ── */
+.timetable-wrapper { display: flex; justify-content: center; margin-top: 10px; }
+
+.tt-table {
+  border-collapse: collapse;
+  font-size: 12px;
+  border: 3px solid #222;
+  background: white;
+  width: 100%;
+}
+
+.tt-table thead tr { border-bottom: 4px solid #222; }
+.tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 3px solid #222; white-space: nowrap; color: inherit; }
+.tt-table th:last-child { border-right: none; }
+.tt-table td { padding: 11px 10px; border-bottom: 3px solid #222; border-right: 3px solid #222; vertical-align: middle; text-align: center; font-size: 11px; }
+.tt-table td:last-child { border-right: none; }
+.tt-table tbody tr:last-child td { border-bottom: none; }
+.tt-table tbody tr:hover { background: #faf7ef; }
+.tt-station { text-align: left; font-weight: 700; }
+.tt-time { font-weight: 700; }
+.tt-code { font-weight: 700; font-size: 10px; }
+.tt-station { text-align: left; font-weight: 700; }
+
+/* ── RETURN ── */
+.return-card { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 20px; text-align: center; margin-top: 10px; }
+.return-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+.return-card p { font-size: 12px; color: #666; margin-bottom: 16px; }
+.return-btn { display: inline-block; padding: 10px 24px; background: #222; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+.return-btn:hover { background: #444; }
+
+/* ── REVISIONS ── */
+.revisions-table { width: 100%; border-collapse: collapse; font-size: 12px; border: 4px solid #222; background: white; margin-top: 10px; }
+.revisions-table thead tr { border-bottom: 4px solid #222; }
+.revisions-table th { text-align: left; padding: 12px 14px; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; border-right: 2px solid #222; }
+.revisions-table th:last-child { border-right: none; }
+.revisions-table td { padding: 12px 14px; border-bottom: 2px solid #222; border-right: 2px solid #222; vertical-align: top; }
+.revisions-table td:last-child { border-right: none; }
+.revisions-table tbody tr:last-child td { border-bottom: none; }
+.revisions-table tbody tr:hover { background: #faf7ef; }
+.rev-version { font-weight: 700; width: 120px; white-space: nowrap; }
+.rev-date { width: 140px; white-space: nowrap; }
+
+/* ── DARK THEME ── */
+body.dark .featured-card { background: #0a2647; border-color: #fff; }
+body.dark .train-header { border-bottom-color: rgba(255,255,255,0.3); }
+body.dark .journey-stop-box { background: #0a2647; border-color: #fff; }
+body.dark .journey-stop-box.origin { background: #1a2030; border-color: #4a6090; }
+body.dark .journey-stop-box.destination { background: #1a2a1a; border-color: #4a7a4a; }
+/* Middle boxes only */
+
+/* Keep origin and destination as they are */
+body.dark .journey-stop-box.origin .stop-name,
+body.dark .journey-stop-box.origin .stop-code,
+body.dark .journey-stop-box.origin .stop-time,
+body.dark .journey-stop-box.origin .stop-label,
+body.dark .journey-stop-box.destination .stop-name,
+body.dark .journey-stop-box.destination .stop-code,
+body.dark .journey-stop-box.destination .stop-time,
+body.dark .journey-stop-box.destination .stop-label {
+    color: #e8e8e8;
+}
+body.dark .journey-info { background: #0a2647; border-color: #fff; }
+body.dark .journey-info-item { border-right-color: #fff; color: #fff; }
+body.dark .tt-table { background: #242424; border-color: #383838; }
+body.dark .tt-table thead tr { background: #2a2a2a; border-bottom-color: #444; }
+body.dark .tt-table th { border-right-color: #555; }
+body.dark .tt-table td { border-bottom-color: #555; border-right-color: #555; }
+body.dark .tt-table tbody tr:hover { background: #2e2e2e; }
+body.dark .tab-btn { border-color: #fff; }
+body.dark .tab-btn:hover { box-shadow: 4px 4px 0 #fff; }
+body.dark .revisions-table { background: #242424; border-color: #383838; }
+body.dark .revisions-table thead tr { background: #2a2a2a; }
+body.dark .revisions-table th { color: #aaa; border-right-color: #383838; }
+body.dark .revisions-table td { border-bottom-color: #383838; border-right-color: #383838; color: #e8e8e8; }
+#coachHint {
+  border: 4px solid #000000 !important;
+  background: #8F943820 !important;
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 12px;
+}
+body.dark .return-card { background: #242424; border-color: #383838; }
+body.dark .return-card h3 { color: #e8e8e8; }
+body.dark .return-card p { color: #aaa; }
+body.dark .back-link { color: #888; }
+body.dark .back-link:hover { color: #e8e8e8; }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .featured-card { padding: 16px; }
+  .journey-timeline { flex-wrap: nowrap; overflow-x: auto; }
+  .journey-stop-box { min-width: 100px; }
+  .train-tabs { overflow-x: auto; }
+  .tab-btn { padding: 12px 14px; font-size: 11px; }
+  .tt-table { font-size: 10px; }
+  .tt-table th, .tt-table td { padding: 8px 6px; font-size: 10px; }
+  .journey-info { flex-direction: column; gap: 8px; padding: 12px; }
+  .journey-info-item { border-right: none; border-bottom: 1px solid var(--border); padding: 6px 0; width: 100%; }
+  .journey-info-item:last-child { border-bottom: none; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="container">
+  <div class="topbar">
+<a href="index.html" class="logo-badge">
+  <div class="logo-badge-band"></div>
+  <div class="logo-badge-text">eRailInfo</div>
+  <div class="logo-badge-band"></div>
+</a>
+<div id="delhiTimeCapsule" class="time-capsule" onclick="toggleTimeFormat()">
+  <div class="time-capsule-time" id="timeCapsuleTime"></div>
+  <div class="time-capsule-date" id="timeCapsuleDate"></div>
+</div>
+<div class="header-right">
+      <ul class="nav-menu">
+        <li class="dropdown">
+          <a href="#" class="nav-btn">&#128646; TRAINS &#9662;</a>
+          <ul class="dropdown-menu" id="trainsDropdown"></ul>
+        </li>
+        <li class="dropdown">
+  <a href="#" class="nav-btn">&#127963; STATIONS &#9662;</a>
+  <ul class="dropdown-menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="submenu-trigger">METRO</a>
+      <ul class="submenu">
+        <li><a href="#">Ahmedabad</a></li>
+        <li><a href="#">Agra</a></li>
+        <li><a href="#">Bangalore</a></li>
+        <li><a href="#">Bhopal</a></li>
+        <li><a href="#">Chennai</a></li>
+        <li><a href="#">Hyderabad</a></li>
+        <li><a href="#">Indore</a></li>
+        <li><a href="#">Jaipur</a></li>
+        <li><a href="#">Kanpur</a></li>
+        <li><a href="#">Kochi</a></li>
+        <li><a href="#">Kolkata</a></li>
+        <li><a href="#">Lucknow</a></li>
+        <li><a href="#">Mumbai</a></li>
+        <li><a href="#">Nagpur</a></li>
+        <li><a href="#">Patna</a></li>
+        <li><a href="#">Pune</a></li>
+        <li><a href="#">Surat (In progress)</a></li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="submenu-trigger">SUBURBAN/MMTS</a>
+      <ul class="submenu">
+        <li><a href="#">Bangalore</a></li>
+        <li><a href="#">Chennai</a></li>
+        <li><a href="#">Delhi</a></li>
+        <li><a href="#">Hyderabad</a></li>
+        <li><a href="#">Kolkata</a></li>
+        <li><a href="#">Mumbai</a></li>
+        <li><a href="#">Pune</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+        <li class="dropdown">
+          <a href="#" class="nav-btn">&#128276; UPDATES &#9662;</a>
+          <ul class="dropdown-menu">
+            <li><a href="revision-history.html">Revision History</a></li>
+            <li><a href="revision-history.html">Feedback</a></li>
+          </ul>
+        </li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+</header>
+<div class="browse-bar">
+<div class="container">
+  <div class="browse-bar-inner">
+    <span class="browse-bar-label">Browse</span>
+    <div id="capsuleBar" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+  </div>
+</div>
+</div>
+
+<div class="container">
+  <a href="index.html" class="back-link">&#8592; BACK TO SEARCH</a>
+  <div class="featured-card" id="featuredCard"></div>
+
+  <div class="train-tabs">
+    <button class="tab-btn active" onclick="switchTab('info', this)">Info</button>
+    <button class="tab-btn" onclick="switchTab('timetable', this)">Timetable</button>
+    <button class="tab-btn" onclick="switchTab('return', this)">Return</button>
+    <button class="tab-btn" onclick="switchTab('revisions', this)">Revisions</button>
+  </div>
+
+  <div class="tab-content active" id="tab-info">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:12px;">Train Details</h3>
+    <div id="infoDetails"></div>
+    <h3 style="font-size:14px;font-weight:700;margin:24px 0 8px;">Coach Composition</h3>
+    <p style="font-size:11px;font-weight:700;letter-spacing:1px;color:#777;text-transform:uppercase;margin-bottom:6px;" id="rakeLabel"></p>
+    <p style="font-size:11px;font-weight:700;letter-spacing:1px;color:#777;text-transform:uppercase;margin-bottom:14px;">Direction of Travel &#8594;</p>
+    <div id="coachRow" style="display:flex;align-items:center;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:0;margin-bottom:12px;padding-bottom:8px;-webkit-overflow-scrolling:touch;"></div>
+    <div id="coachHint" style="border:1px solid var(--border);background:white;border-radius:4px;padding:12px 16px;font-size:12px;color:#666;">
+      &#9432; Train information is for reference only. Please verify with Indian Railways or NTES before travel.
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-timetable">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">Complete Timetable</h3>
+    <div class="timetable-wrapper">
+      <table class="tt-table" id="fullTimetable"></table>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-return">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">Return Journey</h3>
+    <div id="returnContent"></div>
+  </div>
+
+  <div class="tab-content" id="tab-revisions">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">Revision History</h3>
+    <table class="revisions-table">
+      <thead><tr>
+        <th>Version</th>
+        <th>Effective Date</th>
+        <th>Summary of Changes</th>
+      </tr></thead>
+      <tbody id="revisionsBody"></tbody>
+    </table>
+  </div>
+
+</div>
+
+
+
+<footer>
+  <div style="font-size:11px;color:#aaa;max-width:700px;margin:0 auto 12px;padding:0 16px;line-height:1.6;">
+    &#9432; Train information is for reference only. Please verify with Indian Railways or NTES before travel.
+  </div>
+  eRailInfo &copy; 2026
+</footer>
+
+<script>
+if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  if (typeof buildInfoDetails === 'function') buildInfoDetails();
+  if (typeof buildCoaches === 'function') buildCoaches();
+  if (typeof rebuildTimetable === 'function') rebuildTimetable();
+  if (typeof rebuildRevisions === 'function') rebuildRevisions();
+  if (typeof buildReturnCard === 'function') buildReturnCard();
+}
+
+let use24Hour = localStorage.getItem('timeFormat') === '24';
+
+function toggleTimeFormat() {
+  use24Hour = !use24Hour;
+  localStorage.setItem('timeFormat', use24Hour ? '24' : '12');
+  updateDelhiTime();
+}
+
+function updateDelhiTime() {
+  const now = new Date();
+  let timeStr = now.toLocaleTimeString('en-US', {
+    timeZone: 'Asia/Kolkata',
+    hour12: !use24Hour,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+  if (!use24Hour) timeStr = timeStr.toUpperCase();
+
+  const dayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long' }).toUpperCase();
+  const day = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', day: '2-digit' });
+  const month = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', month: 'long' }).toUpperCase();
+  const year = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric' });
+
+  document.getElementById('timeCapsuleTime').textContent = timeStr;
+  document.getElementById('timeCapsuleDate').textContent = dayStr + ' · ' + day + '/' + month + '/' + year;
+}
+
+updateDelhiTime();
+setInterval(updateDelhiTime, 1000);
+</script>
+<script>
+document.querySelectorAll('.dropdown > a.nav-btn, .dropdown-submenu > a.submenu-trigger').forEach(trigger => {
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const menu = this.nextElementSibling;
+    const isOpen = menu.classList.contains('open');
+
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => {
+      if (m !== menu && !m.contains(menu) && !menu.contains(m)) {
+        m.classList.remove('open');
+      }
+    });
+
+    menu.classList.toggle('open', !isOpen);
+  });
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => m.classList.remove('open'));
+  }
+});
+</script>
+
+<script src="trains.js"></script>
+<script>
+
+const filename = window.location.pathname.split('/').pop();
+const trainNumber = filename.replace('train-', '').replace('.html', '');
+const train = trains.find(t => t.number === trainNumber) || trains[0];
+const returnTrain = findReturnTrain(train);
+
+document.title = train.number + ' ' + train.name + ' — eRailInfo';
+
+// ── TRAINS DROPDOWN ──
+const trainsDropdown = document.getElementById('trainsDropdown');
+trainCategories.forEach(cat => {
+  const s = cat.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-');
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  a.textContent = cat;
+  a.href = 'category-' + s + '.html';
+  li.appendChild(a);
+  trainsDropdown.appendChild(li);
+});
+
+// ── CAPSULE BAR ──
+const capsuleBar = document.getElementById('capsuleBar');
+const lightTextColors = ['#F5EB27','#F5F527','#27F549','#27D3F5'];
+trainCategories.forEach(cat => {
+  const s = cat.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-');
+  const a = document.createElement('a');
+  a.className = 'capsule';
+  a.setAttribute('data-cat', cat);
+  a.textContent = cat;
+  a.href = 'category-' + s + '.html';
+  if (cat === train.category) {
+    const color = categoryColors[cat] || '#2c2c2c';
+    a.classList.add('active');
+    a.style.background = color;
+    a.style.borderColor = color;
+    a.style.color = lightTextColors.includes(color) ? '#222' : 'white';
+  }
+  capsuleBar.appendChild(a);
+});
+
+// ── FEATURED CARD ──
+const firstStop = train.timetable[0];
+const lastStop = train.timetable[train.timetable.length - 1];
+const total = train.timetable.length;
+const mid1 = train.timetable[Math.round(total * 0.25)];
+const mid2 = train.timetable[Math.round(total * 0.5)];
+const mid3 = train.timetable[Math.round(total * 0.75)];
+
+const displayStops = [
+  { ...firstStop, isOrigin: true },
+  mid1, mid2, mid3,
+  { ...lastStop, isDestination: true }
+];
+
+document.getElementById('featuredCard').innerHTML = `
+  <div class="train-header">
+    <h2>${train.number} / ${train.name}</h2>
+    <div class="meta">
+      <span class="meta-label">Train Type:</span> ${train.type} &nbsp;·&nbsp;
+      <span class="meta-label">Schedule:</span> ${train.runsOn} &nbsp;·&nbsp;
+      <span class="meta-label">Classes:</span> ${train.classes}<br>
+      <span style="font-size:11px;color:#888;">${train.from} &rarr; ${train.to}${returnTrain ? ' &nbsp;·&nbsp; Return: ' + returnTrain.number : ''}</span>
+    </div>
+  </div>
+  <div class="journey-timeline">
+    ${displayStops.map((s, i) => {
+      const isOrigin = i === 0;
+      const isDest = i === displayStops.length - 1;
+      const boxClass = isOrigin ? 'origin' : isDest ? 'destination' : '';
+      const time = isOrigin ? s.departure : (s.arrival !== '—' ? s.arrival : s.departure);
+      const label = isOrigin ? 'Departure' : isDest ? 'Arrival' : '';
+      const stopNum = String(s.stop).padStart(2, '0');
+      const arrow = !isDest ? '<div class="journey-arrow">&#8250;</div>' : '';
+      return `
+        <div class="journey-stop-box ${boxClass}">
+          <div class="stop-num">${stopNum}</div>
+          <div class="stop-name">${s.station.split('(')[0].trim()}</div>
+          <div class="stop-code">${s.code}</div>
+          <div class="stop-time">${time}</div>
+          ${label ? `<div class="stop-label">${label}</div>` : ''}
+        </div>${arrow}`;
+    }).join('')}
+  </div>
+  <div class="journey-info">
+    <div class="journey-info-item">&#9200; Run Time: ${getRunTime()}</div>
+    <div class="journey-info-item">&#128205; Distance: ${train.distance || '—'}</div>
+    <div class="journey-info-item">&#128650; Total Stops: ${train.timetable.length - 2}</div>
+    <div class="journey-info-item">&#127939; Avg. Speed: ${train.avgSpeed || '—'}</div>
+  </div>
+`;
+
+// ── INFO BOXES ──
+function infoBox(label, value, bgColor) {
+  const dark = document.body.classList.contains('dark');
+  return `
+    <div style="border:1px solid ${bgColor};padding:10px 14px;border-radius:4px;background:${bgColor}20;">
+      <div style="font-size:9px;color:${dark?'#aaa':'#555'};font-weight:700;text-transform:uppercase;margin-bottom:3px;letter-spacing:1px;">${label}</div>
+      <div style="font-size:13px;font-weight:700;color:${dark?'white':'#222'};">${value}</div>
+    </div>`;
+}
+
+function buildInfoDetails() {
+  const catColor = categoryColors[train.category] || '#2c2c2c';
+  const rakeColor = train.rakeType === 'ICF' ? '#2731F5' : '#943861';
+  const pantryColor = train.pantry ? '#27F549' : '#F54927';
+  document.getElementById('infoDetails').innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+      ${infoBox('Type', train.type, catColor)}
+      ${infoBox('Runs On', train.runsOn, '#27D3F5')}
+      ${infoBox('Zone', train.zone || '—', '#2798F5')}
+      ${infoBox('Classes', train.classes, '#946B38')}
+      ${infoBox('Rake Type', train.rakeType, rakeColor)}
+      ${infoBox('Pantry', train.pantry ? '&#10003; Available' : '&#10007; Not Available', pantryColor)}
+    </div>`;
+}
+
+buildInfoDetails();
+buildCoaches();
+
+// ── COACH LAYOUT ──
+function buildCoaches() {
+  const dark = document.body.classList.contains('dark');
+  const coachRow = document.getElementById('coachRow');
+  coachRow.innerHTML = '';
+  if (!train.coaches || !train.coaches.length) return;
+
+  function getCoachColor(code) {
+    if (code === 'SLR') return '#8F9438';
+    if (code === 'GEN') return '#F54927';
+    if (code.match(/^D\d/)) return '#943861';
+    if (code.match(/^C\d|^CE/)) return '#27F549';
+    if (code === 'WAP-7' || code === 'WAP-4') return '#2c2c2c';
+    if (code === 'EOG') return '#616161';
+    return '#2c2c2c';
+  }
+
+  train.coaches.forEach((c, i) => {
+    const color = getCoachColor(c.code);
+    const txt = dark ? 'white' : '#222';
+    const box = document.createElement('div');
+    box.style.cssText = `border:2px solid ${color};background:${color}25;padding:4px 8px;text-align:center;min-width:auto;width:fit-content;border-radius:4px;cursor:pointer;flex-shrink:0;`;
+    box.innerHTML = `
+      <div style="font-size:13px;font-weight:700;color:${dark?'white':'#222'};">${c.code}</div>
+      <div style="font-size:8px;font-weight:700;color:${dark?'#aaa':color};text-transform:uppercase;margin-top:2px;">${c.type}</div>
+    `;
+    box.onmouseover = () => box.style.background = color + '50';
+    box.onmouseout = () => box.style.background = color + '25';
+    coachRow.appendChild(box);
+    if (i < train.coaches.length - 1) {
+      const line = document.createElement('div');
+      line.style.cssText = `width:12px;height:2px;background:${color}80;flex-shrink:0;align-self:center;`;
+      coachRow.appendChild(line);
+    }
+  });
+
+  const rakeColor = train.rakeType === 'ICF' ? '#2731F5' : '#27D3F5';
+const dark2 = document.body.classList.contains('dark');
+const rakeTxt = dark2 ? 'white' : '#222';
+document.getElementById('rakeLabel').innerHTML = `Rake Composition – <span style="display:inline-block;background:${rakeColor}25;border:3px solid #000000;border-radius:8px;padding:2px 10px;font-weight:700;color:${rakeTxt};font-size:11px;vertical-align:middle;margin-left:4px;">${train.rakeType || 'LHB'}</span>`;
+  const hint = document.getElementById('coachHint');
+  if (hint) {
+  hint.style.background = '#8F943820';
+  hint.style.border = '4px solid #000000';
+  hint.style.color = dark ? 'white' : '#222';
+ }
+}
+
+// ── TIMETABLE ──
+const colColors = {
+  sno:      '#C7A348',
+  station:  '#C3C748',
+  code:     '#C77448',
+  zone:     '#A6A16F',
+  time:     '#48C78E',
+  halt:     '#C79F48',
+  distance: '#C77448',
+  schedule: '#C7A348',
+};
+
+function thCell(label, color) {
+  const dark = document.body.classList.contains('dark');
+  const textColor = dark ? 'white' : '#222';
+  return `<th style="border-right:3px solid #222;background:${color};color:${textColor};font-weight:800;font-size:11px;">${label}</th>`;
+}
+function rebuildTimetable() {
+  document.getElementById('fullTimetable').innerHTML = '';
+  const ttHead = document.createElement('thead');
+ttHead.innerHTML = `<tr>
+  ${thCell('#', colColors.sno)}
+  ${thCell('Station', colColors.station)}
+  ${thCell('Code', colColors.code)}
+  ${thCell('Zone', colColors.zone)}
+  ${thCell('Arrival', colColors.time)}
+  ${thCell('Departure', colColors.time)}
+  ${thCell('Halt', colColors.halt)}
+  ${thCell('Distance', colColors.distance)}
+  ${thCell('Schedule', colColors.schedule)}
+</tr>`;
+document.getElementById('fullTimetable').appendChild(ttHead);
+
+const ttBody = document.createElement('tbody');
+train.timetable.forEach(s => {
+  const row = document.createElement('tr');
+ const dark = document.body.classList.contains('dark');
+  const txt = dark ? 'white' : '#222';
+  const sub = dark ? '#aaa' : '#666';
+  function tdCell(content, color, extra='') {
+    return `<td style="background:${color}20;color:${txt};${extra}">${content}</td>`;
+  }
+  row.innerHTML = `
+    ${tdCell(s.stop, colColors.sno, 'font-weight:700;')}
+    <td style="background:${colColors.station}20;text-align:left;font-weight:700;color:${txt};">
+      ${s.station}
+      <div style="font-size:10px;font-weight:400;color:${sub};margin-top:2px;">${s.state||''}</div>
+    </td>
+    ${tdCell(s.code, colColors.code, 'font-weight:700;font-size:10px;')}
+    ${tdCell(s.zone||'—', colColors.zone, 'font-size:10px;font-weight:700;')}
+    ${tdCell(s.arrival, colColors.time, 'font-weight:700;')}
+    ${tdCell(s.departure, colColors.time, 'font-weight:700;')}
+    ${tdCell(s.halt, colColors.halt, 'font-weight:700;')}
+    ${tdCell(s.km!==undefined?s.km+' km':'—', colColors.distance, 'font-size:11px;font-weight:700;')}
+    ${tdCell(s.schedule, colColors.schedule, 'font-size:10px;')}`;
+  ttBody.appendChild(row);
+});
+document.getElementById('fullTimetable').appendChild(ttBody);
+}
+rebuildTimetable();
+
+// ── RETURN ──
+function buildReturnCard() {
+  if (!returnTrain) return;
+  const dark = document.body.classList.contains('dark');
+  const txt = dark ? 'white' : '#222';
+  const sub = dark ? '#aaa' : '#666';
+  document.getElementById('returnContent').innerHTML = `
+    <div style="
+  border:4px solid #222;
+  border-radius:4px;
+  background:#94386120;
+  padding:24px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+">
+      <h3 style="font-size:15px;font-weight:700;color:${txt};margin-bottom:8px;">${returnTrain.number} ${returnTrain.name}</h3>
+      <p style="font-size:12px;color:${sub};margin-bottom:20px;">${returnTrain.from} &rarr; ${returnTrain.to}</p>
+      <a href="train-${returnTrain.number}.html"
+        style="display:inline-block;padding:12px 28px;background:#48C78E;color:${txt};font-weight:700;font-size:13px;letter-spacing:1px;text-decoration:none;border:3px solid #222;border-radius:4px;">
+        View Return Journey
+      </a>
+    </div>
+  `;
+}
+
+buildReturnCard();
+  const initialActiveTab = document.querySelector('.tab-btn.active');
+if (initialActiveTab) {
+  const lightTextColors = ['#F5EB27','#F5F527','#27F549','#27D3F5'];
+  const color = categoryColors[train.category] || '#0a2647';
+  initialActiveTab.style.background = color;
+  initialActiveTab.style.color = lightTextColors.includes(color) ? '#222' : '#fff';
+}
+
+// ── REVISIONS ──
+function rebuildRevisions() {
+  const revisionsBody = document.getElementById('revisionsBody');
+  revisionsBody.innerHTML = '';
+  if (train.revisions && train.revisions.length) {
+  // Build colored headers
+  const revHead = document.querySelector('.revisions-table thead tr');
+  if (revHead) {
+    const dark = document.body.classList.contains('dark');
+    const txt = dark ? 'white' : '#222';
+    revHead.innerHTML = `
+      <th style="background:#C7A348;color:${txt};border-right:2px solid #222;">Version</th>
+      <th style="background:#C77448;color:${txt};border-right:2px solid #222;">Effective Date</th>
+      <th style="background:#48C78E;color:${txt};">Summary of Changes</th>
+    `;
+  }
+
+  let v = train.revisions.length;
+  train.revisions.forEach(r => {
+    const dark = document.body.classList.contains('dark');
+    const txt = dark ? 'white' : '#222';
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="rev-version" style="background:#C7A34820;color:${txt};">v${v}</td>
+      <td class="rev-date" style="background:#C7744820;color:${txt};">${r.date}</td>
+      <td style="background:#48C78E20;color:${txt};">${r.summary}</td>
+    `;
+    revisionsBody.appendChild(row);
+    v--;
+  });
+  }
+}
+rebuildRevisions();
+
+// ── TABS ──
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = '';
+    b.style.color = '';
+  });
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  const lightTextColors = ['#F5EB27','#F5F527','#27F549','#27D3F5'];
+  const color = categoryColors[train.category] || '#0a2647';
+  btn.style.background = color;
+  btn.style.color = lightTextColors.includes(color) ? '#222' : '#fff';
+}
+
+// ── RUN TIME ──
+function getRunTime() {
+  function toMins(t) {
+    if (!t || t === '—') return 0;
+    let [time, period] = t.split(' ');
+    let [h, m] = time.split(':').map(Number);
+    if (period === 'pm' && h !== 12) h += 12;
+    if (period === 'am' && h === 12) h = 0;
+    return h * 60 + m;
+  }
+  let diff = toMins(lastStop.arrival) - toMins(firstStop.departure);
+  if (diff < 0) diff += 1440;
+  return Math.floor(diff / 60) + ' hrs ' + (diff % 60) + ' mins';
+}
+
+</script>
+</body>
+</html>
