@@ -2,6 +2,7 @@ const trains = [
   {
     number: "12717",
     name: "Ratnachal Express",
+    returnNumber: "12718",   // ← add this line
     from: "Visakhapatnam Junction (VSKP)",
     to: "Vijayawada Junction (BZA)",
     category: "Superfast",
@@ -61,6 +62,7 @@ timetable: [
 {
     number: "12718",
     name: "Ratnachal Express",
+    returnNumber: "12717",   // ← add this line
     from: "Vijayawada Junction (BZA)",
     to: "Visakhapatnam Junction (VSKP)",
     category: "Superfast",
@@ -119,6 +121,7 @@ timetable: [
   {
     number: "17239",
     name: "Simhadri Express",
+    returnNumber: "17240",   // ← add this line
     from: "Guntur Junction (GNT)",
     to: "Visakhapatnam Junction (VSKP)",
     category: "Mail/Express",
@@ -188,6 +191,7 @@ timetable: [
 {
     number: "17240",
     name: "Simhadri Express",
+    returnNumber: "17239",   // ← add this line
     from: "Visakhapatnam Junction (VSKP)",
     to: "Guntur Junction (GNT)",
     category: "Mail/Express",
@@ -257,6 +261,7 @@ timetable: [
 {
   number: "22665",
   name: "Uday Express",
+  returnNumber: "22666",   // ← add this line
   from: "KSR Bengaluru City Junction (SBC)",
   to: "Coimbatore Junction (CBE)",
   category: "Uday",
@@ -422,6 +427,7 @@ timetable: [
 {
   number: "22666",
   name: "Uday Express",
+  returnNumber: "22665",   // ← add this line
   from: "Coimbatore Junction (CBE)",
   to: "KSR Bengaluru City Junction (SBC)",
   category: "Uday",
@@ -574,6 +580,7 @@ timetable: [
 {
   number: "22875",
   name: "Uday Express",
+  returnNumber: "22876",   // ← add this line
   from: "Visakhapatnam Junction (VSKP)",
   to: "Guntur Junction (GNT)",
   category: "Uday",
@@ -743,6 +750,7 @@ timetable: [
 {
   number: "22876",
   name: "Uday Express",
+  returnNumber: "22875",   // ← add this line
   from: "Guntur Junction (GNT)",
   to: "Visakhapatnam Junction (VSKP)",
   category: "Uday",
@@ -929,6 +937,7 @@ timetable: [
   {
     number: "18521",
     name: "Tirumala Express",
+    returnNumber: "18522",   // ← add this line
     from: "Visakhapatnam Jn (VSKP)",
     to: "Guntakal Jn (GTL)",
     category: "Mail/Express",
@@ -994,6 +1003,7 @@ timetable: [
   {
     number: "18522",
     name: "Tirumala Express",
+    returnNumber: "18521",   // ← add this line
     from: "Guntakal Jn (GTL)",
     to: "Visakhapatnam Jn (VSKP)",
     category: "Mail/Express",
@@ -1063,6 +1073,7 @@ timetable: [
   {
     number: "12711",
     name: "Pinakini SF Express",
+    returnNumber: "12712",   // ← add this line
     from: "Vijayawada Jn (BZA)",
     to: "MGR Chennai Ctrl (MAS)",
     category: "Superfast",
@@ -1100,6 +1111,7 @@ timetable: [
   {
     number: "12712",
     name: "Pinakini SF Express",
+    returnNumber: "12711",   // ← add this line
     from: "MGR Chennai Ctrl (MAS)",
     to: "Vijayawada Jn (BZA)",
     category: "Superfast",
@@ -1138,6 +1150,7 @@ timetable: [
   {
     number: "12636",
     name: "Vaigai SF Express",
+    returnNumber: "12635",   // ← add this line
     from: "Madurai Jn (MDU)",
     to: "Chennai Egmore (MS)",
     category: "Superfast",
@@ -1174,6 +1187,7 @@ timetable: [
   {
     number: "12635",
     name: "Vaigai SF Express",
+    returnNumber: "12636",   // ← add this line
     from: "Chennai Egmore (MS)",
     to: "Madurai Jn (MDU)",
     category: "Superfast",
@@ -1211,6 +1225,7 @@ timetable: [
   {
     number: "17210",
     name: "Seshadri Express",
+    returnNumber: "17209",   // ← add this line
     from: "Kakinada Town Jn (CCT)",
     to: "SMVT Bengaluru (SMVB)",
     category: "Mail/Express",
@@ -1270,6 +1285,7 @@ timetable: [
   {
     number: "12764",
     name: "Padmavathi SF Express",
+    returnNumber: "12763",   // ← add this line
     from: "Secunderabad Jn (SC)",
     to: "Tirupati (TPTY)",
     category: "Superfast",
@@ -1312,6 +1328,7 @@ timetable: [
   {
     number: "12763",
     name: "Padmavathi SF Express",
+    returnNumber: "12764",   // ← add this line
     from: "Tirupati (TPTY)",
     to: "Secunderabad Jn (SC)",
     category: "Superfast",
@@ -1352,6 +1369,7 @@ timetable: [
   {
     number: "12734",
     name: "Narayanadri SF Express",
+    returnNumber: "12733",   // ← add this line
     from: "Lingampalli (LPI)",
     to: "Tirupati (TPTY)",
     category: "Superfast",
@@ -1397,6 +1415,7 @@ timetable: [
   {
     number: "12733",
     name: "Narayanadri SF Express",
+    returnNumber: "12734",   // ← add this line
     from: "Tirupati (TPTY)",
     to: "Lingampalli (LPI)",
     category: "Superfast",
@@ -1443,6 +1462,7 @@ timetable: [
   {
     number: "12714",
     name: "Satavahana SF Express",
+    returnNumber: "12713",   // ← add this line
     from: "Secunderabad Jn (SC)",
     to: "Vijayawada Jn (BZA)",
     category: "Superfast",
@@ -1477,6 +1497,7 @@ timetable: [
   {
     number: "12713",
     name: "Satavahana SF Express",
+    returnNumber: "12714",   // ← add this line
     from: "Vijayawada Jn (BZA)",
     to: "Secunderabad Jn (SC)",
     category: "Superfast",
@@ -1511,6 +1532,7 @@ timetable: [
 {
     number: "94801",
     name: "Ahmedabad - Bhuj Namo Bharat Rapid Rail",
+    returnNumber: "94802",   // ← add this line
     from: "Ahmedabad Junction (ADI)",
     to: "Bhuj (BHUJ)",
     category: "Namo Bharat",
@@ -1559,6 +1581,7 @@ timetable: [
   {
     number: "94802",
     name: "Bhuj - Ahmedabad Namo Bharat Rapid Rail",
+    returnNumber: "94801",   // ← add this line
     from: "Bhuj (BHUJ)",
     to: "Ahmedabad Junction (ADI)",
     category: "Namo Bharat",
@@ -1607,6 +1630,7 @@ timetable: [
   {
     number: "94803",
     name: "Jaynagar - Patna Namo Bharat Rapid Rail",
+    returnNumber: "94804",   // ← add this line
     from: "Jaynagar (JYG)",
     to: "Patna Junction (PNBE)",
     category: "Namo Bharat",
@@ -1655,6 +1679,7 @@ timetable: [
 {
     number: "94804",
     name: "Patna - Jaynagar Namo Bharat Rapid Rail",
+    returnNumber: "94803",   // ← add this line
     from: "Patna Junction (PNBE)",
     to: "Jaynagar (JYG)",
     category: "Namo Bharat",
@@ -1712,11 +1737,10 @@ const trainCategories = [
 ];
 
 function findReturnTrain(t) {
-  return trains.find(o =>
-    o.number !== t.number &&
-    o.from === t.to &&
-    o.to === t.from
-  );
+  if (t.returnNumber) {
+    return trains.find(o => o.number === t.returnNumber);
+  }
+  return null;
 }
 const categoryColors = {
   "AC Express":           "#2c2c2c",
