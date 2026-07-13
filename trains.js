@@ -2086,8 +2086,8 @@ function findReturnTrain(t) {
   return null;
 }
 const categoryColors = {
-  "AC Express":           "#F18FFF",
-  "AC Superfast":         "#4DFFB8",
+  "AC Express":           "#571717",
+  "AC Superfast":         "#175737",
   "Amrit Bharat":         "#F59827",
   "Antyodaya":            "#616161",
   "Double Decker":        "#027B7B",
@@ -2101,7 +2101,7 @@ const categoryColors = {
   "Shatabdi":             "#2731F5",
   "Suvidha":              "#8F9438",
   "Tejas":                "#ffa62b",
-  "Toy Train":            "#EB9E3B",
+  "Toy Train":            "#573B17",
   "Uday":                 "#ff8b58",
   "Vande Bharat":         "#8000FF",
   "Vande Bharat Sleeper": "#FF0080",
