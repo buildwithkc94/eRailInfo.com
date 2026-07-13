@@ -496,7 +496,7 @@ document.addEventListener('click', function(e) {
 const filename = window.location.pathname.split('/').pop();
 const trainNumber = filename.replace('train-', '').replace('.html', '');
 const train = trains.find(t => t.number === trainNumber) || trains[0];
-const returnTrain = trains.find(t => t.number !== train.number && t.name === train.name);
+const returnTrain = findReturnTrain(train);
 
 document.title = train.number + ' ' + train.name + ' — eRailInfo';
 
