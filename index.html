@@ -420,23 +420,25 @@ body.dark .result-card:hover { box-shadow: 4px 4px 0 #fff; }
 
   <!-- FEATURES ROW -->
   <div class="features-grid-wrap features-bg" style="display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:60px;background:var(--paper-dark);">
-    <a href="world-clock.html" class="feature-item-bg" style="text-decoration:none;color:inherit;padding:28px 24px;border-right:1px solid var(--border);display:flex;gap:16px;align-items:flex-start;">
-  <div style="font-size:28px;">🕐</div>
-  <div><div class="feature-title-text" style="font-size:14px;font-weight:700;color:#222;margin-bottom:6px;">World Clock</div><div class="feature-desc-text" style="font-size:12px;color:#666;line-height:1.5;">World clock for travelers and commuters</div></div>
-</a>
-    <div class="feature-item-bg" style="padding:28px 24px;border-right:1px solid var(--border);display:flex;gap:16px;align-items:flex-start;">
+    <a href="world-clock.html" class="feature-item-bg" style="text-decoration:none;color:inherit;border-right:1px solid var(--border);">
+      <div style="font-size:28px;">🕐</div>
+      <div class="feature-title-text" style="font-size:14px;font-weight:700;">World Clock</div>
+      <div class="feature-desc-text" style="font-size:12px;line-height:1.5;">Accurate train timings and updates</div>
+    </a>
+    <div class="feature-item-bg" style="border-right:1px solid var(--border);">
       <div style="font-size:28px;">🗺</div>
-      <div><div class="feature-title-text" style="font-size:14px;font-weight:700;color:#222;margin-bottom:6px;">Weather</div><div class="feature-desc-text" style="font-size:12px;color:#666;line-height:1.5;">Check routes, halts and distances</div></div>
+      <div class="feature-title-text" style="font-size:14px;font-weight:700;">Weather</div>
+      <div class="feature-desc-text" style="font-size:12px;line-height:1.5;">Check routes, halts and distances</div>
     </div>
-    <a href="calculator.html" class="feature-item-bg" style="text-decoration:none;color:inherit;padding:28px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;">
-  <div style="font-size:28px;">🧮</div>
-  <div class="feature-title-text" style="font-size:14px;font-weight:700;">Calculator</div>
-  <div class="feature-desc-text" style="font-size:12px;line-height:1.5;">General &amp; scientific calculator</div>
-</a>
-    <div class="feature-item-bg" id="digitalClockCard" onclick="toggleTimeFormat()" style="padding:28px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;text-align:center;">
-  <div class="feature-desc-text" id="featureClockTime" style="font-size:26px;font-weight:800;line-height:1.2;"></div>
-  <div class="feature-desc-text" id="featureClockDate" style="font-size:13px;margin-top:6px;"></div>
-</div>
+    <a href="calculator.html" class="feature-item-bg" style="text-decoration:none;color:inherit;border-right:1px solid var(--border);">
+      <div style="font-size:28px;">🧮</div>
+      <div class="feature-title-text" style="font-size:14px;font-weight:700;">Calculator</div>
+      <div class="feature-desc-text" style="font-size:12px;line-height:1.5;">General &amp; scientific calculator</div>
+    </a>
+    <div class="feature-item-bg" id="digitalClockCard" onclick="toggleTimeFormat()" style="cursor:pointer;">
+      <div class="feature-desc-text" id="featureClockTime" style="font-size:26px;font-weight:800;line-height:1.2;"></div>
+      <div class="feature-desc-text" id="featureClockDate" style="font-size:13px;margin-top:6px;"></div>
+    </div>
   </div>
 
 </div>
