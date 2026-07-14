@@ -558,7 +558,6 @@ trainCategories.forEach(cat => {
   trainsDropdown.appendChild(li);
 });
 
-<script>
 if (typeof worldCities !== 'undefined' && worldCities.length) {
   const sortedForFlags = [...worldCities].sort((a, b) => a.city.localeCompare(b.city));
   let flagIndex = 0;
@@ -574,7 +573,7 @@ if (typeof worldCities !== 'undefined' && worldCities.length) {
   rotateWorldClockFlag();
   setInterval(rotateWorldClockFlag, 10000);
 }
-</script>
+
 // ── CAPSULE BAR ──
 const capsuleBar = document.getElementById('capsuleBar');
 trainCategories.forEach(cat => {
