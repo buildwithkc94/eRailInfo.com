@@ -217,6 +217,9 @@ body.dark .no-cities-msg { border-color: #fff; }
     </select>
   </div>
 
+ <div class="city-letter-label" style="border:none;text-align:center;">TOP AIRPORTS</div>
+  <div id="topAirportsGrid" class="city-grid" style="margin-bottom:40px;"></div>
+
   <div id="cityGrid"></div>
 
 </div>
@@ -345,6 +348,7 @@ function buildCityCard(c) {
   card.innerHTML = `
     <div class="city-card-flag-bg" style="background-image:url('https://flagcdn.com/w320/${c.countryCode}.png')"></div>
     <div class="city-card-content">
+      ${c.code ? `<div style="font-size:11px;font-weight:700;color:#8fa8cc;letter-spacing:1px;">${c.code}</div>` : ''}
       <div class="city-card-name">${c.city}</div>
       <div class="city-card-country">${c.country}</div>
       <div class="city-card-time" data-time></div>
@@ -352,6 +356,14 @@ function buildCityCard(c) {
     </div>
   `;
   return card;
+}
+
+function renderTopAirports() {
+  const topAirportsGrid = document.getElementById('topAirportsGrid');
+  topAirportsGrid.innerHTML = '';
+  topAirports.forEach(a => {
+    topAirportsGrid.appendChild(buildCityCard(a));
+  });
 }
 
 function renderCityGrid() {
@@ -424,6 +436,7 @@ cityFilter.addEventListener('change', renderCityGrid);
 
 refreshCountryOptions();
 refreshCityOptions();
+renderTopAirports();
 renderCityGrid();
 setInterval(updateAllCityClocks, 1000);
 
