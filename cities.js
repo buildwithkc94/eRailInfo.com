@@ -2,6 +2,21 @@
 // WORLD CLOCK DATA — add new cities here. Each entry needs a valid
 // IANA timezone string (see: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 // ══════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════
+// TOP AIRPORTS — shown above the alphabetical list
+// ═══════════════════════════════════════════════
+const topAirports = [
+  { code: "ATL", city: "Atlanta",   country: "USA",           continent: "North America", timezone: "America/New_York", countryCode: "us" },
+  { code: "DXB", city: "Dubai",     country: "UAE",           continent: "Asia",          timezone: "Asia/Dubai",       countryCode: "ae" },
+  { code: "HND", city: "Tokyo",     country: "Japan",         continent: "Asia",          timezone: "Asia/Tokyo",       countryCode: "jp" },
+  { code: "DFW", city: "Dallas",    country: "USA",           continent: "North America", timezone: "America/Chicago",  countryCode: "us" },
+  { code: "PVG", city: "Shanghai",  country: "China",         continent: "Asia",          timezone: "Asia/Shanghai",    countryCode: "cn" },
+  { code: "ORD", city: "Chicago",   country: "USA",           continent: "North America", timezone: "America/Chicago",  countryCode: "us" },
+  { code: "LHR", city: "London",    country: "UK",            continent: "Europe",        timezone: "Europe/London",    countryCode: "gb" },
+  { code: "IST", city: "Istanbul",  country: "Turkey",        continent: "Europe",        timezone: "Europe/Istanbul",  countryCode: "tr" },
+  { code: "CAN", city: "Guangzhou", country: "China",         continent: "Asia",          timezone: "Asia/Shanghai",    countryCode: "cn" },
+  { code: "DEN", city: "Denver",    country: "USA",           continent: "North America", timezone: "America/Denver",   countryCode: "us" },
+];
 
 const worldCities = [
  
