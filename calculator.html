@@ -388,6 +388,7 @@ function evaluateCalc() {
   if (!expr) return;
   try {
     let safe = expr
+      .replace(/\b0+(\d)/g, '$1')
       .replace(/\^/g, '**')
       .replace(/pi/g, 'Math.PI')
       .replace(/\be\b/g, 'Math.E')
