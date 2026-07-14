@@ -7,5 +7,5 @@ const worldCities = [
   { city: "Zagreb", country: "Croatia",     continent: "Europe", timezone: "Europe/Zagreb", countryCode: "hr" },
   { city: "Zurich", country: "Switzerland", continent: "Europe", timezone: "Europe/Zurich", countryCode: "ch" },
   { city: "Yerevan", country: "Armenia", continent: "Asia", timezone: "Asia/Yerevan", countryCode: "am" },
-  { city: "Yuzhno-Sakhalinsk", country: "Russia", continent: "Asia", timezone: "Asia/Yuzhno-Sakhalinsk", countryCode: "ru" }
+  { city: "Yuzhno-Sakhalinsk", country: "Russia", continent: "Asia", timezone: "Asia/Sakhalin", countryCode: "ru" }
 ];
