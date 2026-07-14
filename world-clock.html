@@ -56,12 +56,30 @@ body.dark .filter-select:hover { box-shadow: 4px 4px 0 #fff; }
 }
 
 .city-card {
+  position: relative;
+  overflow: hidden;
   background: #0a2647;
   border: 3px solid #000;
   border-radius: 8px;
   padding: 24px;
   text-align: center;
+  cursor: pointer;
   transition: box-shadow 0.15s, transform 0.15s;
+}
+.city-card-flag-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 130px;
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+}
+.city-card-content {
+  position: relative;
+  z-index: 1;
 }
 .city-card:hover {
   box-shadow: 4px 4px 0 #000;
@@ -214,6 +232,7 @@ function toggleTimeFormat() {
   use24Hour = !use24Hour;
   localStorage.setItem('timeFormat', use24Hour ? '24' : '12');
   updateDelhiTime();
+  if (typeof updateAllCityClocks === 'function') updateAllCityClocks();
 }
 
 function updateDelhiTime() {
@@ -330,11 +349,15 @@ function renderCityGrid() {
     const card = document.createElement('div');
     card.className = 'city-card';
     card.setAttribute('data-tz', c.timezone);
+    card.onclick = toggleTimeFormat;
     card.innerHTML = `
-      <div class="city-card-name">${c.city}</div>
-      <div class="city-card-country">${c.country}</div>
-      <div class="city-card-time" data-time></div>
-      <div class="city-card-date" data-date></div>
+      <div class="city-card-flag-bg">${c.flagEmoji || ''}</div>
+      <div class="city-card-content">
+        <div class="city-card-name">${c.city}</div>
+        <div class="city-card-country">${c.country}</div>
+        <div class="city-card-time" data-time></div>
+        <div class="city-card-date" data-date></div>
+      </div>
     `;
     cityGrid.appendChild(card);
   });
@@ -347,7 +370,7 @@ function updateAllCityClocks() {
     const tz = card.getAttribute('data-tz');
     const now = new Date();
     const timeStr = now.toLocaleTimeString('en-US', {
-      timeZone: tz, hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit'
+      timeZone: tz, hour12: !use24Hour, hour: '2-digit', minute: '2-digit', second: '2-digit'
     });
     const dateStr = now.toLocaleDateString('en-US', {
       timeZone: tz, weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
