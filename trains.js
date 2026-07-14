@@ -2089,7 +2089,7 @@ const categoryColors = {
   "AC Express":           "#571717",
   "AC Superfast":         "#175737",
   "Amrit Bharat":         "#F59827",
-  "Antyodaya":            "#616161",
+  "Antyodaya":            "#9E8013",
   "Double Decker":        "#027B7B",
   "Duronto":              "#27F549",
   "Garib Rath":           "#943861",
