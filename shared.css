@@ -422,10 +422,13 @@ body.dark .feature-desc-text { color: #cfd8e6 !important; }
   gap: 12px;
 }
 .feature-item-bg {
-  background: #0a2647 !important;
-  border: 3px solid #000 !important;
-  border-radius: 8px;
-  transition: box-shadow 0.15s, transform 0.15s;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
 }
 .feature-item-bg:hover {
   box-shadow: 4px 4px 0 #000;
