@@ -217,9 +217,12 @@ body.dark .no-cities-msg { border-color: #fff; }
     </select>
   </div>
 
- <div class="city-letter-label" style="border:none;text-align:center;">TOP AIRPORTS</div>
-  <div id="topAirportsGrid" class="city-grid" style="margin-bottom:40px;"></div>
+<div id="topAirportsSection">
+    <div class="city-letter-label" style="border:none;text-align:center;">TOP AIRPORTS</div>
+    <div id="topAirportsGrid" class="city-grid" style="margin-bottom:40px;"></div>
+  </div>
 
+  <div class="city-letter-label" style="border:none;text-align:center;">CITIES BY ALPHABETICAL ORDER</div>
   <div id="cityGrid"></div>
 
 </div>
@@ -370,6 +373,9 @@ function renderCityGrid() {
   const selectedContinent = continentFilter.value;
   const selectedCountry = countryFilter.value;
   const selectedCity = cityFilter.value;
+
+  const isFiltered = selectedContinent || selectedCountry || selectedCity;
+  document.getElementById('topAirportsSection').style.display = isFiltered ? 'none' : '';
 
   let filtered = worldCities;
   if (selectedContinent) filtered = filtered.filter(c => c.continent === selectedContinent);
