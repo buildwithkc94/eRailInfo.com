@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator — eRailInfo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+ 
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #555;
+  padding: 20px 0 0;
+}
+.back-link:hover { color: #222; }
+ 
+.calc-wrap {
+  max-width: 420px;
+  margin: 30px auto 60px;
+}
+ 
+.calc-mode-toggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.calc-mode-btn {
+  flex: 1;
+  padding: 12px;
+  background: #0a2647;
+  color: #fff;
+  border: 3px solid #000;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.calc-mode-btn:hover { box-shadow: 4px 4px 0 #000; transform: translate(-2px, -2px); }
+.calc-mode-btn.active { background: #123a63; }
+body.dark .calc-mode-btn { border-color: #fff; }
+body.dark .calc-mode-btn:hover { box-shadow: 4px 4px 0 #fff; }
+ 
+.calc-body {
+  background: #0a2647;
+  border: 3px solid #000;
+  border-radius: 10px;
+  padding: 20px;
+}
+body.dark .calc-body { border-color: #fff; }
+ 
+.calc-display {
+  background: #061a33;
+  border: 3px solid #000;
+  border-radius: 6px;
+  padding: 20px 16px;
+  margin-bottom: 16px;
+  text-align: right;
+  overflow-x: auto;
+}
+body.dark .calc-display { border-color: #fff; }
+.calc-display-expr { font-size: 13px; color: #9db3cc; min-height: 16px; white-space: nowrap; }
+.calc-display-result { font-size: 32px; font-weight: 800; color: #fff; white-space: nowrap; }
+ 
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.calc-grid.scientific { grid-template-columns: repeat(5, 1fr); }
+ 
+.calc-btn {
+  padding: 16px 0;
+  background: #123a63;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.calc-btn:hover { filter: brightness(1.2); box-shadow: 3px 3px 0 #000; transform: translate(-1px, -1px); }
+body.dark .calc-btn { border-color: #fff; }
+body.dark .calc-btn:hover { box-shadow: 3px 3px 0 #fff; }
+ 
+.calc-btn.op { background: #946B38; }
+.calc-btn.func { background: #384494; font-size: 12px; }
+.calc-btn.equals { background: #27a35a; }
+.calc-btn.clear { background: #a32727; }
+ 
+@media (max-width: 480px) {
+  .calc-wrap { max-width: 100%; }
+  .calc-btn { font-size: 13px; padding: 14px 0; }
+  .calc-btn.func { font-size: 10px; }
+}
+ 
+</style>
+</head>
+<body>
+ 
+<header>
+<div class="container">
+  <div class="topbar">
+<a href="index.html" class="logo-badge">
+  <div class="logo-badge-band"></div>
+  <div class="logo-badge-text">eRailInfo</div>
+  <div class="logo-badge-band"></div>
+</a>
+<div id="delhiTimeCapsule" class="time-capsule" onclick="toggleTimeFormat()">
+  <div class="time-capsule-time" id="timeCapsuleTime"></div>
+  <div class="time-capsule-date" id="timeCapsuleDate"></div>
+</div>
+<div class="header-right">
+      <ul class="nav-menu">
+        <li class="dropdown">
+          <a href="#" class="nav-btn">&#128646; TRAINS &#9662;</a>
+          <ul class="dropdown-menu" id="trainsDropdown"></ul>
+        </li>
+        <li class="dropdown">
+  <a href="#" class="nav-btn">&#127963; STATIONS &#9662;</a>
+  <ul class="dropdown-menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="submenu-trigger">METRO</a>
+      <ul class="submenu">
+        <li><a href="#">Ahmedabad</a></li>
+        <li><a href="#">Agra</a></li>
+        <li><a href="#">Bangalore</a></li>
+        <li><a href="#">Bhopal</a></li>
+        <li><a href="#">Chennai</a></li>
+        <li><a href="#">Hyderabad</a></li>
+        <li><a href="#">Indore</a></li>
+        <li><a href="#">Jaipur</a></li>
+        <li><a href="#">Kanpur</a></li>
+        <li><a href="#">Kochi</a></li>
+        <li><a href="#">Kolkata</a></li>
+        <li><a href="#">Lucknow</a></li>
+        <li><a href="#">Mumbai</a></li>
+        <li><a href="#">Nagpur</a></li>
+        <li><a href="#">Patna</a></li>
+        <li><a href="#">Pune</a></li>
+        <li><a href="#">Surat (In progress)</a></li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="submenu-trigger">SUBURBAN/MMTS</a>
+      <ul class="submenu">
+        <li><a href="#">Bangalore</a></li>
+        <li><a href="#">Chennai</a></li>
+        <li><a href="#">Delhi</a></li>
+        <li><a href="#">Hyderabad</a></li>
+        <li><a href="#">Kolkata</a></li>
+        <li><a href="#">Mumbai</a></li>
+        <li><a href="#">Pune</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+        <li class="dropdown">
+          <a href="#" class="nav-btn">&#128276; UPDATES &#9662;</a>
+          <ul class="dropdown-menu">
+            <li><a href="revision-history.html">Revision History</a></li>
+            <li><a href="revision-history.html">Feedback</a></li>
+          </ul>
+        </li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+</header>
+ 
+<div class="container">
+  <a href="index.html" class="back-link">&#8592; BACK TO SEARCH</a>
+ 
+  <div style="text-align:center;padding:40px 0 10px;">
+    <h1 style="font-size:48px;font-weight:700;line-height:1.1;">Calculator</h1>
+    <p style="font-size:15px;color:#666;margin-top:12px;">General and scientific calculator</p>
+  </div>
+ 
+  <div class="calc-wrap">
+    <div class="calc-mode-toggle">
+      <button class="calc-mode-btn active" id="generalModeBtn" onclick="setMode('general')">GENERAL</button>
+      <button class="calc-mode-btn" id="scientificModeBtn" onclick="setMode('scientific')">SCIENTIFIC</button>
+    </div>
+ 
+    <div class="calc-body">
+      <div class="calc-display">
+        <div class="calc-display-expr" id="calcExpr"></div>
+        <div class="calc-display-result" id="calcResult">0</div>
+      </div>
+ 
+      <div class="calc-grid" id="calcGrid"></div>
+    </div>
+  </div>
+</div>
+ 
+<footer>
+  <div style="font-size:11px;color:#aaa;max-width:700px;margin:0 auto 12px;padding:0 16px;line-height:1.6;">
+    &#9432; Train information is for reference only. Please verify with Indian Railways or NTES before travel.
+  </div>
+  eRailInfo &copy; 2026
+</footer>
+ 
+<script>
+if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+ 
+let use24Hour = localStorage.getItem('timeFormat') === '24';
+ 
+function toggleTimeFormat() {
+  use24Hour = !use24Hour;
+  localStorage.setItem('timeFormat', use24Hour ? '24' : '12');
+  updateDelhiTime();
+}
+ 
+function updateDelhiTime() {
+  const now = new Date();
+  let timeStr = now.toLocaleTimeString('en-US', {
+    timeZone: 'Asia/Kolkata',
+    hour12: !use24Hour,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+  if (!use24Hour) timeStr = timeStr.toUpperCase();
+ 
+  const dayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long' }).toUpperCase();
+  const day = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', day: '2-digit' });
+  const month = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', month: 'long' }).toUpperCase();
+  const year = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric' });
+ 
+  document.getElementById('timeCapsuleTime').textContent = timeStr;
+  document.getElementById('timeCapsuleDate').textContent = dayStr + ' · ' + day + '/' + month + '/' + year;
+}
+ 
+updateDelhiTime();
+setInterval(updateDelhiTime, 1000);
+</script>
+<script>
+document.querySelectorAll('.dropdown > a.nav-btn, .dropdown-submenu > a.submenu-trigger').forEach(trigger => {
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const menu = this.nextElementSibling;
+    const isOpen = menu.classList.contains('open');
+ 
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => {
+      if (m !== menu && !m.contains(menu) && !menu.contains(m)) {
+        m.classList.remove('open');
+      }
+    });
+ 
+    menu.classList.toggle('open', !isOpen);
+  });
+});
+ 
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => m.classList.remove('open'));
+  }
+});
+</script>
+ 
+<script>
+ 
+let calcMode = 'general';
+let expr = '';
+ 
+const generalKeys = [
+  { label: 'AC', cls: 'clear', action: 'clear' },
+  { label: '⌫', cls: 'clear', action: 'backspace' },
+  { label: '%', cls: 'op', action: 'char', value: '%' },
+  { label: '÷', cls: 'op', action: 'char', value: '/' },
+  { label: '7', cls: '', action: 'char', value: '7' },
+  { label: '8', cls: '', action: 'char', value: '8' },
+  { label: '9', cls: '', action: 'char', value: '9' },
+  { label: '×', cls: 'op', action: 'char', value: '*' },
+  { label: '4', cls: '', action: 'char', value: '4' },
+  { label: '5', cls: '', action: 'char', value: '5' },
+  { label: '6', cls: '', action: 'char', value: '6' },
+  { label: '−', cls: 'op', action: 'char', value: '-' },
+  { label: '1', cls: '', action: 'char', value: '1' },
+  { label: '2', cls: '', action: 'char', value: '2' },
+  { label: '3', cls: '', action: 'char', value: '3' },
+  { label: '+', cls: 'op', action: 'char', value: '+' },
+  { label: '0', cls: '', action: 'char', value: '0' },
+  { label: '.', cls: '', action: 'char', value: '.' },
+  { label: '(', cls: 'op', action: 'char', value: '(' },
+  { label: ')', cls: 'op', action: 'char', value: ')' },
+  { label: '=', cls: 'equals', action: 'equals' },
+];
+ 
+const scientificKeys = [
+  { label: 'AC', cls: 'clear', action: 'clear' },
+  { label: '⌫', cls: 'clear', action: 'backspace' },
+  { label: '(', cls: 'op', action: 'char', value: '(' },
+  { label: ')', cls: 'op', action: 'char', value: ')' },
+  { label: '÷', cls: 'op', action: 'char', value: '/' },
+  { label: 'sin', cls: 'func', action: 'func', value: 'sin' },
+  { label: 'cos', cls: 'func', action: 'func', value: 'cos' },
+  { label: 'tan', cls: 'func', action: 'func', value: 'tan' },
+  { label: 'log', cls: 'func', action: 'func', value: 'log10' },
+  { label: '×', cls: 'op', action: 'char', value: '*' },
+  { label: 'ln', cls: 'func', action: 'func', value: 'log' },
+  { label: '√', cls: 'func', action: 'func', value: 'sqrt' },
+  { label: 'x²', cls: 'func', action: 'square' },
+  { label: 'xʸ', cls: 'func', action: 'char', value: '^' },
+  { label: '−', cls: 'op', action: 'char', value: '-' },
+  { label: 'π', cls: 'func', action: 'char', value: 'pi' },
+  { label: 'e', cls: 'func', action: 'char', value: 'e' },
+  { label: '7', cls: '', action: 'char', value: '7' },
+  { label: '8', cls: '', action: 'char', value: '8' },
+  { label: '9', cls: '', action: 'char', value: '9' },
+  { label: '+', cls: 'op', action: 'char', value: '+' },
+  { label: '4', cls: '', action: 'char', value: '4' },
+  { label: '5', cls: '', action: 'char', value: '5' },
+  { label: '6', cls: '', action: 'char', value: '6' },
+  { label: '%', cls: 'op', action: 'char', value: '%' },
+  { label: '1', cls: '', action: 'char', value: '1' },
+  { label: '2', cls: '', action: 'char', value: '2' },
+  { label: '3', cls: '', action: 'char', value: '3' },
+  { label: '.', cls: '', action: 'char', value: '.' },
+  { label: '0', cls: '', action: 'char', value: '0' },
+  { label: '=', cls: 'equals', action: 'equals' },
+];
+ 
+function setMode(mode) {
+  calcMode = mode;
+  document.getElementById('generalModeBtn').classList.toggle('active', mode === 'general');
+  document.getElementById('scientificModeBtn').classList.toggle('active', mode === 'scientific');
+  const grid = document.getElementById('calcGrid');
+  grid.className = 'calc-grid' + (mode === 'scientific' ? ' scientific' : '');
+  const keys = mode === 'scientific' ? scientificKeys : generalKeys;
+  grid.innerHTML = '';
+  keys.forEach(k => {
+    const btn = document.createElement('button');
+    btn.className = 'calc-btn' + (k.cls ? ' ' + k.cls : '');
+    btn.textContent = k.label;
+    btn.onclick = () => handleKey(k);
+    grid.appendChild(btn);
+  });
+  clearCalc();
+}
+ 
+function handleKey(k) {
+  if (k.action === 'clear') return clearCalc();
+  if (k.action === 'backspace') return backspaceCalc();
+  if (k.action === 'equals') return evaluateCalc();
+  if (k.action === 'char') { expr += k.value; return updateDisplay(); }
+  if (k.action === 'func') { expr += k.value + '('; return updateDisplay(); }
+  if (k.action === 'square') { expr += '^2'; return updateDisplay(); }
+}
+ 
+function clearCalc() {
+  expr = '';
+  updateDisplay();
+  document.getElementById('calcResult').textContent = '0';
+}
+ 
+function backspaceCalc() {
+  expr = expr.slice(0, -1);
+  updateDisplay();
+}
+ 
+function updateDisplay() {
+  document.getElementById('calcExpr').textContent = expr;
+}
+ 
+function evaluateCalc() {
+  if (!expr) return;
+  try {
+    let safe = expr
+      .replace(/\^/g, '**')
+      .replace(/pi/g, 'Math.PI')
+      .replace(/\be\b/g, 'Math.E')
+      .replace(/sin\(/g, 'Math.sin(')
+      .replace(/cos\(/g, 'Math.cos(')
+      .replace(/tan\(/g, 'Math.tan(')
+      .replace(/log10\(/g, 'Math.log10(')
+      .replace(/log\(/g, 'Math.log(')
+      .replace(/sqrt\(/g, 'Math.sqrt(');
+ 
+    if (!/^[0-9+\-*/%().\sMathPIElogsincoqrt*]*$/.test(safe.replace(/Math\.\w+/g, ''))) {
+      throw new Error('Invalid characters');
+    }
+ 
+    const result = Function('"use strict"; return (' + safe + ')')();
+    if (typeof result !== 'number' || !isFinite(result)) throw new Error('Invalid result');
+ 
+    document.getElementById('calcResult').textContent = Number(result.toFixed(10)).toString();
+    expr = Number(result.toFixed(10)).toString();
+    updateDisplay();
+  } catch (e) {
+    document.getElementById('calcResult').textContent = 'Error';
+  }
+}
+ 
+setMode('general');
+ 
+</script>
+</body>
+</html>
