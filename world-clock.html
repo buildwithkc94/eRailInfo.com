@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Clock — eRailInfo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #555;
+  padding: 20px 0 0;
+}
+.back-link:hover { color: #222; }
+
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 30px 0 40px;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 14px;
+  border: 3px solid #000;
+  background: #0a2647;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.filter-select:hover {
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
+}
+body.dark .filter-select { border-color: #fff; }
+body.dark .filter-select:hover { box-shadow: 4px 4px 0 #fff; }
+
+.city-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.city-card {
+  background: #0a2647;
+  border: 3px solid #000;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.city-card:hover {
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
+}
+body.dark .city-card { border-color: #fff; }
+body.dark .city-card:hover { box-shadow: 4px 4px 0 #fff; }
+
+.city-card-name { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.city-card-country { font-size: 11px; color: #cfd8e6; margin-bottom: 16px; }
+.city-card-time { font-size: 24px; font-weight: 800; color: #fff; letter-spacing: 1px; }
+.city-card-date { font-size: 11px; color: #cfd8e6; margin-top: 4px; }
+
+.no-cities-msg {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  border: 3px solid #000;
+  border-radius: 6px;
+  background: #0a2647;
+  color: #cfd8e6;
+}
+body.dark .no-cities-msg { border-color: #fff; }
+
+@media (max-width: 768px) {
+  .filter-row { grid-template-columns: 1fr; gap: 10px; }
+  .city-grid { grid-template-columns: 1fr 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="container">
+  <div class="topbar">
+<a href="index.html" class="logo-badge">
+  <div class="logo-badge-band"></div>
+  <div class="logo-badge-text">eRailInfo</div>
+  <div class="logo-badge-band"></div>
+</a>
+<div id="delhiTimeCapsule" class="time-capsule" onclick="toggleTimeFormat()">
+  <div class="time-capsule-time" id="timeCapsuleTime"></div>
+  <div class="time-capsule-date" id="timeCapsuleDate"></div>
+</div>
+<div class="header-right">
+      <ul class="nav-menu">
+        <li class="dropdown">
+          <a href="#" class="nav-btn">&#128646; TRAINS &#9662;</a>
+          <ul class="dropdown-menu" id="trainsDropdown"></ul>
+        </li>
+        <li class="dropdown">
+  <a href="#" class="nav-btn">&#127963; STATIONS &#9662;</a>
+  <ul class="dropdown-menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="submenu-trigger">METRO</a>
+      <ul class="submenu">
+        <li><a href="#">Ahmedabad</a></li>
+        <li><a href="#">Agra</a></li>
+        <li><a href="#">Bangalore</a></li>
+        <li><a href="#">Bhopal</a></li>
+        <li><a href="#">Chennai</a></li>
+        <li><a href="#">Hyderabad</a></li>
+        <li><a href="#">Indore</a></li>
+        <li><a href="#">Jaipur</a></li>
+        <li><a href="#">Kanpur</a></li>
+        <li><a href="#">Kochi</a></li>
+        <li><a href="#">Kolkata</a></li>
+        <li><a href="#">Lucknow</a></li>
+        <li><a href="#">Mumbai</a></li>
+        <li><a href="#">Nagpur</a></li>
+        <li><a href="#">Patna</a></li>
+        <li><a href="#">Pune</a></li>
+        <li><a href="#">Surat (In progress)</a></li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="submenu-trigger">SUBURBAN/MMTS</a>
+      <ul class="submenu">
+        <li><a href="#">Bangalore</a></li>
+        <li><a href="#">Chennai</a></li>
+        <li><a href="#">Delhi</a></li>
+        <li><a href="#">Hyderabad</a></li>
+        <li><a href="#">Kolkata</a></li>
+        <li><a href="#">Mumbai</a></li>
+        <li><a href="#">Pune</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+        <li class="dropdown">
+          <a href="#" class="nav-btn">&#128276; UPDATES &#9662;</a>
+          <ul class="dropdown-menu">
+            <li><a href="revision-history.html">Revision History</a></li>
+            <li><a href="revision-history.html">Feedback</a></li>
+          </ul>
+        </li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+</header>
+
+<div class="container">
+  <a href="index.html" class="back-link">&#8592; BACK TO SEARCH</a>
+
+  <div style="text-align:center;padding:40px 0 10px;">
+    <h1 style="font-size:48px;font-weight:700;line-height:1.1;">World Clock</h1>
+    <p style="font-size:15px;color:#666;margin-top:12px;">Check the current time in cities around the world</p>
+  </div>
+
+  <div class="filter-row">
+    <select class="filter-select" id="continentFilter">
+      <option value="">All Continents</option>
+    </select>
+    <select class="filter-select" id="countryFilter">
+      <option value="">All Countries</option>
+    </select>
+    <select class="filter-select" id="cityFilter">
+      <option value="">All Cities</option>
+    </select>
+  </div>
+
+  <div class="city-grid" id="cityGrid"></div>
+
+</div>
+
+<footer>
+  <div style="font-size:11px;color:#aaa;max-width:700px;margin:0 auto 12px;padding:0 16px;line-height:1.6;">
+    &#9432; Train information is for reference only. Please verify with Indian Railways or NTES before travel.
+  </div>
+  eRailInfo &copy; 2026
+</footer>
+
+<script>
+if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+
+let use24Hour = localStorage.getItem('timeFormat') === '24';
+
+function toggleTimeFormat() {
+  use24Hour = !use24Hour;
+  localStorage.setItem('timeFormat', use24Hour ? '24' : '12');
+  updateDelhiTime();
+}
+
+function updateDelhiTime() {
+  const now = new Date();
+  let timeStr = now.toLocaleTimeString('en-US', {
+    timeZone: 'Asia/Kolkata',
+    hour12: !use24Hour,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+  if (!use24Hour) timeStr = timeStr.toUpperCase();
+
+  const dayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long' }).toUpperCase();
+  const day = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', day: '2-digit' });
+  const month = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', month: 'long' }).toUpperCase();
+  const year = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric' });
+
+  document.getElementById('timeCapsuleTime').textContent = timeStr;
+  document.getElementById('timeCapsuleDate').textContent = dayStr + ' · ' + day + '/' + month + '/' + year;
+}
+
+updateDelhiTime();
+setInterval(updateDelhiTime, 1000);
+</script>
+<script>
+document.querySelectorAll('.dropdown > a.nav-btn, .dropdown-submenu > a.submenu-trigger').forEach(trigger => {
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const menu = this.nextElementSibling;
+    const isOpen = menu.classList.contains('open');
+
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => {
+      if (m !== menu && !m.contains(menu) && !menu.contains(m)) {
+        m.classList.remove('open');
+      }
+    });
+
+    menu.classList.toggle('open', !isOpen);
+  });
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-menu.open, .submenu.open').forEach(m => m.classList.remove('open'));
+  }
+});
+</script>
+
+<script src="cities.js"></script>
+<script>
+
+const continentFilter = document.getElementById('continentFilter');
+const countryFilter = document.getElementById('countryFilter');
+const cityFilter = document.getElementById('cityFilter');
+const cityGrid = document.getElementById('cityGrid');
+
+// ── POPULATE CONTINENT DROPDOWN ──
+[...new Set(worldCities.map(c => c.continent))].sort().forEach(cont => {
+  const opt = document.createElement('option');
+  opt.value = cont;
+  opt.textContent = cont;
+  continentFilter.appendChild(opt);
+});
+
+function refreshCountryOptions() {
+  const selectedContinent = continentFilter.value;
+  countryFilter.innerHTML = '<option value="">All Countries</option>';
+  const pool = selectedContinent
+    ? worldCities.filter(c => c.continent === selectedContinent)
+    : worldCities;
+  [...new Set(pool.map(c => c.country))].sort().forEach(country => {
+    const opt = document.createElement('option');
+    opt.value = country;
+    opt.textContent = country;
+    countryFilter.appendChild(opt);
+  });
+}
+
+function refreshCityOptions() {
+  const selectedContinent = continentFilter.value;
+  const selectedCountry = countryFilter.value;
+  cityFilter.innerHTML = '<option value="">All Cities</option>';
+  let pool = worldCities;
+  if (selectedContinent) pool = pool.filter(c => c.continent === selectedContinent);
+  if (selectedCountry) pool = pool.filter(c => c.country === selectedCountry);
+  pool.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.city;
+    opt.textContent = c.city;
+    cityFilter.appendChild(opt);
+  });
+}
+
+function renderCityGrid() {
+  const selectedContinent = continentFilter.value;
+  const selectedCountry = countryFilter.value;
+  const selectedCity = cityFilter.value;
+
+  let filtered = worldCities;
+  if (selectedContinent) filtered = filtered.filter(c => c.continent === selectedContinent);
+  if (selectedCountry) filtered = filtered.filter(c => c.country === selectedCountry);
+  if (selectedCity) filtered = filtered.filter(c => c.city === selectedCity);
+
+  cityGrid.innerHTML = '';
+
+  if (!filtered.length) {
+    cityGrid.innerHTML = '<div class="no-cities-msg" style="grid-column:1/-1;">No cities match this filter.</div>';
+    return;
+  }
+
+  filtered.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'city-card';
+    card.setAttribute('data-tz', c.timezone);
+    card.innerHTML = `
+      <div class="city-card-name">${c.city}</div>
+      <div class="city-card-country">${c.country}</div>
+      <div class="city-card-time" data-time></div>
+      <div class="city-card-date" data-date></div>
+    `;
+    cityGrid.appendChild(card);
+  });
+
+  updateAllCityClocks();
+}
+
+function updateAllCityClocks() {
+  document.querySelectorAll('.city-card').forEach(card => {
+    const tz = card.getAttribute('data-tz');
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('en-US', {
+      timeZone: tz, hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+    const dateStr = now.toLocaleDateString('en-US', {
+      timeZone: tz, weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
+    });
+    card.querySelector('[data-time]').textContent = timeStr;
+    card.querySelector('[data-date]').textContent = dateStr;
+  });
+}
+
+continentFilter.addEventListener('change', () => {
+  refreshCountryOptions();
+  refreshCityOptions();
+  renderCityGrid();
+});
+countryFilter.addEventListener('change', () => {
+  refreshCityOptions();
+  renderCityGrid();
+});
+cityFilter.addEventListener('change', renderCityGrid);
+
+refreshCountryOptions();
+refreshCityOptions();
+renderCityGrid();
+setInterval(updateAllCityClocks, 1000);
+
+</script>
+</body>
+</html>
