@@ -4,6 +4,6 @@
 // ══════════════════════════════════════════════════════════════════
 
 const worldCities = [
-  { city: "Zagreb", country: "Croatia",     continent: "Europe", timezone: "Europe/Zagreb", flagEmoji: "🇭🇷" },
-  { city: "Zurich", country: "Switzerland", continent: "Europe", timezone: "Europe/Zurich", flagEmoji: "🇨🇭" },
+  { city: "Zagreb", country: "Croatia",     continent: "Europe", timezone: "Europe/Zagreb", countryCode: "hr" },
+  { city: "Zurich", country: "Switzerland", continent: "Europe", timezone: "Europe/Zurich", countryCode: "ch" },
 ];
