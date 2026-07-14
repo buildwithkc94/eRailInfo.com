@@ -69,13 +69,11 @@ body.dark .filter-select:hover { box-shadow: 4px 4px 0 #fff; }
 .city-card-flag-bg {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 130px;
-  opacity: 0.35;
   z-index: 0;
   pointer-events: none;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
 }
 .city-card-content {
   position: relative;
@@ -351,7 +349,7 @@ function renderCityGrid() {
     card.setAttribute('data-tz', c.timezone);
     card.onclick = toggleTimeFormat;
     card.innerHTML = `
-      <div class="city-card-flag-bg">${c.flagEmoji || ''}</div>
+      <div class="city-card-flag-bg" style="background-image:url('https://flagcdn.com/w320/${c.countryCode}.png')"></div>
       <div class="city-card-content">
         <div class="city-card-name">${c.city}</div>
         <div class="city-card-country">${c.country}</div>
