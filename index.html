@@ -212,7 +212,8 @@ body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
 /* ── INDIA MODAL CAPSULES (square app-icon style) ── */
 .india-cat-btn {
   position: relative;
-  aspect-ratio: 1 / 1;
+  width: 90px;
+  height: 90px;
   border-radius: 22% !important;
   transition: box-shadow 0.15s, transform 0.15s;
 }
@@ -497,7 +498,7 @@ body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
       </div>
     </div>
     <hr style="border-color:#333;margin:18px 0;">
-    <div id="indiaCategoryGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;"></div>
+    <div id="indiaCategoryGrid" style="display:grid;grid-template-columns:repeat(auto-fill,90px);gap:14px;justify-content:center;"></div>
     <div style="text-align:center;font-size:12px;color:#999;margin-top:20px;">
       &#9432; <span id="indiaCategoryCount"></span> train categories available under India.
     </div>
@@ -631,8 +632,8 @@ function openIndiaModal() {
     btn.href = '#';
     btn.className = 'india-cat-btn';
     const color = categoryColors[cat] || '#2c2c2c';
-    btn.style.cssText = `display:flex;align-items:center;justify-content:center;text-align:center;background:${color};color:${lightTextColorsModal.includes(color) ? '#222' : '#fff'};border:2px solid #000;padding:10px;font-size:12px;font-weight:700;text-decoration:none;cursor:pointer;`;
-
+    btn.style.cssText = `display:flex;align-items:center;justify-content:center;text-align:center;background:${color};color:${lightTextColorsModal.includes(color) ? '#222' : '#fff'};border:2px solid #000;padding:6px;font-size:10px;line-height:1.2;font-weight:700;text-decoration:none;cursor:pointer;`;
+    
     const label = document.createElement('span');
     label.textContent = cat;
 
