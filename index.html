@@ -468,8 +468,11 @@ body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
     <button onclick="closeIndiaModal()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:6px;">
       <img src="https://flagcdn.com/w80/in.png" style="width:48px;border:1px solid #444;border-radius:4px;">
-      <div>
-        <div style="font-size:22px;font-weight:700;color:#fff;">Browse India Trains</div>
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <div style="font-size:22px;font-weight:700;color:#fff;">Browse India Trains</div>
+          <span id="indiaTotalBadge" style="background:#222;color:#fff;border:2px solid #fff;border-radius:20px;padding:4px 14px;font-size:13px;font-weight:700;white-space:nowrap;"></span>
+        </div>
         <div style="font-size:13px;color:#b8c4d6;">Select a train category to explore</div>
       </div>
     </div>
@@ -599,13 +602,26 @@ const lightTextColorsModal = ['#F5EB27','#F5F527','#27F549','#27D3F5'];
 function openIndiaModal() {
   const grid = document.getElementById('indiaCategoryGrid');
   grid.innerHTML = '';
+  let indiaTotalTrains = 0;
   trainCategories.forEach(cat => {
+    const catCount = trains.filter(t => t.category === cat).length;
+    indiaTotalTrains += catCount;
+
     const btn = document.createElement('a');
     btn.href = '#';
     btn.className = 'india-cat-btn';
     const color = categoryColors[cat] || '#2c2c2c';
-    btn.style.cssText = `display:flex;align-items:center;justify-content:center;text-align:center;background:${color};color:${lightTextColorsModal.includes(color) ? '#222' : '#fff'};border:2px solid #000;border-radius:20px;padding:10px 14px;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;`;
-    btn.textContent = cat;
+    btn.style.cssText = `display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;background:${color};color:${lightTextColorsModal.includes(color) ? '#222' : '#fff'};border:2px solid #000;border-radius:20px;padding:10px 14px;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;`;
+
+    const label = document.createElement('span');
+    label.textContent = cat;
+
+    const countBadge = document.createElement('span');
+    countBadge.textContent = catCount;
+    countBadge.style.cssText = `background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.6);border-radius:10px;padding:2px 8px;font-size:11px;font-weight:800;flex-shrink:0;`;
+
+    btn.appendChild(label);
+    btn.appendChild(countBadge);
     btn.onclick = (e) => {
       e.preventDefault();
       closeIndiaModal();
@@ -614,6 +630,7 @@ function openIndiaModal() {
     grid.appendChild(btn);
   });
   document.getElementById('indiaCategoryCount').textContent = trainCategories.length;
+  document.getElementById('indiaTotalBadge').textContent = 'Trains: ' + indiaTotalTrains;
   document.getElementById('indiaModalOverlay').style.display = 'flex';
 }
 
