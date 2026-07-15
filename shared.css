@@ -274,7 +274,7 @@ body.dark #trainSearchInput {
   100% { transform: translateX(-100%); }
 }
 .station-card-bg {
-  background: #0a2647 !important;
+  background-color: #0a2647 !important;
   border: 3px solid #000 !important;
   color: #fff !important;
   transition: box-shadow 0.15s, transform 0.15s;
@@ -403,7 +403,7 @@ body.dark .search-card-bg button[onclick] {
 
 /* Dark — station cards */
 body.dark .station-card-bg {
-  background: #0a2647 !important;
+  background-color: #0a2647 !important;
   border-color: #fff !important;
   color: #fff !important;
 }
