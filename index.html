@@ -246,10 +246,18 @@ body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
   .station-pill {
     font-size: 11px !important;
     padding: 3px 8px 3px 10px !important;
-    max-width: 140px;
+    max-width: 160px;
+  }
+
+  .station-pill-text {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
+  }
+
+  .station-pill-remove {
+    flex-shrink: 0;
   }
 
   .stations-grid-wrap {
@@ -761,7 +769,7 @@ function renderPill(pillBox, input, station, type) {
 
   const pill = document.createElement('span');
   pill.className = 'station-pill';
-  pill.innerHTML = `${station.code} / ${station.station.split('(')[0].trim()} <button class="station-pill-remove" onclick="removePill('${type}')">✕</button>`;
+  pill.innerHTML = `<span class="station-pill-text">${station.code} / ${station.station.split('(')[0].trim()}</span><button class="station-pill-remove" onclick="removePill('${type}')">✕</button>`;
   pillBox.insertBefore(pill, input);
   input.placeholder = '';
   input.style.width = '0';
