@@ -199,6 +199,15 @@ body.dark .result-card:hover { box-shadow: 4px 4px 0 #fff; }
 
 body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
 
+/* ── INDIA MODAL CAPSULES ── */
+.india-cat-btn {
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.india-cat-btn:hover {
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
+}
+
 /* ── MOBILE ── */
 @media (max-width: 768px) {
 
@@ -450,12 +459,7 @@ body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
     <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/us.png');"></div><div style="font-size:13px;font-weight:700;">United States</div></a>
   </div>
 
-  <!-- BROWSE BAR (moved here from header) -->
-  <div style="margin-bottom:14px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Browse</div>
-  </div>
-  <div id="capsuleBar" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:50px;"></div>
-
+  
   <!-- FEATURES ROW -->
   <div class="features-grid-wrap features-bg" style="display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:60px;background:var(--paper-dark);">
     <a href="world-clock.html" id="worldClockTile" class="feature-item-bg" style="text-decoration:none;color:inherit;border-right:1px solid var(--border);position:relative;overflow:hidden;">
@@ -624,6 +628,7 @@ function openIndiaModal() {
   trainCategories.forEach(cat => {
     const btn = document.createElement('a');
     btn.href = '#';
+    btn.className = 'india-cat-btn';
     const color = categoryColors[cat] || '#2c2c2c';
     btn.style.cssText = `display:flex;align-items:center;justify-content:center;text-align:center;background:${color};color:${lightTextColorsModal.includes(color) ? '#222' : '#fff'};border:2px solid #000;border-radius:20px;padding:10px 14px;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;`;
     btn.textContent = cat;
@@ -661,32 +666,6 @@ if (typeof worldCities !== 'undefined' && worldCities.length) {
   rotateWorldClockFlag();
   setInterval(rotateWorldClockFlag, 10000);
 }
-
-// ── CAPSULE BAR ──
-const capsuleBar = document.getElementById('capsuleBar');
-trainCategories.forEach(cat => {
-  const s = cat.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-');
-  const capsule = document.createElement('a');
-  capsule.className = 'capsule';
-  capsule.setAttribute('data-cat', cat);
-  capsule.innerHTML = `<span class="capsule-text">${cat}</span>`;
-  capsule.href = '#';
-  capsule.onclick = (e) => {
-    e.preventDefault();
-    document.querySelectorAll('#capsuleBar .capsule').forEach(c => {
-      c.classList.remove('active');
-      c.style.background = '';
-      c.style.borderColor = '';
-      c.style.color = '';
-    });
-    capsule.classList.add('active');
-    capsule.style.background = categoryColors[cat];
-    capsule.style.borderColor = categoryColors[cat];
-    capsule.style.color = lightTextColors.includes(categoryColors[cat]) ? '#222' : 'white';
-    filterByCategory(cat);
-  };
-  capsuleBar.appendChild(capsule);
-});
 
 // ── STATION DATA ──
 const allStations = [];
