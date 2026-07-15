@@ -104,9 +104,12 @@ body.dark .station-pill-input { color: #e8e8e8; }
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
-body.dark .station-suggestion {
-  background: #0a2647;
-  border-color: #fff;
+body.dark .station-suggestion { background: #0a2647; border-color: #fff; }
+
+body.dark #sortSelect {
+  background: #2a2a2a !important;
+  border-color: #444 !important;
+  color: #e8e8e8 !important;
 }
 
 .suggestion-item {
@@ -396,7 +399,9 @@ body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
   <div id="searchResults" style="display:none;margin-bottom:30px;">
     <div id="resultsLabel" style="font-size:12px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:10px;"></div>
     <div id="resultsCategoryPills" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;"></div>
+    <div id="resultsSortBar" style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:16px;"></div>
     <div id="resultsList"></div>
+    <div id="resultsPagination" style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;flex-wrap:wrap;"></div>
   </div>
 
   <!-- RAIL NETWORKS WORLDWIDE -->
@@ -840,21 +845,66 @@ let allSearchResults = [];
 let allSearchLabel = '';
 let allSearchFromStop = null;
 let allSearchToStop = null;
+let currentPage = 1;
+let currentSortField = 'number';
+const RESULTS_PER_PAGE = 4;
 
 function showAllResults() {
   showResults(allSearchResults, allSearchLabel, allSearchFromStop, allSearchToStop);
   document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
 }
 
+function toMins(timeStr) {
+  if (!timeStr || timeStr === '—') return null;
+  const parts = timeStr.split(' ');
+  const [h, m] = parts[0].split(':').map(Number);
+  const period = parts[1];
+  let hours = h;
+  if (period === 'pm' && h !== 12) hours += 12;
+  if (period === 'am' && h === 12) hours = 0;
+  return hours * 60 + m;
+}
+
+function getStops(t, fromStop, toStop) {
+  const fStop = fromStop ? t.timetable.find(s => s.code.toLowerCase() === fromStop.code.toLowerCase()) : t.timetable[0];
+  const tStop = toStop ? t.timetable.find(s => s.code.toLowerCase() === toStop.code.toLowerCase()) : t.timetable[t.timetable.length - 1];
+  return { fStop, tStop };
+}
+
+function sortResults(results, field, fromStop, toStop) {
+  const sorted = [...results];
+  if (field === 'number') {
+    sorted.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
+  } else if (field === 'arrival') {
+    sorted.sort((a, b) => {
+      const { tStop: ta } = getStops(a, fromStop, toStop);
+      const { tStop: tb } = getStops(b, fromStop, toStop);
+      const arrA = ta ? toMins(ta.arrival !== '—' ? ta.arrival : ta.departure) : null;
+      const arrB = tb ? toMins(tb.arrival !== '—' ? tb.arrival : tb.departure) : null;
+      if (arrA === null) return 1;
+      if (arrB === null) return -1;
+      return arrA - arrB;
+    });
+  } else if (field === 'destination') {
+    sorted.sort((a, b) => {
+      const { tStop: ta } = getStops(a, fromStop, toStop);
+      const { tStop: tb } = getStops(b, fromStop, toStop);
+      const nameA = ta ? ta.station : a.to;
+      const nameB = tb ? tb.station : b.to;
+      return nameA.localeCompare(nameB);
+    });
+  }
+  return sorted;
+}
+
 function showResults(results, label, fromStop, toStop, activeCategory = null) {
   lastResults = results;
   lastFromStop = fromStop;
   lastToStop = toStop;
+  currentPage = 1;
   document.getElementById('resultsLabel').textContent = label;
-  const list = document.getElementById('resultsList');
-  list.innerHTML = '';
 
-const pillsWrap = document.getElementById('resultsCategoryPills');
+  const pillsWrap = document.getElementById('resultsCategoryPills');
   pillsWrap.innerHTML = '';
   const uniqueCats = [...new Set(allSearchResults.map(t => t.category))];
   if (uniqueCats.length > 1) {
@@ -883,26 +933,61 @@ const pillsWrap = document.getElementById('resultsCategoryPills');
     pillsWrap.appendChild(pill);
   });
 
-  if (!results.length) {
+  renderSortBar();
+  renderResultsList();
+}
+
+function renderSortBar() {
+  const bar = document.getElementById('resultsSortBar');
+  bar.innerHTML = '';
+  if (!lastResults.length) return;
+
+  const label = document.createElement('span');
+  label.textContent = 'SORT BY';
+  label.style.cssText = 'font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);';
+  bar.appendChild(label);
+
+  const select = document.createElement('select');
+  select.id = 'sortSelect';
+  select.style.cssText = 'padding:8px 12px;border:1px solid var(--border);background:var(--paper);color:var(--text);border-radius:4px;font-family:Inter,sans-serif;font-size:13px;font-weight:700;cursor:pointer;';
+  [
+    { value: 'number', text: 'Train Number' },
+    { value: 'arrival', text: 'Arrival Time' },
+    { value: 'destination', text: 'Destination' },
+  ].forEach(o => {
+    const opt = document.createElement('option');
+    opt.value = o.value;
+    opt.textContent = o.text;
+    if (o.value === currentSortField) opt.selected = true;
+    select.appendChild(opt);
+  });
+  select.onchange = () => {
+    currentSortField = select.value;
+    currentPage = 1;
+    renderResultsList();
+  };
+  bar.appendChild(select);
+}
+
+function renderResultsList() {
+  const list = document.getElementById('resultsList');
+  list.innerHTML = '';
+
+  if (!lastResults.length) {
     list.innerHTML = '<div class="no-results-bg" style="text-align:center;padding:40px;color:#888;background:white;border:1px solid var(--border);border-radius:4px;">No trains found.</div>';
+    document.getElementById('resultsPagination').innerHTML = '';
     document.getElementById('searchResults').style.display = 'block';
     return;
   }
 
-  results.forEach(t => {
-    const fStop = fromStop ? t.timetable.find(s => s.code.toLowerCase() === fromStop.code.toLowerCase()) : t.timetable[0];
-    const tStop = toStop ? t.timetable.find(s => s.code.toLowerCase() === toStop.code.toLowerCase()) : t.timetable[t.timetable.length - 1];
+  const sorted = sortResults(lastResults, currentSortField, lastFromStop, lastToStop);
+  const totalPages = Math.max(1, Math.ceil(sorted.length / RESULTS_PER_PAGE));
+  if (currentPage > totalPages) currentPage = totalPages;
+  const startIdx = (currentPage - 1) * RESULTS_PER_PAGE;
+  const pageResults = sorted.slice(startIdx, startIdx + RESULTS_PER_PAGE);
 
-    function toMins(timeStr) {
-      if (!timeStr || timeStr === '—') return null;
-      const parts = timeStr.split(' ');
-      const [h, m] = parts[0].split(':').map(Number);
-      const period = parts[1];
-      let hours = h;
-      if (period === 'pm' && h !== 12) hours += 12;
-      if (period === 'am' && h === 12) hours = 0;
-      return hours * 60 + m;
-    }
+  pageResults.forEach(t => {
+    const { fStop, tStop } = getStops(t, lastFromStop, lastToStop);
 
     const depTime = fStop ? (fStop.departure !== '—' ? fStop.departure : fStop.arrival) : null;
     const arrTime = tStop ? (tStop.arrival !== '—' ? tStop.arrival : tStop.departure) : null;
@@ -916,17 +1001,6 @@ const pillsWrap = document.getElementById('resultsCategoryPills');
     const distDisplay = fStop && tStop && fStop.km !== undefined && tStop.km !== undefined
       ? Math.abs(tStop.km - fStop.km) + ' km'
       : t.distance || '—';
-
-    const coachSummary = t.coaches
-      ? [...new Set(t.coaches.filter(c => c.type !== 'Electric Loco' && c.type !== 'Generator Car').map(c => {
-          if (c.code.startsWith('H')) return 'AC 1st';
-          if (c.code.startsWith('A')) return 'AC 2nd';
-          if (c.code.startsWith('B')) return 'AC 3rd';
-          if (c.code.startsWith('S')) return 'Sleeper';
-          if (c.code.startsWith('G')) return 'General';
-          return c.code;
-        }))].join(', ')
-      : t.classes || '—';
 
     const card = document.createElement('a');
     card.className = 'result-card';
@@ -973,7 +1047,46 @@ const pillsWrap = document.getElementById('resultsCategoryPills');
     list.appendChild(card);
   });
 
+  renderPagination(totalPages, sorted.length);
   document.getElementById('searchResults').style.display = 'block';
+}
+
+function renderPagination(totalPages, totalResults) {
+  const wrap = document.getElementById('resultsPagination');
+  wrap.innerHTML = '';
+  if (totalPages <= 1) return;
+
+  const prevBtn = document.createElement('button');
+  prevBtn.textContent = '‹ Prev';
+  prevBtn.disabled = currentPage === 1;
+  prevBtn.style.cssText = `padding:8px 16px;border:2px solid #000;border-radius:6px;background:${currentPage === 1 ? '#999' : '#0a2647'};color:#fff;font-weight:700;font-size:12px;cursor:${currentPage === 1 ? 'default' : 'pointer'};`;
+  prevBtn.onclick = () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderResultsList();
+      document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const pageLabel = document.createElement('span');
+  pageLabel.textContent = `Page ${currentPage} of ${totalPages} (${totalResults} trains)`;
+  pageLabel.style.cssText = 'font-size:12px;font-weight:700;color:var(--muted);';
+
+  const nextBtn = document.createElement('button');
+  nextBtn.textContent = 'Next ›';
+  nextBtn.disabled = currentPage === totalPages;
+  nextBtn.style.cssText = `padding:8px 16px;border:2px solid #000;border-radius:6px;background:${currentPage === totalPages ? '#999' : '#0a2647'};color:#fff;font-weight:700;font-size:12px;cursor:${currentPage === totalPages ? 'default' : 'pointer'};`;
+  nextBtn.onclick = () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderResultsList();
+      document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  wrap.appendChild(prevBtn);
+  wrap.appendChild(pageLabel);
+  wrap.appendChild(nextBtn);
 }
 
 // ── TRAIN SEARCH DROPDOWN ──
