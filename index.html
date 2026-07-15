@@ -165,16 +165,23 @@ body.dark .suggestion-item:hover {
 body.dark .result-card { border-color: #fff; }
 body.dark .result-card:hover { box-shadow: 4px 4px 0 #fff; }
 
-/* ── COUNTRY FLAG CARDS (World Clock tile style) ── */
+/* ── COUNTRY FLAG CARDS (matches Features tile style) ── */
 .station-card-bg {
   color: #fff !important;
   position: relative;
   overflow: hidden;
-  min-height: 140px;
+  min-height: 150px;
+  border: 3px solid #000 !important;
+  border-radius: 8px !important;
   display: flex !important;
-  align-items: flex-end !important;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center;
+  text-align: center;
   transition: box-shadow 0.15s, transform 0.15s;
 }
+
+body.dark .station-card-bg { border-color: #fff !important; }
 
 .station-flag-bg {
   position: absolute;
@@ -436,31 +443,34 @@ body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
   <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">RAIL NETWORKS WORLDWIDE</div>
 </div>
 
-<div class="stations-grid-wrap" style="display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin-bottom:50px;">
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/at.png');"></div><div style="font-size:13px;font-weight:700;">Austria</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/be.png');"></div><div style="font-size:13px;font-weight:700;">Belgium</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/ca.png');"></div><div style="font-size:13px;font-weight:700;">Canada</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/dk.png');"></div><div style="font-size:13px;font-weight:700;">Denmark</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/fi.png');"></div><div style="font-size:13px;font-weight:700;">Finland</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/fr.png');"></div><div style="font-size:13px;font-weight:700;">France</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/de.png');"></div><div style="font-size:13px;font-weight:700;">Germany</div></a>
-<a href="#" class="station-card-bg" onclick="event.preventDefault();openIndiaModal();" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/in.png');"></div><div style="font-size:13px;font-weight:700;">India</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/it.png');"></div><div style="font-size:13px;font-weight:700;">Italy</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/jp.png');"></div><div style="font-size:13px;font-weight:700;">Japan</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/kr.png');"></div><div style="font-size:13px;font-weight:700;">South Korea</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/nl.png');"></div><div style="font-size:13px;font-weight:700;">Netherlands</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/no.png');"></div><div style="font-size:13px;font-weight:700;">Norway</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/pt.png');"></div><div style="font-size:13px;font-weight:700;">Portugal</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/es.png');"></div><div style="font-size:13px;font-weight:700;">Spain</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/se.png');"></div><div style="font-size:13px;font-weight:700;">Sweden</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/ch.png');"></div><div style="font-size:13px;font-weight:700;">Switzerland</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/tw.png');"></div><div style="font-size:13px;font-weight:700;">Taiwan</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/gb.png');"></div><div style="font-size:13px;font-weight:700;">United Kingdom</div></a>
-    <a href="#" class="station-card-bg" style="border:1px solid var(--border);border-radius:4px;padding:14px 12px;text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/us.png');"></div><div style="font-size:13px;font-weight:700;">United States</div></a>
+<div class="stations-grid-wrap" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:50px;">
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/at.png');"></div><div style="font-size:13px;font-weight:700;">Austria</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/be.png');"></div><div style="font-size:13px;font-weight:700;">Belgium</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/ca.png');"></div><div style="font-size:13px;font-weight:700;">Canada</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/dk.png');"></div><div style="font-size:13px;font-weight:700;">Denmark</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/fi.png');"></div><div style="font-size:13px;font-weight:700;">Finland</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/fr.png');"></div><div style="font-size:13px;font-weight:700;">France</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/de.png');"></div><div style="font-size:13px;font-weight:700;">Germany</div></a>
+    <a href="#" class="station-card-bg" onclick="event.preventDefault();openIndiaModal();" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/in.png');"></div><div style="font-size:13px;font-weight:700;">India</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/it.png');"></div><div style="font-size:13px;font-weight:700;">Italy</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/jp.png');"></div><div style="font-size:13px;font-weight:700;">Japan</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/kr.png');"></div><div style="font-size:13px;font-weight:700;">South Korea</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/nl.png');"></div><div style="font-size:13px;font-weight:700;">Netherlands</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/no.png');"></div><div style="font-size:13px;font-weight:700;">Norway</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/pt.png');"></div><div style="font-size:13px;font-weight:700;">Portugal</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/es.png');"></div><div style="font-size:13px;font-weight:700;">Spain</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/se.png');"></div><div style="font-size:13px;font-weight:700;">Sweden</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/ch.png');"></div><div style="font-size:13px;font-weight:700;">Switzerland</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/tw.png');"></div><div style="font-size:13px;font-weight:700;">Taiwan</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/gb.png');"></div><div style="font-size:13px;font-weight:700;">United Kingdom</div></a>
+    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/us.png');"></div><div style="font-size:13px;font-weight:700;">United States</div></a>
   </div>
 
   
   <!-- FEATURES ROW -->
+  <div style="margin-bottom:14px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Useful Travel Tools</div>
+  </div>
   <div class="features-grid-wrap features-bg" style="display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:60px;background:var(--paper-dark);">
     <a href="world-clock.html" id="worldClockTile" class="feature-item-bg" style="text-decoration:none;color:inherit;border-right:1px solid var(--border);position:relative;overflow:hidden;">
       <div id="worldClockFlagBg" style="position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.35;z-index:0;pointer-events:none;"></div>
