@@ -181,9 +181,29 @@ body.dark .suggestion-item:hover {
   transition: box-shadow 0.15s, transform 0.15s;
 }
 
+.result-card {
+  position: relative;
+  overflow: hidden;
+}
+
 .result-card:hover {
   box-shadow: 4px 4px 0 #000;
   transform: translate(-2px, -2px);
+}
+
+.result-card-flag-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.25;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.result-card > *:not(.result-card-flag-bg) {
+  position: relative;
+  z-index: 1;
 }
 
 body.dark .result-card { border-color: #fff; }
@@ -1162,11 +1182,13 @@ const distUnit = getTrainCountry(t) === 'USA' ? ' mi' : ' km';
       ? Math.abs(tStop.km - fStop.km) + distUnit
       : t.distance || '—';
 
-    const card = document.createElement('a');
+const card = document.createElement('a');
     card.className = 'result-card';
     card.href = 'train-' + t.number + '.html';
+    const flagCode = getTrainCountry(t) === 'USA' ? 'us' : 'in';
 
     card.innerHTML = `
+      <div class="result-card-flag-bg" style="background-image:url('https://flagcdn.com/w320/${flagCode}.png');"></div>
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;padding-bottom:14px;border-bottom:3px solid #fff;">
         <div style="display:flex;align-items:center;gap:16px;">
           <div style="font-size:32px;font-weight:700;">${t.number}</div>
