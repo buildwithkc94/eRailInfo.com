@@ -989,8 +989,14 @@ function handleStationSearch() {
 
   allSearchResults = results;
   allSearchLabel = label;
-  allSearchFromStop = fromSelected && toSelected ? fromSelected : null;
-  allSearchToStop = fromSelected && toSelected ? toSelected : null;
+  if (fromSelected && toSelected) {
+    allSearchFromStop = fromSelected;
+    allSearchToStop = toSelected;
+  } else {
+    // Single-station search: use that station as the FROM point for every card
+    allSearchFromStop = fromSelected || toSelected;
+    allSearchToStop = null;
+  }
   showResults(results, allSearchLabel, allSearchFromStop, allSearchToStop);
 }
 
