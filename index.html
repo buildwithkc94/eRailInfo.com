@@ -239,6 +239,36 @@ body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
   padding: 0 4px;
 }
 
+/* ── USA MODAL CAPSULES (square app-icon style) ── */
+.usa-cat-btn {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 22% !important;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.usa-cat-btn:hover {
+  box-shadow: 4px 4px 0 #000;
+  transform: translate(-2px, -2px);
+}
+.usa-cat-count-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #e63946;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 22%;
+  min-width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 0 4px;
+}
+
 /* ── MOBILE ── */
 @media (max-width: 768px) {
 
@@ -450,7 +480,7 @@ body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
     <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/ch.png');"></div><div style="font-size:13px;font-weight:700;">Switzerland</div></a>
     <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/tw.png');"></div><div style="font-size:13px;font-weight:700;">Taiwan</div></a>
     <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/gb.png');"></div><div style="font-size:13px;font-weight:700;">United Kingdom</div></a>
-    <a href="#" class="station-card-bg" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/us.png');"></div><div style="font-size:13px;font-weight:700;">United States</div></a>
+    <a href="#" class="station-card-bg" onclick="event.preventDefault();openUSAModal();" style="text-decoration:none;"><div class="station-flag-bg" style="background-image:url('https://flagcdn.com/w320/us.png');"></div><div style="font-size:13px;font-weight:700;">United States</div></a>
   </div>
 
   
@@ -501,6 +531,28 @@ body.dark .station-card-bg:hover { box-shadow: 4px 4px 0 #fff; }
     <div id="indiaCategoryGrid" style="display:grid;grid-template-columns:repeat(auto-fill,90px);gap:14px;justify-content:center;"></div>
     <div style="text-align:center;font-size:12px;color:#999;margin-top:20px;">
       &#9432; <span id="indiaCategoryCount"></span> train categories available under India.
+    </div>
+  </div>
+</div>
+
+<!-- USA TRAIN CATEGORIES MODAL -->
+<div id="usaModalOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#0a2647;border:3px solid #000;border-radius:8px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;position:relative;">
+    <button onclick="closeUSAModal()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:6px;">
+      <img src="https://flagcdn.com/w80/us.png" style="width:48px;border:1px solid #444;border-radius:4px;">
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <div style="font-size:22px;font-weight:700;color:#fff;">Browse USA Trains</div>
+          <span id="usaTotalBadge" style="background:#222;color:#fff;border:2px solid #fff;border-radius:22%;padding:6px 14px;font-size:13px;font-weight:700;white-space:nowrap;"></span>
+        </div>
+        <div style="font-size:13px;color:#b8c4d6;">Select an Amtrak route to explore</div>
+      </div>
+    </div>
+    <hr style="border-color:#333;margin:18px 0;">
+    <div id="usaCategoryGrid" style="display:grid;grid-template-columns:repeat(auto-fill,90px);gap:14px;justify-content:center;"></div>
+    <div style="text-align:center;font-size:12px;color:#999;margin-top:20px;">
+      &#9432; <span id="usaCategoryCount"></span> Amtrak routes available under United States.
     </div>
   </div>
 </div>
@@ -659,8 +711,47 @@ function closeIndiaModal() {
   document.getElementById('indiaModalOverlay').style.display = 'none';
 }
 
-document.getElementById('indiaModalOverlay').addEventListener('click', (e) => {
-  if (e.target.id === 'indiaModalOverlay') closeIndiaModal();
+// ── USA TRAIN CATEGORIES MODAL ──
+function openUSAModal() {
+  const grid = document.getElementById('usaCategoryGrid');
+  grid.innerHTML = '';
+  let usaTotalTrains = 0;
+  usaTrainCategories.forEach(cat => {
+    const catCount = trains.filter(t => t.category === cat).length;
+    usaTotalTrains += catCount;
+
+    const btn = document.createElement('a');
+    btn.href = '#';
+    btn.className = 'usa-cat-btn';
+    btn.style.cssText = `display:flex;align-items:center;justify-content:center;text-align:center;background:#558AA1;color:#fff;border:2px solid #000;padding:6px;font-size:10px;line-height:1.2;font-weight:700;text-decoration:none;cursor:pointer;`;
+
+    const label = document.createElement('span');
+    label.textContent = cat;
+
+    const countBadge = document.createElement('span');
+    countBadge.textContent = catCount;
+    countBadge.className = 'usa-cat-count-badge';
+
+    btn.appendChild(label);
+    btn.appendChild(countBadge);
+    btn.onclick = (e) => {
+      e.preventDefault();
+      closeUSAModal();
+      filterByCategory(cat);
+    };
+    grid.appendChild(btn);
+  });
+  document.getElementById('usaCategoryCount').textContent = usaTrainCategories.length;
+  document.getElementById('usaTotalBadge').textContent = 'Trains: ' + usaTotalTrains;
+  document.getElementById('usaModalOverlay').style.display = 'flex';
+}
+
+function closeUSAModal() {
+  document.getElementById('usaModalOverlay').style.display = 'none';
+}
+
+document.getElementById('usaModalOverlay').addEventListener('click', (e) => {
+  if (e.target.id === 'usaModalOverlay') closeUSAModal();
 });
 
 if (typeof worldCities !== 'undefined' && worldCities.length) {
