@@ -826,7 +826,14 @@ function buildStationInput(inputId, dropdownId, pillBoxId, onSelect) {
     matches.forEach(s => {
       const item = document.createElement('div');
       item.className = 'suggestion-item';
-      item.innerHTML = `<span class="suggestion-code">${s.code}</span><span class="suggestion-name">${s.station}</span>`;
+      const countryColor = s.country === 'USA' ? '#558AA1' : '#0a2647';
+      const countryLabel = s.country === 'USA' ? 'USA' : 'IN';
+      item.innerHTML = `
+        <span class="suggestion-code-cell" style="background:${countryColor};">
+          <span class="suggestion-code-text">${s.code}</span>
+          <span class="suggestion-country-tag">${countryLabel}</span>
+        </span>
+        <span class="suggestion-name">${s.station}</span>`;
       item.onclick = () => {
         onSelect(s);
         input.value = '';
@@ -947,6 +954,7 @@ function handleStationSearch() {
   const to = toSelected.code.toLowerCase();
 
   const results = trains.filter(t => {
+    if (getTrainCountry(t) !== fromSelected.country || getTrainCountry(t) !== toSelected.country) return false;
     const fromIndex = t.timetable.findIndex(s => s.code.toLowerCase() === from);
     const toIndex = t.timetable.findIndex(s => s.code.toLowerCase() === to);
     return fromIndex !== -1 && toIndex !== -1 && fromIndex < toIndex;
