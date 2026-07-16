@@ -2171,7 +2171,7 @@ timetable: [
 },
 {
   number: "AMTK-006",
-  name: "Blue Water",
+  name: "Borealis",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2191,7 +2191,7 @@ timetable: [
 },
   {
   number: "AMTK-007",
-  name: "Blue Water",
+  name: "California Zephyr",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2211,7 +2211,7 @@ timetable: [
 },
   {
   number: "AMTK-008",
-  name: "Blue Water",
+  name: "Capitol Corridor",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2231,7 +2231,7 @@ timetable: [
 },
   {
   number: "AMTK-009",
-  name: "Blue Water",
+  name: "Capitol Limited",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2251,7 +2251,7 @@ timetable: [
 },
   {
   number: "AMTK-010",
-  name: "Blue Water",
+  name: "Cardinal",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2271,7 +2271,7 @@ timetable: [
 },
   {
   number: "AMTK-011",
-  name: "Blue Water",
+  name: "Carl Sandburg",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2291,7 +2291,7 @@ timetable: [
 },
   {
   number: "AMTK-012",
-  name: "Blue Water",
+  name: "Carolinian",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2311,7 +2311,7 @@ timetable: [
 },
   {
   number: "AMTK-013",
-  name: "Blue Water",
+  name: "City of New Orleans",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2331,7 +2331,7 @@ timetable: [
 },
   {
   number: "AMTK-014",
-  name: "Blue Water",
+  name: "Coast Starlight",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2351,7 +2351,7 @@ timetable: [
 },
   {
   number: "AMTK-015",
-  name: "Blue Water",
+  name: "Crescent",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2371,7 +2371,7 @@ timetable: [
 },
   {
   number: "AMTK-016",
-  name: "Blue Water",
+  name: "Downeaster",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2391,7 +2391,7 @@ timetable: [
 },
   {
   number: "AMTK-017",
-  name: "Blue Water",
+  name: "Empire Builder",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2411,7 +2411,7 @@ timetable: [
 },
   {
   number: "AMTK-018",
-  name: "Blue Water",
+  name: "Empire Service",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2431,7 +2431,7 @@ timetable: [
 },
   {
   number: "AMTK-019",
-  name: "Blue Water",
+  name: "Ethan Allen Express",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2451,7 +2451,7 @@ timetable: [
 },
   {
   number: "AMTK-020",
-  name: "Blue Water",
+  name: "Floridian",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2471,7 +2471,7 @@ timetable: [
 },
   {
   number: "AMTK-021",
-  name: "Blue Water",
+  name: "Heartland Flyer",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2491,7 +2491,7 @@ timetable: [
 },
   {
   number: "AMTK-022",
-  name: "Blue Water",
+  name: "Hiawatha Service",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2511,7 +2511,7 @@ timetable: [
 },
   {
   number: "AMTK-023",
-  name: "Blue Water",
+  name: "Illini",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2531,7 +2531,7 @@ timetable: [
 },
   {
   number: "AMTK-024",
-  name: "Blue Water",
+  name: "Illinois Zephyr",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2551,7 +2551,7 @@ timetable: [
 },
   {
   number: "AMTK-025",
-  name: "Blue Water",
+  name: "Keystone Service",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2571,7 +2571,7 @@ timetable: [
 },
   {
   number: "AMTK-026",
-  name: "Blue Water",
+  name: "Lake Shore Limited",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2591,7 +2591,7 @@ timetable: [
 },
   {
   number: "AMTK-027",
-  name: "Blue Water",
+  name: "Lincoln Service",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2611,7 +2611,7 @@ timetable: [
 },
   {
   number: "AMTK-028",
-  name: "Blue Water",
+  name: "Maple Leaf",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2631,7 +2631,7 @@ timetable: [
 },
   {
   number: "AMTK-029",
-  name: "Blue Water",
+  name: "Missouri River Runner",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2651,7 +2651,7 @@ timetable: [
 },
   {
   number: "AMTK-030",
-  name: "Blue Water",
+  name: "Northeast Regional",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2671,7 +2671,7 @@ timetable: [
 },
   {
   number: "AMTK-031",
-  name: "Blue Water",
+  name: "Pacific Surfliner",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2691,7 +2691,7 @@ timetable: [
 },
   {
   number: "AMTK-032",
-  name: "Blue Water",
+  name: "Palmetto",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2711,7 +2711,7 @@ timetable: [
 },
   {
   number: "AMTK-033",
-  name: "Blue Water",
+  name: "Pennsylvanian",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2731,7 +2731,7 @@ timetable: [
 },
   {
   number: "AMTK-034",
-  name: "Blue Water",
+  name: "Pere Marquette",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2751,7 +2751,7 @@ timetable: [
 },
   {
   number: "AMTK-035",
-  name: "Blue Water",
+  name: "Piedmont",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2771,7 +2771,7 @@ timetable: [
 },
   {
   number: "AMTK-036",
-  name: "Blue Water",
+  name: "Saluki",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2791,7 +2791,7 @@ timetable: [
 },
   {
   number: "AMTK-037",
-  name: "Blue Water",
+  name: "San Joaquins",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2811,7 +2811,7 @@ timetable: [
 },
   {
   number: "AMTK-038",
-  name: "Blue Water",
+  name: "Silver Meteor",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2831,7 +2831,7 @@ timetable: [
 },
   {
   number: "AMTK-039",
-  name: "Blue Water",
+  name: "Southwest Chief",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2851,7 +2851,7 @@ timetable: [
 },
   {
   number: "AMTK-040",
-  name: "Blue Water",
+  name: "Sunset Limited",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2871,7 +2871,7 @@ timetable: [
 },
   {
   number: "AMTK-041",
-  name: "Blue Water",
+  name: "Texas Eagle",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2891,7 +2891,7 @@ timetable: [
 },
   {
   number: "AMTK-042",
-  name: "Blue Water",
+  name: "Vermonter",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
@@ -2911,7 +2911,7 @@ timetable: [
 },
   {
   number: "AMTK-043",
-  name: "Blue Water",
+  name: "Wolverine",
   returnNumber: null,
   from: "Chicago Union Station (CHI)",
   to: "Port Huron (PTH)",
