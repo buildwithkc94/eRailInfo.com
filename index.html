@@ -1305,8 +1305,11 @@ trainInput.addEventListener('input', () => {
 matches.forEach(t => {
     const item = document.createElement('div');
     item.className = 'suggestion-item';
+    const flagCode = getTrainCountry(t) === 'USA' ? 'us' : 'in';
     item.innerHTML = `
-      <span class="suggestion-code">${t.number}</span>
+      <span class="suggestion-code-cell" style="background-image:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),url('https://flagcdn.com/w160/${flagCode}.png');">
+        <span class="suggestion-code-text">${t.number}</span>
+      </span>
       <span class="suggestion-name">${t.name} <span style="font-weight:400;color:#aaa;font-size:11px;">${t.from.split('(')[0].trim()} → ${t.to.split('(')[0].trim()}</span></span>
     `;
     item.onclick = () => {
