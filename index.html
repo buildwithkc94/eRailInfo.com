@@ -958,26 +958,40 @@ function handleTrainSearch() {
 
 // ── STATION SEARCH ──
 function handleStationSearch() {
-  if (!fromSelected || !toSelected) {
-    alert('Please select both From and To stations from the dropdown.');
+  if (!fromSelected && !toSelected) {
+    alert('Please select at least one station from the dropdown.');
     return;
   }
 
-  const from = fromSelected.code.toLowerCase();
-  const to = toSelected.code.toLowerCase();
+  let results, label;
 
-  const results = trains.filter(t => {
-    if (getTrainCountry(t) !== fromSelected.country || getTrainCountry(t) !== toSelected.country) return false;
-    const fromIndex = t.timetable.findIndex(s => s.code.toLowerCase() === from);
-    const toIndex = t.timetable.findIndex(s => s.code.toLowerCase() === to);
-    return fromIndex !== -1 && toIndex !== -1 && fromIndex < toIndex;
-  });
+  if (fromSelected && toSelected) {
+    // Both stations selected — journey search (existing behavior)
+    const from = fromSelected.code.toLowerCase();
+    const to = toSelected.code.toLowerCase();
+    results = trains.filter(t => {
+      if (getTrainCountry(t) !== fromSelected.country || getTrainCountry(t) !== toSelected.country) return false;
+      const fromIndex = t.timetable.findIndex(s => s.code.toLowerCase() === from);
+      const toIndex = t.timetable.findIndex(s => s.code.toLowerCase() === to);
+      return fromIndex !== -1 && toIndex !== -1 && fromIndex < toIndex;
+    });
+    label = 'TRAINS FOUND (' + results.length + ')';
+  } else {
+    // Only one station selected — show all trains passing through it
+    const single = fromSelected || toSelected;
+    const code = single.code.toLowerCase();
+    results = trains.filter(t => {
+      if (getTrainCountry(t) !== single.country) return false;
+      return t.timetable.some(s => s.code.toLowerCase() === code);
+    });
+    label = 'TRAINS THROUGH ' + single.code.toUpperCase() + ' (' + results.length + ')';
+  }
 
   allSearchResults = results;
-  allSearchLabel = 'TRAINS FOUND (' + results.length + ')';
-  allSearchFromStop = fromSelected;
-  allSearchToStop = toSelected;
-  showResults(results, allSearchLabel, fromSelected, toSelected);
+  allSearchLabel = label;
+  allSearchFromStop = fromSelected && toSelected ? fromSelected : null;
+  allSearchToStop = fromSelected && toSelected ? toSelected : null;
+  showResults(results, allSearchLabel, allSearchFromStop, allSearchToStop);
 }
 
 // ── CATEGORY FILTER (within current search results) ──
