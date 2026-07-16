@@ -3005,6 +3005,14 @@ function getTrainCountry(t) {
   return usaTrainCategories.includes(t.category) ? 'USA' : 'India';
 }
 
+
+function findReturnTrain(trainNumber) {
+    const train = trains.find(t => t.number === trainNumber);
+
+    if (!train || !train.returnNumber) return null;
+
+    return trains.find(t => t.number === train.returnNumber) || null;
+}
 const categoryColors = {
   "AC Express":           "#571717",
   "AC Superfast":         "#175737",
