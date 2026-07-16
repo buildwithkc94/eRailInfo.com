@@ -1157,8 +1157,9 @@ function renderResultsList() {
       timeDiff = Math.floor(diff / 60) + 'h ' + (diff % 60) + 'm';
     }
 
+const distUnit = getTrainCountry(t) === 'USA' ? ' mi' : ' km';
     const distDisplay = fStop && tStop && fStop.km !== undefined && tStop.km !== undefined
-      ? Math.abs(tStop.km - fStop.km) + ' km'
+      ? Math.abs(tStop.km - fStop.km) + distUnit
       : t.distance || '—';
 
     const card = document.createElement('a');
