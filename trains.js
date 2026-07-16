@@ -3001,12 +3001,10 @@ const usaTrainCategories = [
   "Southwest Chief", "Sunset Limited", "Texas Eagle", "Vermonter", "Wolverine"
 ];
 
-function findReturnTrain(t) {
-  if (t.returnNumber) {
-    return trains.find(o => o.number === t.returnNumber);
-  }
-  return null;
+function getTrainCountry(t) {
+  return usaTrainCategories.includes(t.category) ? 'USA' : 'India';
 }
+
 const categoryColors = {
   "AC Express":           "#571717",
   "AC Superfast":         "#175737",
