@@ -3006,12 +3006,11 @@ function getTrainCountry(t) {
 }
 
 
-function findReturnTrain(trainNumber) {
-    const train = trains.find(t => t.number === trainNumber);
-
-    if (!train || !train.returnNumber) return null;
-
-    return trains.find(t => t.number === train.returnNumber) || null;
+function findReturnTrain(t) {
+  if (t && t.returnNumber) {
+    return trains.find(o => o.number === t.returnNumber);
+  }
+  return null;
 }
 const categoryColors = {
   "AC Express":           "#571717",
