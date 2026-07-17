@@ -179,6 +179,30 @@ body.dark .journey-stop-box:not(.origin):not(.destination) { border-color: #fff 
 /* ── TIMETABLE ── */
 .timetable-wrapper { display: flex; justify-content: center; margin-top: 10px; }
 
+.timetable-wrapper.usa-flag-bg {
+  position: relative;
+}
+.timetable-wrapper.usa-flag-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://flagcdn.com/w320/us.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+.timetable-wrapper.usa-flag-bg .tt-table {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.88);
+}
+body.dark .timetable-wrapper.usa-flag-bg .tt-table {
+  background: rgba(36,36,36,0.88);
+}
+
 .tt-table {
   border-collapse: collapse;
   font-size: 12px;
@@ -270,8 +294,8 @@ body.dark .back-link:hover { color: #e8e8e8; }
   .journey-stop-box { min-width: 100px; }
   .train-tabs { overflow-x: auto; }
   .tab-btn { padding: 12px 14px; font-size: 11px; }
-  .tt-table { font-size: 10px; border-collapse: separate; border-spacing: 0; }
-  .tt-table th, .tt-table td { padding: 8px 6px; font-size: 10px; }
+  .tt-table { font-size: 9px; border-collapse: separate; border-spacing: 0; }
+  .tt-table th, .tt-table td { padding: 8px 6px; font-size: 9px; }
 
   .timetable-wrapper {
     overflow-x: auto;
@@ -722,24 +746,29 @@ const colColors = {
   schedule: '#C7A348',
 };
 
-function thCell(label, color) {
+function thCell(label, color, forceWhiteText) {
   const dark = document.body.classList.contains('dark');
-  const textColor = dark ? 'white' : '#222';
+  const textColor = forceWhiteText ? '#fff' : (dark ? 'white' : '#222');
   return `<th style="border-right:3px solid #222;background:${color};color:${textColor};font-weight:800;font-size:11px;">${label}</th>`;
 }
 function rebuildTimetable() {
   document.getElementById('fullTimetable').innerHTML = '';
+  const isUSA = getTrainCountry(train) === 'USA';
+  const wrapperEl = document.querySelector('.timetable-wrapper');
+  if (wrapperEl) wrapperEl.classList.toggle('usa-flag-bg', isUSA);
+
+  const hc = isUSA ? '#0a2647' : null;
   const ttHead = document.createElement('thead');
 ttHead.innerHTML = `<tr>
-  ${thCell('#', colColors.sno)}
-  ${thCell('Station', colColors.station)}
-  ${thCell('Code', colColors.code)}
-  ${thCell('Zone', colColors.zone)}
-  ${thCell('Arrival', colColors.time)}
-  ${thCell('Departure', colColors.time)}
-  ${thCell('Halt', colColors.halt)}
-  ${thCell('Distance', colColors.distance)}
-  ${thCell('Schedule', colColors.schedule)}
+  ${thCell('#', hc || colColors.sno, isUSA)}
+  ${thCell('Station', hc || colColors.station, isUSA)}
+  ${thCell('Code', hc || colColors.code, isUSA)}
+  ${thCell('Zone', hc || colColors.zone, isUSA)}
+  ${thCell('Arrival', hc || colColors.time, isUSA)}
+  ${thCell('Departure', hc || colColors.time, isUSA)}
+  ${thCell('Halt', hc || colColors.halt, isUSA)}
+  ${thCell('Distance', hc || colColors.distance, isUSA)}
+  ${thCell('Schedule', hc || colColors.schedule, isUSA)}
 </tr>`;
 document.getElementById('fullTimetable').appendChild(ttHead);
 
