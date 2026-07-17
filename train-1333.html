@@ -207,6 +207,7 @@ body.dark .timetable-wrapper.usa-flag-bg .tt-table {
   border-collapse: collapse;
   font-size: 12px;
   border: 3px solid #222;
+  border-top: 3px solid #222 !important;
   background: white;
   width: 100%;
 }
@@ -350,8 +351,18 @@ body.dark .back-link:hover { color: #e8e8e8; }
   .tt-table th:nth-child(4), .tt-table td:nth-child(4) {
     background: #0a2647 !important;
     color: #fff !important;
-    border-right: 3px solid #fff !important;
     border-bottom: 3px solid #fff !important;
+  }
+  .tt-table th:nth-child(1), .tt-table td:nth-child(1),
+  .tt-table th:nth-child(2), .tt-table td:nth-child(2),
+  .tt-table th:nth-child(3), .tt-table td:nth-child(3) {
+    border-right: 3px solid #fff !important;
+  }
+  .tt-table td:nth-child(4) {
+    border-right: 3px solid #943861 !important;
+  }
+  .tt-table th:nth-child(4) {
+    border-right: 3px solid #943861 !important;
   }
 
   .tt-table td:nth-child(2) div {
