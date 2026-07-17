@@ -294,8 +294,8 @@ body.dark .back-link:hover { color: #e8e8e8; }
   .journey-stop-box { min-width: 100px; }
   .train-tabs { overflow-x: auto; }
   .tab-btn { padding: 12px 14px; font-size: 11px; }
-  .tt-table { font-size: 9px; border-collapse: separate; border-spacing: 0; }
-  .tt-table th, .tt-table td { padding: 8px 6px; font-size: 9px; }
+  .tt-table { border-collapse: separate; border-spacing: 0; }
+  .tt-table th, .tt-table td { padding: 6px 4px !important; font-size: 9px !important; }
 
   .timetable-wrapper {
     overflow-x: auto;
@@ -308,41 +308,48 @@ body.dark .back-link:hover { color: #e8e8e8; }
     position: sticky;
     left: 0;
     z-index: 2;
-    min-width: 28px;
-    background: var(--paper) !important;
+    min-width: 22px;
+    max-width: 22px;
   }
   .tt-table th:nth-child(2), .tt-table td:nth-child(2) {
     position: sticky;
-    left: 28px;
+    left: 22px;
     z-index: 2;
-    min-width: 130px;
-    background: var(--paper) !important;
+    min-width: 100px;
+    max-width: 100px;
   }
   .tt-table th:nth-child(3), .tt-table td:nth-child(3) {
     position: sticky;
-    left: 158px;
+    left: 122px;
     z-index: 2;
-    min-width: 55px;
-    background: var(--paper) !important;
+    min-width: 38px;
+    max-width: 38px;
   }
   .tt-table th:nth-child(4), .tt-table td:nth-child(4) {
     position: sticky;
-    left: 213px;
+    left: 160px;
     z-index: 2;
-    min-width: 55px;
-    background: var(--paper) !important;
+    min-width: 48px;
+    max-width: 48px;
+  }
+
+  /* Frozen columns always navy blue, on top of any inline row color */
+  .tt-table th:nth-child(1), .tt-table td:nth-child(1),
+  .tt-table th:nth-child(2), .tt-table td:nth-child(2),
+  .tt-table th:nth-child(3), .tt-table td:nth-child(3),
+  .tt-table th:nth-child(4), .tt-table td:nth-child(4) {
+    background: #0a2647 !important;
+    color: #fff !important;
+    border-right-color: #fff !important;
+  }
+
+  .tt-table td:nth-child(2) div {
+    color: #cfd8e6 !important;
   }
 
   /* Header row needs to sit above sticky body cells */
   .tt-table thead th {
     z-index: 3;
-  }
-
-  body.dark .tt-table th:nth-child(1), body.dark .tt-table td:nth-child(1),
-  body.dark .tt-table th:nth-child(2), body.dark .tt-table td:nth-child(2),
-  body.dark .tt-table th:nth-child(3), body.dark .tt-table td:nth-child(3),
-  body.dark .tt-table th:nth-child(4), body.dark .tt-table td:nth-child(4) {
-    background: #242424 !important;
   }
   .journey-info { flex-direction: column; gap: 8px; padding: 12px; }
   .journey-info-item { border-right: none; border-bottom: 1px solid var(--border); padding: 6px 0; width: 100%; }
