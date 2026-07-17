@@ -270,8 +270,56 @@ body.dark .back-link:hover { color: #e8e8e8; }
   .journey-stop-box { min-width: 100px; }
   .train-tabs { overflow-x: auto; }
   .tab-btn { padding: 12px 14px; font-size: 11px; }
-  .tt-table { font-size: 10px; }
+  .tt-table { font-size: 10px; border-collapse: separate; border-spacing: 0; }
   .tt-table th, .tt-table td { padding: 8px 6px; font-size: 10px; }
+
+  .timetable-wrapper {
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── FREEZE FIRST 4 COLUMNS (#, Station, Code, Zone) ── */
+  .tt-table th:nth-child(1), .tt-table td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    min-width: 28px;
+    background: var(--paper) !important;
+  }
+  .tt-table th:nth-child(2), .tt-table td:nth-child(2) {
+    position: sticky;
+    left: 28px;
+    z-index: 2;
+    min-width: 130px;
+    background: var(--paper) !important;
+  }
+  .tt-table th:nth-child(3), .tt-table td:nth-child(3) {
+    position: sticky;
+    left: 158px;
+    z-index: 2;
+    min-width: 55px;
+    background: var(--paper) !important;
+  }
+  .tt-table th:nth-child(4), .tt-table td:nth-child(4) {
+    position: sticky;
+    left: 213px;
+    z-index: 2;
+    min-width: 55px;
+    background: var(--paper) !important;
+  }
+
+  /* Header row needs to sit above sticky body cells */
+  .tt-table thead th {
+    z-index: 3;
+  }
+
+  body.dark .tt-table th:nth-child(1), body.dark .tt-table td:nth-child(1),
+  body.dark .tt-table th:nth-child(2), body.dark .tt-table td:nth-child(2),
+  body.dark .tt-table th:nth-child(3), body.dark .tt-table td:nth-child(3),
+  body.dark .tt-table th:nth-child(4), body.dark .tt-table td:nth-child(4) {
+    background: #242424 !important;
+  }
   .journey-info { flex-direction: column; gap: 8px; padding: 12px; }
   .journey-info-item { border-right: none; border-bottom: 1px solid var(--border); padding: 6px 0; width: 100%; }
   .journey-info-item:last-child { border-bottom: none; }
