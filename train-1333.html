@@ -215,6 +215,9 @@ body.dark .timetable-wrapper.usa-flag-bg .tt-table {
 .tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 3px solid #222; white-space: nowrap; color: inherit; }
 .tt-table th:last-child { border-right: none; }
 .tt-table td { padding: 11px 10px; border-bottom: 3px solid #222; border-right: 3px solid #222; vertical-align: middle; text-align: center; font-size: 11px; }
+
+/* Arrival, Departure, Halt, Distance, Schedule columns get a dedicated border color */
+.tt-table td:nth-child(n+5) { border-right: 3px solid #943861; border-bottom: 3px solid #943861; }
 .tt-table td:last-child { border-right: none; }
 .tt-table tbody tr:last-child td { border-bottom: none; }
 .tt-table tbody tr:hover { background: #faf7ef; }
@@ -372,62 +375,13 @@ body.dark .back-link:hover { color: #e8e8e8; }
   <div class="logo-badge-band"></div>
 </a>
 <div id="delhiTimeCapsule" class="time-capsule" onclick="toggleTimeFormat()">
-  <div class="time-capsule-time" id="timeCapsuleTime"></div>
-  <div class="time-capsule-date" id="timeCapsuleDate"></div>
+  <div class="time-cell" id="timeCapsuleTime"></div>
+  <div class="time-cell" id="timeCapsuleDay"></div>
+  <div class="time-cell" id="timeCapsuleDate"></div>
+  <div class="time-cell" id="timeCapsuleZoneName"></div>
+  <div class="time-cell" id="timeCapsuleZoneOffset"></div>
 </div>
 <div class="header-right">
-      <ul class="nav-menu">
-        <li class="dropdown">
-          <a href="#" class="nav-btn">&#128646; TRAINS &#9662;</a>
-          <ul class="dropdown-menu" id="trainsDropdown"></ul>
-        </li>
-        <li class="dropdown">
-  <a href="#" class="nav-btn">&#127963; STATIONS &#9662;</a>
-  <ul class="dropdown-menu">
-    <li class="dropdown-submenu">
-      <a href="#" class="submenu-trigger">METRO</a>
-      <ul class="submenu">
-        <li><a href="#">Ahmedabad</a></li>
-        <li><a href="#">Agra</a></li>
-        <li><a href="#">Bangalore</a></li>
-        <li><a href="#">Bhopal</a></li>
-        <li><a href="#">Chennai</a></li>
-        <li><a href="#">Hyderabad</a></li>
-        <li><a href="#">Indore</a></li>
-        <li><a href="#">Jaipur</a></li>
-        <li><a href="#">Kanpur</a></li>
-        <li><a href="#">Kochi</a></li>
-        <li><a href="#">Kolkata</a></li>
-        <li><a href="#">Lucknow</a></li>
-        <li><a href="#">Mumbai</a></li>
-        <li><a href="#">Nagpur</a></li>
-        <li><a href="#">Patna</a></li>
-        <li><a href="#">Pune</a></li>
-        <li><a href="#">Surat (In progress)</a></li>
-      </ul>
-    </li>
-    <li class="dropdown-submenu">
-      <a href="#" class="submenu-trigger">SUBURBAN/MMTS</a>
-      <ul class="submenu">
-        <li><a href="#">Bangalore</a></li>
-        <li><a href="#">Chennai</a></li>
-        <li><a href="#">Delhi</a></li>
-        <li><a href="#">Hyderabad</a></li>
-        <li><a href="#">Kolkata</a></li>
-        <li><a href="#">Mumbai</a></li>
-        <li><a href="#">Pune</a></li>
-      </ul>
-    </li>
-  </ul>
-</li>
-        <li class="dropdown">
-          <a href="#" class="nav-btn">&#128276; UPDATES &#9662;</a>
-          <ul class="dropdown-menu">
-            <li><a href="revision-history.html">Revision History</a></li>
-            <li><a href="revision-history.html">Feedback</a></li>
-          </ul>
-        </li>
-      </ul>
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
@@ -437,14 +391,6 @@ body.dark .back-link:hover { color: #e8e8e8; }
   </div>
 </div>
 </header>
-<div class="browse-bar">
-<div class="container">
-  <div class="browse-bar-inner">
-    <span class="browse-bar-label">Browse</span>
-    <div id="capsuleBar" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
-  </div>
-</div>
-</div>
 
 <div class="container">
   <a href="index.html" class="back-link">&#8592; BACK TO SEARCH</a>
@@ -527,7 +473,6 @@ function toggleTimeFormat() {
 function updateDelhiTime() {
   const now = new Date();
   let timeStr = now.toLocaleTimeString('en-US', {
-    timeZone: 'Asia/Kolkata',
     hour12: !use24Hour,
     hour: '2-digit',
     minute: '2-digit',
@@ -535,13 +480,30 @@ function updateDelhiTime() {
   });
   if (!use24Hour) timeStr = timeStr.toUpperCase();
 
-  const dayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long' }).toUpperCase();
-  const day = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', day: '2-digit' });
-  const month = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', month: 'long' }).toUpperCase();
-  const year = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric' });
+  const dayStr = now.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
+  const day = now.toLocaleDateString('en-GB', { day: '2-digit' });
+  const month = now.toLocaleDateString('en-US', { month: 'long' }).toUpperCase();
+  const year = now.toLocaleDateString('en-US', { year: 'numeric' });
+
+  let zoneName = '';
+  try {
+    zoneName = Intl.DateTimeFormat('en-US', { timeZoneName: 'short' })
+      .formatToParts(now)
+      .find(p => p.type === 'timeZoneName').value;
+  } catch (e) { zoneName = ''; }
+
+  const offsetMin = -now.getTimezoneOffset();
+  const sign = offsetMin >= 0 ? '+' : '-';
+  const absMin = Math.abs(offsetMin);
+  const offH = Math.floor(absMin / 60);
+  const offM = absMin % 60;
+  const offsetStr = 'UTC' + sign + offH + (offM ? ':' + String(offM).padStart(2, '0') : '');
 
   document.getElementById('timeCapsuleTime').textContent = timeStr;
-  document.getElementById('timeCapsuleDate').textContent = dayStr + ' · ' + day + '/' + month + '/' + year;
+  document.getElementById('timeCapsuleDay').textContent = dayStr;
+  document.getElementById('timeCapsuleDate').textContent = day + '/' + month + '/' + year;
+  document.getElementById('timeCapsuleZoneName').textContent = zoneName;
+  document.getElementById('timeCapsuleZoneOffset').textContent = offsetStr;
 }
 
 updateDelhiTime();
@@ -581,38 +543,6 @@ const train = trains.find(t => t.number === trainNumber) || trains[0];
 const returnTrain = findReturnTrain(train);
 
 document.title = train.number + ' ' + train.name + ' — eRailInfo';
-
-// ── TRAINS DROPDOWN ──
-const trainsDropdown = document.getElementById('trainsDropdown');
-trainCategories.forEach(cat => {
-  const s = cat.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-');
-  const li = document.createElement('li');
-  const a = document.createElement('a');
-  a.textContent = cat;
-  a.href = 'category-' + s + '.html';
-  li.appendChild(a);
-  trainsDropdown.appendChild(li);
-});
-
-// ── CAPSULE BAR ──
-const capsuleBar = document.getElementById('capsuleBar');
-const lightTextColors = ['#F5EB27','#F5F527','#27F549','#27D3F5'];
-trainCategories.forEach(cat => {
-  const s = cat.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-');
-  const a = document.createElement('a');
-  a.className = 'capsule';
-  a.setAttribute('data-cat', cat);
-  a.textContent = cat;
-  a.href = 'category-' + s + '.html';
-  if (cat === train.category) {
-    const color = categoryColors[cat] || '#2c2c2c';
-    a.classList.add('active');
-    a.style.background = color;
-    a.style.borderColor = color;
-    a.style.color = lightTextColors.includes(color) ? '#222' : 'white';
-  }
-  capsuleBar.appendChild(a);
-});
 
 // ── FEATURED CARD ──
 const firstStop = train.timetable[0];
