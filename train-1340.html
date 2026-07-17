@@ -179,18 +179,51 @@ body.dark .journey-stop-box:not(.origin):not(.destination) { border-color: #fff 
 /* ── TIMETABLE ── */
 .timetable-wrapper { display: flex; justify-content: center; margin-top: 10px; }
 
+.timetable-wrapper.usa-flag-bg {
+  position: relative;
+}
+.timetable-wrapper.usa-flag-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://flagcdn.com/w320/us.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+.timetable-wrapper.usa-flag-bg .tt-table {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.88);
+}
+body.dark .timetable-wrapper.usa-flag-bg .tt-table {
+  background: rgba(36,36,36,0.88);
+}
+
 .tt-table {
   border-collapse: collapse;
   font-size: 12px;
   border: 3px solid #222;
+  border-top: 3px solid #222 !important;
   background: white;
   width: 100%;
 }
 
 .tt-table thead tr { border-bottom: 4px solid #222; }
+.tt-table thead th { border-top: 3px solid #222; }
+body.dark .tt-table thead th { border-top: 3px solid #fff !important; }
 .tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 3px solid #222; white-space: nowrap; color: inherit; }
 .tt-table th:last-child { border-right: none; }
 .tt-table td { padding: 11px 10px; border-bottom: 3px solid #222; border-right: 3px solid #222; vertical-align: middle; text-align: center; font-size: 11px; }
+
+/* Arrival, Departure, Halt, Distance, Schedule columns get a dedicated border color */
+.tt-table td:nth-child(n+5) { border-right: 3px solid #943861; border-bottom: 3px solid #943861; }
+
+/* Zone/Arrival divider on data rows only — header stays white/black */
+.tt-table td:nth-child(4) { border-right: 3px solid #943861 !important; }
 .tt-table td:last-child { border-right: none; }
 .tt-table tbody tr:last-child td { border-bottom: none; }
 .tt-table tbody tr:hover { background: #faf7ef; }
@@ -239,10 +272,12 @@ body.dark .journey-stop-box.destination .stop-label {
 }
 body.dark .journey-info { background: #0a2647; border-color: #fff; }
 body.dark .journey-info-item { border-right-color: #fff; color: #fff; }
-body.dark .tt-table { background: #242424; border-color: #383838; }
-body.dark .tt-table thead tr { background: #2a2a2a; border-bottom-color: #444; }
-body.dark .tt-table th { border-right-color: #555; }
-body.dark .tt-table td { border-bottom-color: #555; border-right-color: #555; }
+body.dark .tt-table { background: #242424; border: 3px solid #fff !important; }
+body.dark .tt-table thead tr { background: #2a2a2a; }
+body.dark .tt-table th { border-right: 3px solid #fff !important; border-bottom: 4px solid #fff !important; }
+body.dark .tt-table td { border-bottom: 3px solid #fff !important; border-right: 3px solid #fff !important; }
+body.dark .tt-table tbody tr:last-child td { border-bottom: none !important; }
+body.dark .tt-table td:last-child, body.dark .tt-table th:last-child { border-right: none !important; }
 body.dark .tt-table tbody tr:hover { background: #2e2e2e; }
 body.dark .tab-btn { border-color: #fff; }
 body.dark .tab-btn:hover { box-shadow: 4px 4px 0 #fff; }
@@ -270,8 +305,8 @@ body.dark .back-link:hover { color: #e8e8e8; }
   .journey-stop-box { min-width: 100px; }
   .train-tabs { overflow-x: auto; }
   .tab-btn { padding: 12px 14px; font-size: 11px; }
-  .tt-table { font-size: 10px; border-collapse: separate; border-spacing: 0; }
-  .tt-table th, .tt-table td { padding: 8px 6px; font-size: 10px; }
+  .tt-table { border-collapse: separate; border-spacing: 0; }
+  .tt-table th, .tt-table td { padding: 6px 4px !important; font-size: 9px !important; }
 
   .timetable-wrapper {
     overflow-x: auto;
@@ -284,29 +319,54 @@ body.dark .back-link:hover { color: #e8e8e8; }
     position: sticky;
     left: 0;
     z-index: 2;
-    min-width: 28px;
-    background: var(--paper) !important;
+    min-width: 22px;
+    max-width: 22px;
   }
   .tt-table th:nth-child(2), .tt-table td:nth-child(2) {
     position: sticky;
-    left: 28px;
+    left: 22px;
     z-index: 2;
-    min-width: 130px;
-    background: var(--paper) !important;
+    min-width: 100px;
+    max-width: 100px;
   }
   .tt-table th:nth-child(3), .tt-table td:nth-child(3) {
     position: sticky;
-    left: 158px;
+    left: 122px;
     z-index: 2;
-    min-width: 55px;
-    background: var(--paper) !important;
+    min-width: 38px;
+    max-width: 38px;
   }
   .tt-table th:nth-child(4), .tt-table td:nth-child(4) {
     position: sticky;
-    left: 213px;
+    left: 160px;
     z-index: 2;
-    min-width: 55px;
-    background: var(--paper) !important;
+    min-width: 48px;
+    max-width: 48px;
+  }
+
+  /* Frozen columns always navy blue, on top of any inline row color */
+  .tt-table th:nth-child(1), .tt-table td:nth-child(1),
+  .tt-table th:nth-child(2), .tt-table td:nth-child(2),
+  .tt-table th:nth-child(3), .tt-table td:nth-child(3),
+  .tt-table th:nth-child(4), .tt-table td:nth-child(4) {
+    background: #0a2647 !important;
+    color: #fff !important;
+    border-bottom: 3px solid #fff !important;
+  }
+  .tt-table th:nth-child(1), .tt-table td:nth-child(1),
+  .tt-table th:nth-child(2), .tt-table td:nth-child(2),
+  .tt-table th:nth-child(3), .tt-table td:nth-child(3) {
+    border-right: 3px solid #fff !important;
+  }
+  .tt-table td:nth-child(4) {
+    border-right: 3px solid #943861 !important;
+  }
+  .tt-table th:nth-child(4) {
+    border-right: 3px solid #943861 !important;
+  }
+
+  .tt-table td:nth-child(2) div {
+    color: #cfd8e6 !important;
   }
 
   /* Header row needs to sit above sticky body cells */
@@ -314,11 +374,9 @@ body.dark .back-link:hover { color: #e8e8e8; }
     z-index: 3;
   }
 
-  body.dark .tt-table th:nth-child(1), body.dark .tt-table td:nth-child(1),
-  body.dark .tt-table th:nth-child(2), body.dark .tt-table td:nth-child(2),
-  body.dark .tt-table th:nth-child(3), body.dark .tt-table td:nth-child(3),
-  body.dark .tt-table th:nth-child(4), body.dark .tt-table td:nth-child(4) {
-    background: #242424 !important;
+  /* Header bottom border under dynamic columns (Arrival→Schedule) — mobile only */
+  .tt-table th:nth-child(n+5) {
+    border-bottom: 3px solid #943861 !important;
   }
   .journey-info { flex-direction: column; gap: 8px; padding: 12px; }
   .journey-info-item { border-right: none; border-bottom: 1px solid var(--border); padding: 6px 0; width: 100%; }
@@ -338,62 +396,13 @@ body.dark .back-link:hover { color: #e8e8e8; }
   <div class="logo-badge-band"></div>
 </a>
 <div id="delhiTimeCapsule" class="time-capsule" onclick="toggleTimeFormat()">
-  <div class="time-capsule-time" id="timeCapsuleTime"></div>
-  <div class="time-capsule-date" id="timeCapsuleDate"></div>
+  <div class="time-cell" id="timeCapsuleTime"></div>
+  <div class="time-cell" id="timeCapsuleDay"></div>
+  <div class="time-cell" id="timeCapsuleDate"></div>
+  <div class="time-cell" id="timeCapsuleZoneName"></div>
+  <div class="time-cell" id="timeCapsuleZoneOffset"></div>
 </div>
 <div class="header-right">
-      <ul class="nav-menu">
-        <li class="dropdown">
-          <a href="#" class="nav-btn">&#128646; TRAINS &#9662;</a>
-          <ul class="dropdown-menu" id="trainsDropdown"></ul>
-        </li>
-        <li class="dropdown">
-  <a href="#" class="nav-btn">&#127963; STATIONS &#9662;</a>
-  <ul class="dropdown-menu">
-    <li class="dropdown-submenu">
-      <a href="#" class="submenu-trigger">METRO</a>
-      <ul class="submenu">
-        <li><a href="#">Ahmedabad</a></li>
-        <li><a href="#">Agra</a></li>
-        <li><a href="#">Bangalore</a></li>
-        <li><a href="#">Bhopal</a></li>
-        <li><a href="#">Chennai</a></li>
-        <li><a href="#">Hyderabad</a></li>
-        <li><a href="#">Indore</a></li>
-        <li><a href="#">Jaipur</a></li>
-        <li><a href="#">Kanpur</a></li>
-        <li><a href="#">Kochi</a></li>
-        <li><a href="#">Kolkata</a></li>
-        <li><a href="#">Lucknow</a></li>
-        <li><a href="#">Mumbai</a></li>
-        <li><a href="#">Nagpur</a></li>
-        <li><a href="#">Patna</a></li>
-        <li><a href="#">Pune</a></li>
-        <li><a href="#">Surat (In progress)</a></li>
-      </ul>
-    </li>
-    <li class="dropdown-submenu">
-      <a href="#" class="submenu-trigger">SUBURBAN/MMTS</a>
-      <ul class="submenu">
-        <li><a href="#">Bangalore</a></li>
-        <li><a href="#">Chennai</a></li>
-        <li><a href="#">Delhi</a></li>
-        <li><a href="#">Hyderabad</a></li>
-        <li><a href="#">Kolkata</a></li>
-        <li><a href="#">Mumbai</a></li>
-        <li><a href="#">Pune</a></li>
-      </ul>
-    </li>
-  </ul>
-</li>
-        <li class="dropdown">
-          <a href="#" class="nav-btn">&#128276; UPDATES &#9662;</a>
-          <ul class="dropdown-menu">
-            <li><a href="revision-history.html">Revision History</a></li>
-            <li><a href="revision-history.html">Feedback</a></li>
-          </ul>
-        </li>
-      </ul>
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
@@ -403,14 +412,6 @@ body.dark .back-link:hover { color: #e8e8e8; }
   </div>
 </div>
 </header>
-<div class="browse-bar">
-<div class="container">
-  <div class="browse-bar-inner">
-    <span class="browse-bar-label">Browse</span>
-    <div id="capsuleBar" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
-  </div>
-</div>
-</div>
 
 <div class="container">
   <a href="index.html" class="back-link">&#8592; BACK TO SEARCH</a>
@@ -493,7 +494,6 @@ function toggleTimeFormat() {
 function updateDelhiTime() {
   const now = new Date();
   let timeStr = now.toLocaleTimeString('en-US', {
-    timeZone: 'Asia/Kolkata',
     hour12: !use24Hour,
     hour: '2-digit',
     minute: '2-digit',
@@ -501,13 +501,30 @@ function updateDelhiTime() {
   });
   if (!use24Hour) timeStr = timeStr.toUpperCase();
 
-  const dayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long' }).toUpperCase();
-  const day = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', day: '2-digit' });
-  const month = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', month: 'long' }).toUpperCase();
-  const year = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric' });
+  const dayStr = now.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
+  const day = now.toLocaleDateString('en-GB', { day: '2-digit' });
+  const month = now.toLocaleDateString('en-US', { month: 'long' }).toUpperCase();
+  const year = now.toLocaleDateString('en-US', { year: 'numeric' });
+
+  let zoneName = '';
+  try {
+    zoneName = Intl.DateTimeFormat('en-US', { timeZoneName: 'short' })
+      .formatToParts(now)
+      .find(p => p.type === 'timeZoneName').value;
+  } catch (e) { zoneName = ''; }
+
+  const offsetMin = -now.getTimezoneOffset();
+  const sign = offsetMin >= 0 ? '+' : '-';
+  const absMin = Math.abs(offsetMin);
+  const offH = Math.floor(absMin / 60);
+  const offM = absMin % 60;
+  const offsetStr = 'UTC' + sign + offH + (offM ? ':' + String(offM).padStart(2, '0') : '');
 
   document.getElementById('timeCapsuleTime').textContent = timeStr;
-  document.getElementById('timeCapsuleDate').textContent = dayStr + ' · ' + day + '/' + month + '/' + year;
+  document.getElementById('timeCapsuleDay').textContent = dayStr;
+  document.getElementById('timeCapsuleDate').textContent = day + '/' + month + '/' + year;
+  document.getElementById('timeCapsuleZoneName').textContent = zoneName;
+  document.getElementById('timeCapsuleZoneOffset').textContent = offsetStr;
 }
 
 updateDelhiTime();
@@ -547,38 +564,6 @@ const train = trains.find(t => t.number === trainNumber) || trains[0];
 const returnTrain = findReturnTrain(train);
 
 document.title = train.number + ' ' + train.name + ' — eRailInfo';
-
-// ── TRAINS DROPDOWN ──
-const trainsDropdown = document.getElementById('trainsDropdown');
-trainCategories.forEach(cat => {
-  const s = cat.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-');
-  const li = document.createElement('li');
-  const a = document.createElement('a');
-  a.textContent = cat;
-  a.href = 'category-' + s + '.html';
-  li.appendChild(a);
-  trainsDropdown.appendChild(li);
-});
-
-// ── CAPSULE BAR ──
-const capsuleBar = document.getElementById('capsuleBar');
-const lightTextColors = ['#F5EB27','#F5F527','#27F549','#27D3F5'];
-trainCategories.forEach(cat => {
-  const s = cat.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-');
-  const a = document.createElement('a');
-  a.className = 'capsule';
-  a.setAttribute('data-cat', cat);
-  a.textContent = cat;
-  a.href = 'category-' + s + '.html';
-  if (cat === train.category) {
-    const color = categoryColors[cat] || '#2c2c2c';
-    a.classList.add('active');
-    a.style.background = color;
-    a.style.borderColor = color;
-    a.style.color = lightTextColors.includes(color) ? '#222' : 'white';
-  }
-  capsuleBar.appendChild(a);
-});
 
 // ── FEATURED CARD ──
 const firstStop = train.timetable[0];
@@ -722,24 +707,29 @@ const colColors = {
   schedule: '#C7A348',
 };
 
-function thCell(label, color) {
+function thCell(label, color, forceWhiteText) {
   const dark = document.body.classList.contains('dark');
-  const textColor = dark ? 'white' : '#222';
-  return `<th style="border-right:3px solid #222;background:${color};color:${textColor};font-weight:800;font-size:11px;">${label}</th>`;
+  const textColor = forceWhiteText ? '#fff' : (dark ? 'white' : '#222');
+  return `<th style="border-right:3px solid #fff;background:${color};color:${textColor};font-weight:800;font-size:11px;">${label}</th>`;
 }
 function rebuildTimetable() {
   document.getElementById('fullTimetable').innerHTML = '';
+  const isUSA = getTrainCountry(train) === 'USA';
+  const wrapperEl = document.querySelector('.timetable-wrapper');
+  if (wrapperEl) wrapperEl.classList.toggle('usa-flag-bg', isUSA);
+
+  const hc = isUSA ? '#0a2647' : null;
   const ttHead = document.createElement('thead');
 ttHead.innerHTML = `<tr>
-  ${thCell('#', colColors.sno)}
-  ${thCell('Station', colColors.station)}
-  ${thCell('Code', colColors.code)}
-  ${thCell('Zone', colColors.zone)}
-  ${thCell('Arrival', colColors.time)}
-  ${thCell('Departure', colColors.time)}
-  ${thCell('Halt', colColors.halt)}
-  ${thCell('Distance', colColors.distance)}
-  ${thCell('Schedule', colColors.schedule)}
+  ${thCell('#', hc || colColors.sno, isUSA)}
+  ${thCell('Station', hc || colColors.station, isUSA)}
+  ${thCell('Code', hc || colColors.code, isUSA)}
+  ${thCell('Zone', hc || colColors.zone, isUSA)}
+  ${thCell('Arrival', hc || colColors.time, isUSA)}
+  ${thCell('Departure', hc || colColors.time, isUSA)}
+  ${thCell('Halt', hc || colColors.halt, isUSA)}
+  ${thCell('Distance', hc || colColors.distance, isUSA)}
+  ${thCell('Schedule', hc || colColors.schedule, isUSA)}
 </tr>`;
 document.getElementById('fullTimetable').appendChild(ttHead);
 
