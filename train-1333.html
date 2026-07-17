@@ -212,12 +212,17 @@ body.dark .timetable-wrapper.usa-flag-bg .tt-table {
 }
 
 .tt-table thead tr { border-bottom: 4px solid #222; }
+.tt-table thead th { border-top: 3px solid #222; }
+body.dark .tt-table thead th { border-top: 3px solid #fff !important; }
 .tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 3px solid #222; white-space: nowrap; color: inherit; }
 .tt-table th:last-child { border-right: none; }
 .tt-table td { padding: 11px 10px; border-bottom: 3px solid #222; border-right: 3px solid #222; vertical-align: middle; text-align: center; font-size: 11px; }
 
 /* Arrival, Departure, Halt, Distance, Schedule columns get a dedicated border color */
 .tt-table td:nth-child(n+5) { border-right: 3px solid #943861; border-bottom: 3px solid #943861; }
+
+/* Zone/Arrival divider on data rows only — header stays white/black */
+.tt-table td:nth-child(4) { border-right: 3px solid #943861 !important; }
 .tt-table td:last-child { border-right: none; }
 .tt-table tbody tr:last-child td { border-bottom: none; }
 .tt-table tbody tr:hover { background: #faf7ef; }
@@ -356,6 +361,11 @@ body.dark .back-link:hover { color: #e8e8e8; }
   /* Header row needs to sit above sticky body cells */
   .tt-table thead th {
     z-index: 3;
+  }
+
+  /* Header bottom border under dynamic columns (Arrival→Schedule) — mobile only */
+  .tt-table th:nth-child(n+5) {
+    border-bottom: 3px solid #943861 !important;
   }
   .journey-info { flex-direction: column; gap: 8px; padding: 12px; }
   .journey-info-item { border-right: none; border-bottom: 1px solid var(--border); padding: 6px 0; width: 100%; }
