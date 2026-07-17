@@ -759,7 +759,7 @@ const colColors = {
 function thCell(label, color, forceWhiteText) {
   const dark = document.body.classList.contains('dark');
   const textColor = forceWhiteText ? '#fff' : (dark ? 'white' : '#222');
-  return `<th style="border-right:3px solid #222;background:${color};color:${textColor};font-weight:800;font-size:11px;">${label}</th>`;
+  return `<th style="border-right:3px solid #fff;background:${color};color:${textColor};font-weight:800;font-size:11px;">${label}</th>`;
 }
 function rebuildTimetable() {
   document.getElementById('fullTimetable').innerHTML = '';
