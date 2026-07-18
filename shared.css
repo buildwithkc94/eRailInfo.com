@@ -387,7 +387,8 @@ body.dark {
   --border: #383838;
   --text: #e8e8e8;
   --muted: #999;
-  background: #1a1a1a;
+  background: #1a1a1a url('erailinfo-pattern-bg.svg') repeat;
+  background-size: 340px auto;
   color: #e8e8e8;
 }
 
