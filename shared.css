@@ -11,8 +11,12 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: var(--paper) url('erailinfo-pattern-bg-light.svg') repeat;
-  background-size: 340px auto;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(245,241,232,0.72), rgba(245,241,232,0.72)),
+    url('erailinfo-pattern-bg-light.svg');
+  background-repeat: repeat;
+  background-size: 100% 100%, 200px auto;
   color: var(--text);
   font-family: 'Inter', sans-serif;
   font-weight: 400;
