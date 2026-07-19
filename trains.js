@@ -3153,7 +3153,7 @@ timetable: [
     { stop: 8,  code: "EFG", station: "Effingham, IL",               arrival: "11:56",      departure: "11:57",    day: 1, halt: "—",            km: 200, zone: "Amtrak Illinois Service Route", state: "Illinois", schedule: "S M T W T F S" },
     { stop: 9,  code: "CEN", station: "Centralia, IL",               arrival: "12:43",      departure: "12:44",    day: 1, halt: "—",            km: 253, zone: "Amtrak Illinois Service Route", state: "Illinois", schedule: "S M T W T F S" },
     { stop: 10, code: "DQN", station: "Du Quoin, IL",                arrival: "13:17",       departure: "13:17",     day: 1, halt: "—",            km: 289, zone: "Amtrak Illinois Service Route", state: "Illinois", schedule: "S M T W T F S" },
-    { stop: 11, code: "CDL", station: "Carbondale, IL",              arrival: "14:45",       departure: "Destination", day: 1, halt: "Destination", km: 309, zone: "Amtrak Illinois Service Route", state: "Illinois", schedule: "S M T W T F S" },
+    { stop: 11, code: "CDL", station: "Carbondale, IL",              arrival: "13:45",       departure: "Destination", day: 1, halt: "Destination", km: 309, zone: "Amtrak Illinois Service Route", state: "Illinois", schedule: "S M T W T F S" },
   ],
   revisions: [{ date: "31-JULY-2026", summary: "Initial Release" }],
 },
