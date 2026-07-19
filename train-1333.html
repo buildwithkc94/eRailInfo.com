@@ -648,7 +648,7 @@ function buildInfoDetails() {
   const pantryColor = train.pantry ? '#27F549' : '#F54927';
   document.getElementById('infoDetails').innerHTML = `
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-      ${infoBox('Type', train.type, #7BE38E)}
+      ${infoBox('Type', train.type, '#7BE38E')}
       ${infoBox('Runs On', train.runsOn, '#27D3F5')}
       ${infoBox('Zone', train.zone || '—', '#2798F5')}
       ${infoBox('Classes', train.classes, '#946B38')}
