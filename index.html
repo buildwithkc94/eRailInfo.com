@@ -1200,27 +1200,17 @@ const card = document.createElement('a');
     card.href = 'train-' + t.number + '.html';
     const flagCode = getTrainCountry(t) === 'USA' ? 'us' : 'in';
 
-   card.innerHTML = `
-      <div class="result-card-flag-bg" style="background-image:url('https://flagcdn.com/w320/${flagCode}.png');"></div>
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px;">
-        <div style="display:flex;align-items:center;justify-content:center;min-width:70px;padding:10px 14px;border:2px solid #000;border-radius:6px;background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://flagcdn.com/w320/${flagCode}.png');background-size:cover;background-position:center;flex-shrink:0;">
-          <span style="font-size:26px;font-weight:800;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.9);">${t.number}</span>
-        </div>
-        <div>
-          <div style="font-size:15px;font-weight:700;color:#fff;">${t.name}</div>
-          <div style="font-size:11px;color:#fff;margin-top:2px;">${t.from} → ${t.to}</div>
-        </div>
-      </div>
+card.innerHTML = `
       <div style="border-bottom:3px solid #fff;margin:0 -24px 14px -24px;"></div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
   <span class="result-category-capsule" onclick="event.preventDefault();event.stopPropagation();filterByCategory('${t.category}');"
     style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:5px 12px;background:${categoryColors[t.category] || '#2c2c2c'};color:${lightTextColors.includes(categoryColors[t.category]) ? '#222' : '#fff'};border:2px solid #000;border-radius:8px;cursor:pointer;">${t.category}</span>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:8px;">
-  <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;">🚆 ${t.type || '—'}</span>
-        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;">📅 ${t.runsOn || 'Daily'}</span>
-        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;">💺 ${t.classes || '—'}</span>
-        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;">📏 ${distDisplay}</span>
+  <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;"> ${t.type || '—'}</span>
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;"> ${t.runsOn || 'Daily'}</span>
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;"> ${t.classes || '—'}</span>
+        <span style="font-size:11px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;color:#fff;"> ${distDisplay}</span>
       </div>
     `;
 
