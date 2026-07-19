@@ -1202,15 +1202,14 @@ const card = document.createElement('a');
 
     card.innerHTML = `
       <div class="result-card-flag-bg" style="background-image:url('https://flagcdn.com/w320/${flagCode}.png');"></div>
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;padding-bottom:14px;border-bottom:3px solid #fff;">
-        <div style="display:flex;align-items:center;gap:16px;">
-          <div style="font-size:32px;font-weight:700;">${t.number}</div>
-          <div>
-            <div style="font-size:15px;font-weight:700;">${t.name}</div>
-            <div style="font-size:11px;color:#888;margin-top:2px;">${t.from} → ${t.to}</div>
-          </div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px;padding-bottom:14px;border-bottom:3px solid #fff;">
+        <div style="display:flex;align-items:center;justify-content:center;min-width:70px;padding:10px 14px;border:2px solid #000;border-radius:6px;background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://flagcdn.com/w320/${flagCode}.png');background-size:cover;background-position:center;flex-shrink:0;">
+          <span style="font-size:26px;font-weight:800;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.9);">${t.number}</span>
         </div>
-        <div style="font-size:20px;color:#ccc;">›</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:#fff;">${t.name}</div>
+          <div style="font-size:11px;color:#fff;margin-top:2px;">${t.from} → ${t.to}</div>
+        </div>
       </div>
       <div style="display:flex;align-items:center;margin-bottom:16px;">
         <div style="flex:1;">
