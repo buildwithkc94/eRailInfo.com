@@ -3383,7 +3383,7 @@ timetable: [
     { stop: 10, code: "DER", station: "Dearborn, MI",                 arrival: "12:57",       departure: "12:57", day: 1, halt: "—",            km: 271, zone: "Amtrak Wolverine Route", state: "Michigan",  schedule: "Sun Mon Tue Wed Thu Fri Sat" },
     { stop: 11, code: "DET", station: "Detroit, MI",                  arrival: "13:25",       departure: "13:25", day: 1, halt: "—",            km: 281, zone: "Amtrak Wolverine Route", state: "Michigan",  schedule: "Sun Mon Tue Wed Thu Fri Sat" },
     { stop: 12, code: "ROY", station: "Royal Oak, MI",                arrival: "13:49",       departure: "13:49", day: 1, halt: "—",            km: 292, zone: "Amtrak Wolverine Route", state: "Michigan",  schedule: "Sun Mon Tue Wed Thu Fri Sat" },
-    { stop: 13, code: "TRM", station: "Troy, MI",                     arrival: "13:57",       departure: "13:57", day: 1, halt: "—",            km: 296, zone: "Amtrak Wolverine Route", state: "Michigan",  schedule: "Sun . . . . . Sat" },
+    { stop: 13, code: "TRM", station: "Troy, MI",                     arrival: "13:57",       departure: "13:57", day: 1, halt: "—",            km: 296, zone: "Amtrak Wolverine Route", state: "Michigan",  schedule: "Sun Sat" },
     { stop: 14, code: "PNT", station: "Pontiac, MI",                  arrival: "14:11",       departure: "Destination", day: 1, halt: "Destination", km: 304, zone: "Amtrak Wolverine Route", state: "Michigan",  schedule: "Sun Mon Tue Wed Thu Fri Sat" },
   ],
   revisions: [{ date: "31-JULY-2026", summary: "Initial Release" }],
