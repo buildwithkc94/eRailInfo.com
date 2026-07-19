@@ -1202,36 +1202,16 @@ const card = document.createElement('a');
 
    card.innerHTML = `
       <div class="result-card-flag-bg" style="background-image:url('https://flagcdn.com/w320/${flagCode}.png');"></div>
-      <div style="display:flex;">
-        <div style="flex:1;min-width:0;padding-right:20px;">
-          <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px;">
-            <div style="display:flex;align-items:center;gap:10px;border:2px solid #000;border-radius:6px;background:#0a2647;padding:8px 14px;flex-shrink:0;">
-              <div style="width:30px;height:20px;border:1px solid #000;border-radius:2px;background-image:url('https://flagcdn.com/w320/${flagCode}.png');background-size:cover;background-position:center;flex-shrink:0;"></div>
-              <span style="font-size:22px;font-weight:800;color:#fff;">${t.number}</span>
-            </div>
-            <div>
-              <div style="font-size:15px;font-weight:700;color:#fff;">${t.name}</div>
-              <div style="font-size:11px;color:#fff;margin-top:2px;">${t.from} → ${t.to}</div>
-            </div>
-          </div>
-          <div style="border-bottom:3px solid #fff;margin:0 0 14px 0;"></div>
-          <div style="display:flex;align-items:center;">
-            <div style="flex:1;">
-              <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#999;text-transform:uppercase;margin-bottom:4px;">From</div>
-              <div style="font-size:13px;font-weight:700;">${fStop ? fStop.station : '—'}</div>
-              <div style="font-size:18px;font-weight:700;margin-top:4px;">${depTime || '—'}</div>
-            </div>
-            <div style="text-align:center;flex-shrink:0;">
-              <div style="font-size:13px;font-weight:700;color:#fff;background:rgba(255,255,255,0.12);border:3px solid #fff;border-radius:6px;padding:4px 14px;">${timeDiff}</div>
-            </div>
-          </div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;justify-content:center;min-width:70px;padding:10px 14px;border:2px solid #000;border-radius:6px;background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://flagcdn.com/w320/${flagCode}.png');background-size:cover;background-position:center;flex-shrink:0;">
+          <span style="font-size:26px;font-weight:800;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.9);">${t.number}</span>
         </div>
-        <div style="width:200px;flex-shrink:0;border-left:3px solid #fff;padding-left:16px;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:0;margin-bottom:0;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:#999;text-transform:uppercase;margin-bottom:4px;">To</div>
-          <div style="font-size:13px;font-weight:700;">${tStop ? tStop.station : '—'}</div>
-          <div style="font-size:18px;font-weight:700;margin-top:4px;">${arrTime || '—'}</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:#fff;">${t.name}</div>
+          <div style="font-size:11px;color:#fff;margin-top:2px;">${t.from} → ${t.to}</div>
         </div>
       </div>
+      <div style="border-bottom:3px solid #fff;margin:0 -24px 14px -24px;"></div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
   <span class="result-category-capsule" onclick="event.preventDefault();event.stopPropagation();filterByCategory('${t.category}');"
     style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:5px 12px;background:${categoryColors[t.category] || '#2c2c2c'};color:${lightTextColors.includes(categoryColors[t.category]) ? '#222' : '#fff'};border:2px solid #000;border-radius:8px;cursor:pointer;">${t.category}</span>
