@@ -213,7 +213,7 @@ body.dark .timetable-wrapper.usa-flag-bg .tt-table {
 }
 
 .tt-table thead tr { border-bottom: 4px solid #222; }
-.tt-table thead th { border-top: 3px solid #222; }
+.tt-table thead th { border-top: 3px solid #222 !important; }
 body.dark .tt-table thead th { border-top: 3px solid #fff !important; }
 .tt-table th { text-align: center; padding: 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-right: 3px solid #222; white-space: nowrap; color: inherit; }
 .tt-table th:last-child { border-right: none; }
@@ -671,7 +671,8 @@ function buildScheduleCapsules(schedule) {
 function thCell(label, color, forceWhiteText) {
   const dark = document.body.classList.contains('dark');
   const textColor = forceWhiteText ? '#fff' : (dark ? 'white' : '#222');
-  return `<th style="border-right:3px solid #fff;background:${color};color:${textColor};font-weight:800;font-size:11px;">${label}</th>`;
+  const borderColor = dark ? '#fff' : '#000';
+  return `<th style="border-right:3px solid ${borderColor};background:${color};color:${textColor};font-weight:800;font-size:11px;">${label}</th>`;
 }
 function rebuildTimetable() {
   document.getElementById('fullTimetable').innerHTML = '';
