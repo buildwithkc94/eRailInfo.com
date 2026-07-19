@@ -168,6 +168,10 @@ body.dark .journey-stop-box:not(.origin):not(.destination) { border-color: #fff 
   transition: box-shadow 0.15s, transform 0.15s;
 }
 
+body.dark .tab-btn {
+  border-color: #fff !important;
+}
+
 .tab-btn:hover {
   box-shadow: 4px 4px 0 #000;
   transform: translate(-2px, -2px);
@@ -797,6 +801,7 @@ if (initialActiveTab) {
   const color = categoryColors[train.category] || '#0a2647';
   initialActiveTab.style.background = color;
   initialActiveTab.style.color = lightTextColors.includes(color) ? '#222' : '#fff';
+  initialActiveTab.style.borderColor = document.body.classList.contains('dark') ? '#fff' : '#000';
 }
 
 // ── REVISIONS ──
@@ -840,6 +845,7 @@ function switchTab(name, btn) {
     b.classList.remove('active');
     b.style.background = '';
     b.style.color = '';
+    b.style.borderColor = '';
   });
   document.getElementById('tab-' + name).classList.add('active');
   btn.classList.add('active');
@@ -847,6 +853,7 @@ function switchTab(name, btn) {
   const color = categoryColors[train.category] || '#0a2647';
   btn.style.background = color;
   btn.style.color = lightTextColors.includes(color) ? '#222' : '#fff';
+  btn.style.borderColor = document.body.classList.contains('dark') ? '#fff' : '#000';
 }
 
 // ── RUN TIME ──
