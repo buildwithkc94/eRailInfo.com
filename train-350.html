@@ -707,6 +707,15 @@ const colColors = {
   schedule: '#C7A348',
 };
 
+function buildScheduleCapsules(schedule) {
+  if (!schedule) return '—';
+  const days = schedule.trim().split(/\s+/);
+  return `<div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center;">${days.map(d => {
+    const isOff = d === '-' || d === '—';
+    return `<span style="display:inline-block;background:${isOff ? 'rgba(255,255,255,0.08)' : '#0a2647'};color:${isOff ? '#666' : '#fff'};border:1px solid ${isOff ? '#444' : '#000'};border-radius:10px;padding:2px 7px;font-size:9px;font-weight:700;">${isOff ? '—' : d}</span>`;
+  }).join('')}</div>`;
+}
+  
 function thCell(label, color, forceWhiteText) {
   const dark = document.body.classList.contains('dark');
   const textColor = forceWhiteText ? '#fff' : (dark ? 'white' : '#222');
@@ -754,7 +763,7 @@ train.timetable.forEach(s => {
     ${tdCell(s.departure, colColors.time, 'font-weight:700;')}
     ${tdCell(s.halt, colColors.halt, 'font-weight:700;')}
     ${tdCell(s.km!==undefined?s.km+(getTrainCountry(train)==='USA'?' mi':' km'):'—', colColors.distance, 'font-size:11px;font-weight:700;')}
-    ${tdCell(s.schedule, colColors.schedule, 'font-size:10px;')}`;
+    ${tdCell(buildScheduleCapsules(s.schedule), colColors.schedule, 'font-size:10px;')}`;
   ttBody.appendChild(row);
 });
 document.getElementById('fullTimetable').appendChild(ttBody);
