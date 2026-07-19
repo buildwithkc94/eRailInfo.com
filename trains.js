@@ -2815,7 +2815,7 @@ timetable: [
     { stop: 8,  code: "GLM", station: "Gilman, IL",                  arrival: "19:50",       departure: "19:51",     day: 1, halt: "1",            km: 82,  zone: "Amtrak Illinois Service Route", state: "Illinois", schedule: "S M T W T F S" },
     { stop: 9,  code: "KKI", station: "Kankakee, IL",                arrival: "20:14",       departure: "20:14",     day: 1, halt: "1",            km: 57,  zone: "Amtrak Illinois Service Route", state: "Illinois", schedule: "S M T W T F S" },
     { stop: 10, code: "HMW", station: "Homewood, IL",                arrival: "20:55",       departure: "20:55",     day: 1, halt: "1",            km: 24,  zone: "Amtrak Illinois Service Route", state: "Illinois", schedule: "S M T W T F S" },
-    { stop: 11, code: "CHI", station: "Chicago, IL - Union Station", arrival: "9:45p",       departure: "Destination", day: 1, halt: "Destination", km: 0,   zone: "Amtrak Illinois Service Route", state: "Illinois", schedule: "S M T W T F S" },
+    { stop: 11, code: "CHI", station: "Chicago, IL - Union Station", arrival: "21:45",       departure: "Destination", day: 1, halt: "Destination", km: 0,   zone: "Amtrak Illinois Service Route", state: "Illinois", schedule: "S M T W T F S" },
   ],
   revisions: [{ date: "31-JULY-2026", summary: "Initial Release" }],
 },
