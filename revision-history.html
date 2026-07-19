@@ -4,308 +4,201 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Revision History — eRailInfo</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
 
-:root {
-  --paper: #f5f1e8;
-  --paper-dark: #ebe5d8;
-  --border: #d7cfbf;
-  --text: #2c2c2c;
-  --muted: #777;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  background: var(--paper);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
-}
-
-.container {
-  width: min(1100px, 90%);
-  margin: auto;
-}
-
-/* HEADER */
-header {
-  padding: 40px 0 20px;
-  border-bottom: 1px solid var(--border);
-}
-
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.logo {
-  font-family: 'Inter', sans-serif;
-  font-size: 54px;
-  font-weight: 700;
-  text-decoration: none;
-  color: #222;
-}
-
-.tagline { color: var(--muted); font-size: 13px; }
-
-/* NAVIGATION */
-.nav-menu { display: flex; gap: 50px; list-style: none; }
-.nav-menu li { position: relative; }
-.nav-menu a {
-  text-decoration: none;
-  color: #222;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  font-family: 'Inter', sans-serif;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 28px;
-  left: 0;
-  min-width: 180px;
-  background: #faf7ef;
-  border: 1px solid var(--border);
-  padding: 8px 0;
-  list-style: none;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0,0,0,.05);
-}
-
-.dropdown-menu li a {
-  display: block;
-  padding: 10px 15px;
-  font-weight: 400;
-}
-
-.dropdown-menu li a:hover { background: var(--paper-dark); }
-.dropdown:hover .dropdown-menu { display: block; }
-
-/* PAGE CONTENT */
-.page-hero {
-  text-align: center;
-  padding: 60px 0 40px;
-  border-bottom: 1px solid var(--border);
-}
-
-.page-hero h1 {
-  font-family: 'Inter', sans-serif;
-  font-size: 64px;
-  font-weight: 700;
-  letter-spacing: -1px;
-}
-
-.page-hero p {
-  color: #666;
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-/* TABLE */
-.table-section {
-  margin-top: 50px;
-  margin-bottom: 80px;
-}
-
-.table-name {
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
+  text-decoration: none;
   color: var(--muted);
+  padding: 20px 0 0;
+}
+.back-link:hover { color: var(--text); }
+
+.table-name {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text);
   margin-bottom: 16px;
   text-transform: uppercase;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-  background: white;
-  border: 1px solid var(--border);
-}
+.revisions-table { width: 100%; border-collapse: collapse; font-size: 13px; border: 4px solid #222; background: white; margin-top: 10px; margin-bottom: 40px; }
+.revisions-table thead tr { border-bottom: 4px solid #222; }
+.revisions-table th { text-align: left; padding: 14px 16px; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; border-right: 2px solid #222; color: #222; }
+.revisions-table th:last-child { border-right: none; }
+.revisions-table td { padding: 14px 16px; border-bottom: 2px solid #222; border-right: 2px solid #222; vertical-align: top; }
+.revisions-table td:last-child { border-right: none; }
+.revisions-table tbody tr:last-child td { border-bottom: none; }
+.revisions-table tbody tr:hover { background: #faf7ef; }
+.rev-version { font-weight: 700; width: 90px; white-space: nowrap; background: #C7A34820; }
+.rev-date { width: 150px; white-space: nowrap; background: #C7744820; }
+.rev-summary { background: #48C78E20; }
 
-thead tr {
-  border-bottom: 2px solid var(--border);
-  background: var(--paper-dark);
-}
+body.dark .revisions-table { background: #242424; border-color: #fff; }
+body.dark .revisions-table thead tr { border-bottom-color: #fff; }
+body.dark .revisions-table th { border-right-color: #fff; color: #fff; }
+body.dark .revisions-table td { border-bottom-color: #444; border-right-color: #444; color: #e8e8e8; }
+body.dark .revisions-table tbody tr:hover { background: #2e2e2e; }
 
-thead th {
-  text-align: left;
-  padding: 14px 18px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #444;
-}
-
-tbody tr {
-  border-bottom: 1px solid var(--border);
-}
-
-tbody tr:last-child {
-  border-bottom: none;
-}
-
-tbody tr:hover {
-  background: #faf7ef;
-}
-
-tbody td {
-  padding: 14px 18px;
-  vertical-align: top;
-}
-
-td.version {
-  font-weight: 700;
-  font-size: 15px;
-  white-space: nowrap;
-  width: 140px;
-}
-
-td.date {
-  white-space: nowrap;
-  width: 160px;
-  color: #555;
-}
-
-td.summary {
-  color: #333;
-}
-
-/* add row button */
 .add-hint {
-  margin-top: 16px;
+  margin-top: -30px;
+  margin-bottom: 60px;
   font-size: 12px;
-  color: #aaa;
-}
-
-/* FOOTER */
-footer {
-  margin-top: 0;
-  padding: 30px 0;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  color: #888;
-  font-size: 13px;
+  color: var(--muted);
 }
 
 @media (max-width: 768px) {
-  .topbar { flex-direction: column; gap: 20px; }
-  .nav-menu { flex-wrap: wrap; gap: 20px; }
-  .page-hero h1 { font-size: 40px; }
-  thead th, tbody td { padding: 10px 12px; }
-  td.version, td.date { width: auto; }
+  .revisions-table th, .revisions-table td { padding: 10px 12px; }
+  .rev-version, .rev-date { width: auto; }
 }
 
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════ HEADER (same as index) -->
+<!-- HEADER -->
 <header>
 <div class="container">
   <div class="topbar">
-    <div>
-      <a href="index.html" class="logo">eRailInfo</a>
-      <div class="tagline">Indian Railway Information</div>
+<a href="index.html" class="logo-badge">
+  <div class="logo-badge-band"></div>
+  <div class="logo-badge-text">eRailInfo</div>
+  <div class="logo-badge-band"></div>
+</a>
+<div id="delhiTimeCapsule" class="time-capsule" onclick="toggleTimeFormat()">
+  <div class="time-cell" id="timeCapsuleTime"></div>
+  <div class="time-cell" id="timeCapsuleDay"></div>
+  <div class="time-cell" id="timeCapsuleDate"></div>
+  <div class="time-cell" id="timeCapsuleZoneName"></div>
+  <div class="time-cell" id="timeCapsuleZoneOffset"></div>
+</div>
+<div class="header-right">
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
+        </svg>
+      </button>
     </div>
-    <ul class="nav-menu">
-      <li class="dropdown">
-        <a href="#">TRAINS ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Rajdhani Express</a></li>
-          <li><a href="#">Shatabdi Express</a></li>
-          <li><a href="#">Vande Bharat</a></li>
-          <li><a href="#">Duronto Express</a></li>
-          <li><a href="#">Humsafar Express</a></li>
-          <li><a href="#">Garib Rath</a></li>
-          <li><a href="#">Mail / Express</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">STATIONS ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#">A Stations</a></li>
-          <li><a href="#">B Stations</a></li>
-          <li><a href="#">C Stations</a></li>
-          <li><a href="#">D Stations</a></li>
-          <li><a href="#">E Stations</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">UPDATES ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="revision-history.html">Revision History</a></li>
-        </ul>
-      </li>
-    </ul>
   </div>
 </div>
 </header>
 
-<!-- ═══════════════════════════════════ PAGE HERO -->
-<div class="page-hero">
-  <h1>Revision History</h1>
-  <p>A log of all schedule and data updates to eRailInfo.</p>
-</div>
-
-<!-- ═══════════════════════════════════ TABLE -->
 <div class="container">
-<div class="table-section">
+  <a href="index.html" class="back-link">&#8592; BACK TO SEARCH</a>
 
-  <div class="table-name">Revision History — Search</div>
+  <div style="text-align:center;padding:40px 0 10px;">
+    <h1 style="font-size:48px;font-weight:700;line-height:1.1;">Revision History</h1>
+    <p style="font-size:15px;color:var(--text);margin-top:12px;">A log of all schedule and data updates to eRailInfo.</p>
+  </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Version Number</th>
-        <th>Effective Date</th>
-        <th>Summary of Changes</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div style="margin-top:50px;">
+    <div class="table-name">Revision History — Search</div>
 
-      <!-- ↓ ADD YOUR ROWS HERE — copy and paste the block below each time -->
+    <table class="revisions-table">
+      <thead>
+        <tr>
+          <th style="background:#C7A348;">Version</th>
+          <th style="background:#C77448;">Effective Date</th>
+          <th style="background:#48C78E;">Summary of Changes</th>
+        </tr>
+      </thead>
+      <tbody>
 
-      <tr>
-        <td class="version">1.0</td>
-        <td class="date">2026-01-01</td>
-        <td class="summary">Initial release of eRailInfo with core train search and schedule data.</td>
-      </tr>
+        <!-- ↓ ADD YOUR ROWS HERE — copy and paste the block below each time -->
 
-      <tr>
-        <td class="version">1.1</td>
-        <td class="date">2026-03-15</td>
-        <td class="summary">Mumbai Rajdhani Express departure timing updated. Coach composition revised for Gatimaan Express.</td>
-      </tr>
+        <tr>
+          <td class="rev-version">v1</td>
+          <td class="rev-date">31-JULY-2026</td>
+          <td class="rev-summary">Initial Release</td>
+        </tr>
 
-      <tr>
-        <td class="version">1.2</td>
-        <td class="date">2026-06-01</td>
-        <td class="summary">Bengaluru Duronto coach composition updated. New Vande Bharat Sleeper routes added.</td>
-      </tr>
+        <!-- ↑ COPY ONE <tr>...</tr> BLOCK ABOVE FOR EACH NEW VERSION -->
 
-      <!-- ↑ COPY ONE <tr>...</tr> BLOCK ABOVE FOR EACH NEW VERSION -->
+      </tbody>
+    </table>
 
-    </tbody>
-  </table>
-
-  <div class="add-hint">To add a new entry: copy any &lt;tr&gt;...&lt;/tr&gt; row inside &lt;tbody&gt; and update the three fields.</div>
+    <div class="add-hint">To add a new entry: copy any &lt;tr&gt;...&lt;/tr&gt; row inside &lt;tbody&gt; and update the three fields.</div>
+  </div>
 
 </div>
-</div>
 
-<!-- ═══════════════════════════════════ FOOTER (same as index) -->
 <footer>
-  eRailInfo © 2026
+  <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:20px;margin-bottom:16px;font-size:12px;font-weight:700;letter-spacing:0.5px;">
+    <a href="about.html" style="color:var(--text);text-decoration:none;">About</a>
+    <a href="privacy-policy.html" style="color:var(--text);text-decoration:none;">Privacy Policy</a>
+    <a href="terms-of-use.html" style="color:var(--text);text-decoration:none;">Terms of Use</a>
+    <a href="disclaimer.html" style="color:var(--text);text-decoration:none;">Disclaimer</a>
+    <a href="revision-history.html" style="color:var(--text);text-decoration:none;">Feedback</a>
+    <a href="revision-history.html" style="color:var(--text);text-decoration:none;">Revision History</a>
+  </div>
+  <div style="display:flex;justify-content:center;gap:30px;margin-top:12px;color:var(--text);">
+  &#9432;   Train information is for reference only. Please verify with Indian Railways or NTES before travel.
+  </div>
+  <span style="color:var(--text);">eRailInfo &copy; 2026</span>
 </footer>
+
+<script>
+if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+
+let use24Hour = localStorage.getItem('timeFormat') === '24';
+
+function toggleTimeFormat() {
+  use24Hour = !use24Hour;
+  localStorage.setItem('timeFormat', use24Hour ? '24' : '12');
+  updateDelhiTime();
+}
+
+function updateDelhiTime() {
+  const now = new Date();
+  let timeStr = now.toLocaleTimeString('en-US', {
+    hour12: !use24Hour,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+  if (!use24Hour) timeStr = timeStr.toUpperCase();
+
+  const dayStr = now.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
+  const day = now.toLocaleDateString('en-GB', { day: '2-digit' });
+  const month = now.toLocaleDateString('en-US', { month: 'long' }).toUpperCase();
+  const year = now.toLocaleDateString('en-US', { year: 'numeric' });
+
+  let zoneName = '';
+  try {
+    zoneName = Intl.DateTimeFormat('en-US', { timeZoneName: 'short' })
+      .formatToParts(now)
+      .find(p => p.type === 'timeZoneName').value;
+  } catch (e) { zoneName = ''; }
+
+  const offsetMin = -now.getTimezoneOffset();
+  const sign = offsetMin >= 0 ? '+' : '-';
+  const absMin = Math.abs(offsetMin);
+  const offH = Math.floor(absMin / 60);
+  const offM = absMin % 60;
+  const offsetStr = 'UTC' + sign + offH + (offM ? ':' + String(offM).padStart(2, '0') : '');
+
+  document.getElementById('timeCapsuleTime').textContent = timeStr;
+  document.getElementById('timeCapsuleDay').textContent = dayStr;
+  document.getElementById('timeCapsuleDate').textContent = day + '/' + month + '/' + year;
+  document.getElementById('timeCapsuleZoneName').textContent = zoneName;
+  document.getElementById('timeCapsuleZoneOffset').textContent = offsetStr;
+}
+
+updateDelhiTime();
+setInterval(updateDelhiTime, 1000);
+</script>
 
 </body>
 </html>
