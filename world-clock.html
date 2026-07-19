@@ -122,6 +122,7 @@ body.dark .no-cities-msg { border-color: #fff; }
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
 <div class="container">
   <div class="topbar">
@@ -131,62 +132,15 @@ body.dark .no-cities-msg { border-color: #fff; }
   <div class="logo-badge-band"></div>
 </a>
 <div id="delhiTimeCapsule" class="time-capsule" onclick="toggleTimeFormat()">
-  <div class="time-capsule-time" id="timeCapsuleTime"></div>
-  <div class="time-capsule-date" id="timeCapsuleDate"></div>
+  <div class="time-cell" id="timeCapsuleTime"></div>
+  <div class="time-cell" id="timeCapsuleDay"></div>
+  <div class="time-cell" id="timeCapsuleDate"></div>
+  <div class="time-cell" id="timeCapsuleZoneName"></div>
+  <div class="time-cell" id="timeCapsuleZoneOffset"></div>
 </div>
-<div class="header-right">
-      <ul class="nav-menu">
-        <li class="dropdown">
-          <a href="#" class="nav-btn">&#128646; TRAINS &#9662;</a>
-          <ul class="dropdown-menu" id="trainsDropdown"></ul>
-        </li>
-        <li class="dropdown">
-  <a href="#" class="nav-btn">&#127963; STATIONS &#9662;</a>
-  <ul class="dropdown-menu">
-    <li class="dropdown-submenu">
-      <a href="#" class="submenu-trigger">METRO</a>
-      <ul class="submenu">
-        <li><a href="#">Ahmedabad</a></li>
-        <li><a href="#">Agra</a></li>
-        <li><a href="#">Bangalore</a></li>
-        <li><a href="#">Bhopal</a></li>
-        <li><a href="#">Chennai</a></li>
-        <li><a href="#">Hyderabad</a></li>
-        <li><a href="#">Indore</a></li>
-        <li><a href="#">Jaipur</a></li>
-        <li><a href="#">Kanpur</a></li>
-        <li><a href="#">Kochi</a></li>
-        <li><a href="#">Kolkata</a></li>
-        <li><a href="#">Lucknow</a></li>
-        <li><a href="#">Mumbai</a></li>
-        <li><a href="#">Nagpur</a></li>
-        <li><a href="#">Patna</a></li>
-        <li><a href="#">Pune</a></li>
-        <li><a href="#">Surat (In progress)</a></li>
-      </ul>
-    </li>
-    <li class="dropdown-submenu">
-      <a href="#" class="submenu-trigger">SUBURBAN/MMTS</a>
-      <ul class="submenu">
-        <li><a href="#">Bangalore</a></li>
-        <li><a href="#">Chennai</a></li>
-        <li><a href="#">Delhi</a></li>
-        <li><a href="#">Hyderabad</a></li>
-        <li><a href="#">Kolkata</a></li>
-        <li><a href="#">Mumbai</a></li>
-        <li><a href="#">Pune</a></li>
-      </ul>
-    </li>
-  </ul>
-</li>
-        <li class="dropdown">
-          <a href="#" class="nav-btn">&#128276; UPDATES &#9662;</a>
-          <ul class="dropdown-menu">
-            <li><a href="revision-history.html">Revision History</a></li>
-            <li><a href="revision-history.html">Feedback</a></li>
-          </ul>
-        </li>
-      </ul>
+
+        
+      </ul><div class="header-right">
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/>
