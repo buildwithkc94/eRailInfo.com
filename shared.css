@@ -215,7 +215,7 @@ body.dark .category-pill:hover { box-shadow: 4px 4px 0 #fff; }
 .capsule { display: inline-flex; align-items: center; padding: 6px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-weight: 400; color: #333; text-decoration: none; background: white; cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap; }.capsule:hover { background: var(--paper); border-color: #b0a898; }
 .capsule.active { background: #2c2c2c; color: white; border-color: #2c2c2c; }
 .search-card-bg {
-  background: #0a2647;
+  background: #027B7B;
   border: 3px solid #000;
   color: #fff;
 }
@@ -422,7 +422,7 @@ body.dark .tagline { color: #777; }
 
 /* Dark — search cards */
 body.dark .search-card-bg {
-  background: #0a2647 !important;
+  background: #027B7B !important;
   border-color: #fff !important;
   color: #e8e8e8 !important;
 }
