@@ -433,7 +433,7 @@ body.dark .search-card-bg button {
 }
 
 body.dark .search-card-bg button[onclick] {
-  background: #444 !important;
+  background: #027B7B !important;
   color: white !important;
 }
 
