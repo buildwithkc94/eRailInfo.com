@@ -1216,8 +1216,8 @@ const card = document.createElement('a');
         </div>
 
         <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:6px;flex-shrink:0;">
-          <span class="result-pill">${timeDiff}</span>
-          <span class="result-pill" style="background:transparent;">${distDisplay}</span>
+          <span class="result-pill" style="border:3px solid ${categoryColors[t.category] || '#2c2c2c'};">${timeDiff}</span>
+          <span class="result-pill" style="background:transparent;border:3px solid ${categoryColors[t.category] || '#2c2c2c'};">${distDisplay}</span>
         </div>
 
         <div style="text-align:right;">
@@ -1230,10 +1230,10 @@ const card = document.createElement('a');
       </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:10px;">
-        <span class="result-pill" onclick="event.preventDefault();event.stopPropagation();filterByCategory('${t.category}');" style="cursor:pointer;background:${categoryColors[t.category] || '#2c2c2c'};color:${lightTextColors.includes(categoryColors[t.category]) ? '#222' : '#fff'};border-color:transparent;">${t.category}</span>
-        <span class="result-pill">${t.runsOn || 'Daily'}</span>
-        <span class="result-pill">${t.classes || '—'}</span>
-        <span class="result-pill">${distDisplay}</span>
+        <span class="result-pill" onclick="event.preventDefault();event.stopPropagation();filterByCategory('${t.category}');" style="cursor:pointer;background:${categoryColors[t.category] || '#2c2c2c'};color:${lightTextColors.includes(categoryColors[t.category]) ? '#222' : '#fff'};border:3px solid ${categoryColors[t.category] || '#2c2c2c'};">${t.category}</span>
+        <span class="result-pill" style="border:3px solid ${categoryColors[t.category] || '#2c2c2c'};">${t.runsOn || 'Daily'}</span>
+        <span class="result-pill" style="border:3px solid ${categoryColors[t.category] || '#2c2c2c'};">${t.classes || '—'}</span>
+        <span class="result-pill" style="border:3px solid ${categoryColors[t.category] || '#2c2c2c'};">${distDisplay}</span>
       </div>
     `;
 
