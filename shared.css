@@ -216,7 +216,7 @@ body.dark .category-pill:hover { box-shadow: 4px 4px 0 #fff; }
 .capsule.active { background: #2c2c2c; color: white; border-color: #2c2c2c; }
 .search-card-bg {
   background: #027B7B;
-  border: 1px solid rgba(255,255,255,0.18);
+  border: 1px solid #000;
   border-radius: 14px !important;
   overflow: hidden;
   padding: 0 !important;
