@@ -215,14 +215,28 @@ body.dark .category-pill:hover { box-shadow: 4px 4px 0 #fff; }
 .capsule { display: inline-flex; align-items: center; padding: 6px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-weight: 400; color: #333; text-decoration: none; background: white; cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap; }.capsule:hover { background: var(--paper); border-color: #b0a898; }
 .capsule.active { background: #2c2c2c; color: white; border-color: #2c2c2c; }
 .search-card-bg {
-  background: #571717;
-  border: 3px solid #000;
+  background: #027B7B;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 14px !important;
+  overflow: hidden;
+  padding: 0 !important;
   color: #fff;
 }
+.search-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 24px;
+  background: rgba(0,0,0,0.18);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  font-size: 15px;
+  font-weight: 700;
+}
+.search-card-body { padding: 24px; }
+
 .search-card-bg input[type="text"],
-.search-card-bg .station-pill-box,
-.search-card-bg button[onclick="swapStations()"] {
-  border: 3px solid #fff !important;
+.search-card-bg .station-pill-box {
+  border: 1px solid rgba(255,255,255,0.25) !important;
 }
 
 .search-card-bg .station-pill-box input[type="text"],
@@ -231,22 +245,24 @@ body.dark .search-card-bg .station-pill-box input[type="text"] {
   background: transparent !important;
 }
 .search-card-bg input[type="text"],
-.search-card-bg .station-pill-box,
-.search-card-bg button[onclick] {
-  border: 3px solid #fff !important;
-  transition: box-shadow 0.15s, transform 0.15s;
+.search-card-bg .station-pill-box {
+  transition: border-color 0.15s;
+}
+.search-card-bg input[type="text"]:focus,
+.search-card-bg .station-pill-box:focus-within {
+  border-color: #fff !important;
 }
 .search-card-bg button[onclick="swapStations()"] {
-  background: #0a2647 !important;
-  border: 3px solid #fff !important;
+  background: rgba(2,123,123,0.25) !important;
+  border: 2px solid #027B7B !important;
   color: #fff !important;
+  border-radius: 8px !important;
 }
 .search-card-bg button[onclick]:hover {
-  box-shadow: 4px 4px 0 #fff;
-  transform: translate(-2px, -2px);
+  filter: brightness(1.1);
 }
 body.dark #trainSearchInput {
-  border: 3px solid #fff !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
 }
 /* ── BROWSE BAR — equal-size navy cells, matches logo style, fixed across themes ── */
 #capsuleBar {
