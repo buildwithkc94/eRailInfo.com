@@ -438,8 +438,8 @@ body.dark .tagline { color: #777; }
 
 /* Dark — search cards */
 body.dark .search-card-bg {
-  background: #571717 !important;
-  border-color: #fff !important;
+  background: #0a2647 !important;
+  border-color: #000 !important;
   color: #e8e8e8 !important;
 }
 
