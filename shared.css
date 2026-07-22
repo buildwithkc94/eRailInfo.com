@@ -215,7 +215,7 @@ body.dark .category-pill:hover { box-shadow: 4px 4px 0 #fff; }
 .capsule { display: inline-flex; align-items: center; padding: 6px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-weight: 400; color: #333; text-decoration: none; background: white; cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap; }.capsule:hover { background: var(--paper); border-color: #b0a898; }
 .capsule.active { background: #2c2c2c; color: white; border-color: #2c2c2c; }
 .search-card-bg {
-  background: #571717;
+  background: #0a2647;
   border: 1px solid #000;
   border-radius: 14px !important;
   overflow: hidden;
@@ -227,7 +227,7 @@ body.dark .category-pill:hover { box-shadow: 4px 4px 0 #fff; }
   align-items: center;
   gap: 10px;
   padding: 18px 24px;
-  background: rgba(0,0,0,0.18);
+  background: #571717;
   border-bottom: 1px solid rgba(255,255,255,0.15);
   font-size: 15px;
   font-weight: 700;
