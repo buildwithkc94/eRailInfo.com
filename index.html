@@ -961,6 +961,7 @@ function handleTrainSearch() {
   allSearchLabel = 'SEARCH RESULTS (' + results.length + ')';
   allSearchFromStop = null;
   allSearchToStop = null;
+  updateHash({ type: 'train', q });
   showResults(results, allSearchLabel, null, null);
 }
 
@@ -995,8 +996,15 @@ function handleStationSearch() {
     label = 'TRAINS THROUGH ' + single.code.toUpperCase() + ' (' + results.length + ')';
   }
 
-  allSearchResults = results;
+allSearchResults = results;
   allSearchLabel = label;
+
+  if (fromSelected && toSelected) {
+    updateHash({ type: 'station', from: fromSelected.code, to: toSelected.code });
+  } else {
+    updateHash({ type: 'station', from: (fromSelected || toSelected).code });
+  }
+
   if (fromSelected && toSelected) {
     allSearchFromStop = fromSelected;
     allSearchToStop = toSelected;
@@ -1009,8 +1017,9 @@ function handleStationSearch() {
 }
 
 // ── CATEGORY FILTER (within current search results) ──
-function filterResultsByCategory(cat) {
-  const filtered = allSearchResults.filter(t => t.category === cat);
+function filterByCategory(cat) {
+  updateHash({ type: 'category', cat });
+  const results = trains.filter(t => t.category === cat);
   showResults(filtered, cat.toUpperCase() + ' (' + filtered.length + ')', allSearchFromStop, allSearchToStop, cat);
   document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth' });
 }
@@ -1047,6 +1056,38 @@ let allSearchFromStop = null;
 let allSearchToStop = null;
 let currentPage = 1;
 let currentSortField = 'number';
+
+  // ── URL STATE (persists search across refresh) ──
+function updateHash(params) {
+  const usp = new URLSearchParams(params);
+  history.replaceState(null, '', '#' + usp.toString());
+}
+
+function restoreFromHash() {
+  if (!location.hash || location.hash.length < 2) return;
+  const params = new URLSearchParams(location.hash.slice(1));
+  const type = params.get('type');
+
+  if (type === 'train') {
+    document.getElementById('trainSearchInput').value = params.get('q') || '';
+    handleTrainSearch();
+  } else if (type === 'station') {
+    const fromCode = params.get('from');
+    const toCode = params.get('to');
+    if (fromCode) {
+      const s = allStations.find(x => x.code.toLowerCase() === fromCode.toLowerCase());
+      if (s) { setFrom(s); renderPill(document.getElementById('fromPillBox'), document.getElementById('fromInput'), s, 'from'); }
+    }
+    if (toCode) {
+      const s = allStations.find(x => x.code.toLowerCase() === toCode.toLowerCase());
+      if (s) { setTo(s); renderPill(document.getElementById('toPillBox'), document.getElementById('toInput'), s, 'to'); }
+    }
+    handleStationSearch();
+  } else if (type === 'category') {
+    const cat = params.get('cat');
+    if (cat) filterByCategory(cat);
+  }
+}
 const RESULTS_PER_PAGE = 4;
 
 function showAllResults() {
@@ -1345,7 +1386,7 @@ document.addEventListener('click', (e) => {
 trainInput.addEventListener('keydown', e => {
   if (e.key === 'Enter') handleTrainSearch();
 });
-
+restoreFromHash();
 </script>
 </body>
 </html>
