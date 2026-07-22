@@ -12,6 +12,7 @@
   
 .station-input-wrap {
   flex: 1;
+  min-width: 0;
   position: relative;
 }
 
@@ -24,8 +25,10 @@
   border-radius: 4px;
   background: var(--paper);
   min-height: 50px;
+  min-width: 0;
   flex-wrap: wrap;
   cursor: text;
+  box-sizing: border-box;
 }
 
 .station-pill-box:focus-within {
