@@ -3,8 +3,8 @@
 <defs>
 <style>
   .bgrect{fill:#0f0f10}
-  .wm{fill:#3a3a3c;font-family:Georgia,serif;font-style:italic;font-size:15px}
-  .wm2{fill:#333335;font-family:'Noto Sans',sans-serif;font-size:14px}
+.wm{fill:#000;font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:7.5px}
+.wm2{fill:#000;font-family:'Noto Sans',sans-serif;font-weight:700;font-size:7px}
   .d{fill:none;stroke:#2c2c2e;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
 </style>
 </defs>
