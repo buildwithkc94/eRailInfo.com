@@ -1,11 +1,13 @@
 <svg width="700" height="1050" viewBox="0 0 700 1050" xmlns="http://www.w3.org/2000/svg" role="img">
 <title>eRailInfo scrambled dense multilingual pattern background (light theme)</title>
-<defs><style>
-.bgrect{fill:#f5f1e8}
-.wm{fill:#000;font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:7.5px}
-.wm2{fill:#000;font-family:'Noto Sans',sans-serif;font-weight:700;font-size:7px}
-.d{fill:none;stroke:#000;stroke-width:0.9;stroke-linecap:round;stroke-linejoin:round}
-</style></defs>
+<defs>
+<style>
+  .bgrect{fill:#0f0f10}
+  .wm{fill:#3a3a3c;font-family:Georgia,serif;font-style:italic;font-size:15px}
+  .wm2{fill:#333335;font-family:'Noto Sans',sans-serif;font-size:14px}
+  .d{fill:none;stroke:#2c2c2e;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+</style>
+</defs>
 <rect class="bgrect" x="0" y="0" width="700" height="1050"/>
 <g id="mtn"><path class="d" d="M0 7 L4.5 0 L9 7 Z"/></g>
 <g id="tun"><path class="d" d="M0 9 A9 9 0 0 1 18 9"/><line class="d" x1="0" y1="9" x2="0" y2="13"/><line class="d" x1="18" y1="9" x2="18" y2="13"/></g>
