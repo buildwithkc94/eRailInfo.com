@@ -351,6 +351,7 @@ footer { padding: 30px 0; border-top: 1px solid var(--border); text-align: cente
 
 .time-capsule.time-capsule {
   flex: 1;
+  min-width: 0;
   width: auto;
   height: 48px;
   overflow-x: auto;
@@ -387,13 +388,13 @@ footer { padding: 30px 0; border-top: 1px solid var(--border); text-align: cente
 }
 .logo-badge { width: 48px; height: 48px; border-radius: 10px; }
   .logo-badge-text { font-size: 7px; height: 16px; line-height: 16px; padding: 0; }
-  .theme-toggle {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
-    margin-left: 0;
+.theme-toggle {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 10px !important;
+    margin-left: 0 !important;
   }
-  .theme-toggle svg { width: 22px; height: 22px; }
+  .theme-toggle svg { width: 22px !important; height: 22px !important; }
 
   /* BROWSE BAR */
   .browse-bar { padding: 10px 0; }
