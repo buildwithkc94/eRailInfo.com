@@ -439,10 +439,16 @@ body.dark .mobile-stop-card { border-color: #fff; }
 }
 .mobile-mini-table th, .mobile-mini-table td {
   border: 1px solid #222;
-  padding: 6px 3px;
-  font-size: 8.5px;
+  padding: 5px 2px;
+  font-size: 7px;
   text-align: center;
-  word-break: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mobile-mini-table th {
+  font-size: 6.5px;
+  letter-spacing: 0;
 }
 body.dark .mobile-mini-table th, body.dark .mobile-mini-table td {
   border-color: #fff;
@@ -809,11 +815,11 @@ function buildMobileTimetable() {
         <thead><tr>
           ${thCell('Code', colColors.code)}
           ${thCell('Zone', colColors.zone)}
-          ${thCell('Arrival', colColors.time)}
-          ${thCell('Departure', colColors.time)}
+          ${thCell('Arr.', colColors.time)}
+          ${thCell('Dep.', colColors.time)}
           ${thCell('Halt', colColors.halt)}
-          ${thCell('Distance', colColors.distance)}
-          ${thCell('Schedule', colColors.schedule)}
+          ${thCell('Dist.', colColors.distance)}
+          ${thCell('Sched.', colColors.schedule)}
         </tr></thead>
         <tbody><tr>
           <td style="background:${colColors.code}20;font-weight:700;">${s.code}</td>
