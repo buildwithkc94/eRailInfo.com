@@ -754,18 +754,18 @@ function rebuildTimetable() {
   const wrapperEl = document.querySelector('.timetable-wrapper');
   if (wrapperEl) wrapperEl.classList.toggle('usa-flag-bg', isUSA);
 
-  const hc = isUSA ? '#0a2647' : null;
+  const headerColor = '#027B7B';
   const ttHead = document.createElement('thead');
 ttHead.innerHTML = `<tr>
-  ${thCell('#', hc || colColors.sno, isUSA)}
-  ${thCell('Station', hc || colColors.station, isUSA)}
-  ${thCell('Code', hc || colColors.code, isUSA)}
-  ${thCell('Zone', hc || colColors.zone, isUSA)}
-  ${thCell('Arrival', hc || colColors.time, isUSA)}
-  ${thCell('Departure', hc || colColors.time, isUSA)}
-  ${thCell('Halt', hc || colColors.halt, isUSA)}
-  ${thCell('Distance', hc || colColors.distance, isUSA)}
-  ${thCell('Schedule', hc || colColors.schedule, isUSA)}
+  ${thCell('#', headerColor, true)}
+  ${thCell('Station', headerColor, true)}
+  ${thCell('Code', headerColor, true)}
+  ${thCell('Zone', headerColor, true)}
+  ${thCell('Arrival', headerColor, true)}
+  ${thCell('Departure', headerColor, true)}
+  ${thCell('Halt', headerColor, true)}
+  ${thCell('Distance', headerColor, true)}
+  ${thCell('Schedule', headerColor, true)}
 </tr>`;
 document.getElementById('fullTimetable').appendChild(ttHead);
 
