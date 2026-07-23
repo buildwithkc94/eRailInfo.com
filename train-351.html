@@ -380,9 +380,82 @@ body.dark .back-link:hover { color: #e8e8e8; }
   .tt-table th:nth-child(n+5) {
     border-bottom: 3px solid #943861 !important;
   }
-  .journey-info { flex-direction: column; gap: 8px; padding: 12px; }
+.journey-info { flex-direction: column; gap: 8px; padding: 12px; }
   .journey-info-item { border-right: none; border-bottom: 1px solid var(--border); padding: 6px 0; width: 100%; }
   .journey-info-item:last-child { border-bottom: none; }
+
+  .timetable-wrapper { display: none !important; }
+  .mobile-timetable-cards { display: block !important; }
+}
+
+.mobile-timetable-cards { display: none; }
+
+.mobile-stop-card {
+  border: 3px solid #0a2647;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: var(--paper);
+}
+body.dark .mobile-stop-card { border-color: #fff; }
+
+.mobile-stop-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0a2647;
+  padding: 10px 12px;
+}
+.mobile-stop-badge {
+  background: #2c5aa0;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.mobile-stop-name { flex: 1; min-width: 0; }
+.mobile-stop-station { color: #fff; font-weight: 700; font-size: 13px; }
+.mobile-stop-state { color: #cfd8e6; font-size: 11px; }
+.mobile-stop-code {
+  background: #2c5aa0;
+  color: #fff;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.mobile-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.mobile-mini-table th, .mobile-mini-table td {
+  border: 1px solid #222;
+  text-align: center;
+}
+.mobile-mini-table td {
+  padding: 6px 3px;
+  font-size: 8.5px;
+  word-break: break-word;
+}
+.mobile-mini-table th {
+  padding: 5px 2px;
+  font-size: 6.5px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body.dark .mobile-mini-table th, body.dark .mobile-mini-table td {
+  border-color: #fff;
 }
 
 </style>
@@ -431,11 +504,12 @@ body.dark .back-link:hover { color: #e8e8e8; }
     <div id="infoDetails"></div>
     </div>
 
-  <div class="tab-content" id="tab-timetable">
+<div class="tab-content" id="tab-timetable">
     <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">Complete Timetable</h3>
     <div class="timetable-wrapper">
       <table class="tt-table" id="fullTimetable"></table>
     </div>
+    <div class="mobile-timetable-cards" id="mobileTimetableCards"></div>
   </div>
 
   <div class="tab-content" id="tab-return">
@@ -680,18 +754,18 @@ function rebuildTimetable() {
   const wrapperEl = document.querySelector('.timetable-wrapper');
   if (wrapperEl) wrapperEl.classList.toggle('usa-flag-bg', isUSA);
 
-  const hc = isUSA ? '#0a2647' : null;
+  const headerColor = '#027B7B';
   const ttHead = document.createElement('thead');
 ttHead.innerHTML = `<tr>
-  ${thCell('#', hc || colColors.sno, isUSA)}
-  ${thCell('Station', hc || colColors.station, isUSA)}
-  ${thCell('Code', hc || colColors.code, isUSA)}
-  ${thCell('Zone', hc || colColors.zone, isUSA)}
-  ${thCell('Arrival', hc || colColors.time, isUSA)}
-  ${thCell('Departure', hc || colColors.time, isUSA)}
-  ${thCell('Halt', hc || colColors.halt, isUSA)}
-  ${thCell('Distance', hc || colColors.distance, isUSA)}
-  ${thCell('Schedule', hc || colColors.schedule, isUSA)}
+  ${thCell('#', headerColor, true)}
+  ${thCell('Station', headerColor, true)}
+  ${thCell('Code', headerColor, true)}
+  ${thCell('Zone', headerColor, true)}
+  ${thCell('Arrival', headerColor, true)}
+  ${thCell('Departure', headerColor, true)}
+  ${thCell('Halt', headerColor, true)}
+  ${thCell('Distance', headerColor, true)}
+  ${thCell('Schedule', headerColor, true)}
 </tr>`;
 document.getElementById('fullTimetable').appendChild(ttHead);
 
@@ -720,8 +794,51 @@ train.timetable.forEach(s => {
   ttBody.appendChild(row);
 });
 document.getElementById('fullTimetable').appendChild(ttBody);
+buildMobileTimetable();
 }
 rebuildTimetable();
+
+function buildMobileTimetable() {
+  const wrap = document.getElementById('mobileTimetableCards');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  train.timetable.forEach(s => {
+    const dist = s.km !== undefined ? s.km + (getTrainCountry(train)==='USA' ? ' mi' : ' km') : '—';
+    const card = document.createElement('div');
+    card.className = 'mobile-stop-card';
+    card.innerHTML = `
+      <div class="mobile-stop-header">
+        <div class="mobile-stop-badge">${s.stop}</div>
+        <div class="mobile-stop-name">
+          <div class="mobile-stop-station">${s.station}</div>
+          <div class="mobile-stop-state">${s.state||''}</div>
+        </div>
+        <div class="mobile-stop-code">${s.code}</div>
+      </div>
+      <table class="mobile-mini-table">
+        <thead><tr>
+          ${thCell('Code', '#027B7B', true)}
+          ${thCell('Zone', '#027B7B', true)}
+          ${thCell('Arr.', '#027B7B', true)}
+          ${thCell('Dep.', '#027B7B', true)}
+          ${thCell('Halt', '#027B7B', true)}
+          ${thCell('Dist.', '#027B7B', true)}
+          ${thCell('Sched.', '#027B7B', true)}
+        </tr></thead>
+        <tbody><tr>
+          <td style="background:${colColors.code}20;font-weight:700;">${s.code}</td>
+          <td style="background:${colColors.zone}20;font-weight:700;">${s.zone||'—'}</td>
+          <td style="background:${colColors.time}20;font-weight:700;">${s.arrival}</td>
+          <td style="background:${colColors.time}20;font-weight:700;">${s.departure}</td>
+          <td style="background:${colColors.halt}20;font-weight:700;">${s.halt}</td>
+          <td style="background:${colColors.distance}20;font-weight:700;">${dist}</td>
+          <td style="background:${colColors.schedule}20;">${buildScheduleCapsules(s.schedule)}</td>
+        </tr></tbody>
+      </table>
+    `;
+    wrap.appendChild(card);
+  });
+}
 
 // ── RETURN ──
 function buildReturnCard() {
